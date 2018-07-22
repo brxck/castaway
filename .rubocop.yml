@@ -1,0 +1,44 @@
+AllCops:
+  TargetRubyVersion: 2.4
+  Exclude:
+    - db/schema.rb
+    - db/migrate/*
+    - vendor/**/**
+
+Style/Documentation:
+  Include:
+    - lib/**/*.rb
+
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Metrics/LineLength:
+  AllowHeredoc: true
+  AllowURI: true
+  URISchemes:
+    - https
+    - http
+  Exclude:
+    - config/**/**.rb
+    - Gemfile
+    - Rakefile
+
+Metrics/BlockLength:
+  Exclude:
+    - config/environments/**.rb
+    - config/routes.rb
+    - spec/**/**.rb
+    - Guardfile.rb
+
+Rails:
+  Enabled: true
+
+Rails/DynamicFindBy:
+  Exclude:
+    - test/**/*

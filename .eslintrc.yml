@@ -1,0 +1,7 @@
+extends: ["standard", "plugin:jest/recommended"]
+env:
+  browser: true
+rules:
+  quotes: ["error", "double"]
+plugins:
+  ["jest"]
