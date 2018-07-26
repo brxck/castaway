@@ -36,7 +36,7 @@ gem 'jbuilder', '~> 2.5'
 # Authentication
 gem 'devise', git: 'https://github.com/plataformatec/devise.git', branch: 'master'
 # gpodder.net API interface
-gem "gpodder-ruby"
+gem "gpodder", github: "brxck/gpodder-ruby", branch: "master"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

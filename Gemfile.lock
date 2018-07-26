@@ -1,4 +1,14 @@
 GIT
+  remote: https://github.com/brxck/gpodder-ruby.git
+  revision: 46d962e548b563ccd47f16a36467321f018b4419
+  branch: master
+  specs:
+    gpodder (0.1.0)
+      faraday
+      faraday_middleware
+      json
+
+GIT
   remote: https://github.com/plataformatec/devise.git
   revision: b8f644198d34e96039b84b69842ecb4edffa4664
   branch: master
@@ -66,7 +76,7 @@ GEM
       msgpack (~> 1.0)
     builder (3.2.3)
     byebug (10.0.2)
-    capybara (3.4.1)
+    capybara (3.4.2)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
@@ -95,10 +105,6 @@ GEM
     formatador (0.2.5)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    gpodder-ruby (0.1.0)
-      faraday
-      faraday_middleware
-      json
     guard (2.14.2)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -165,7 +171,7 @@ GEM
     rack (2.0.5)
     rack-proxy (0.6.4)
       rack
-    rack-test (1.0.0)
+    rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.2.0)
       actioncable (= 5.2.0)
@@ -199,7 +205,7 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
-    rubocop (0.58.1)
+    rubocop (0.58.2)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.5, != 2.5.1.1)
@@ -253,7 +259,7 @@ GEM
     turbolinks-source (5.1.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    uglifier (4.1.15)
+    uglifier (4.1.16)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.4.0)
     warden (1.2.7)
@@ -282,7 +288,7 @@ DEPENDENCIES
   capybara (>= 2.15, < 4.0)
   chromedriver-helper
   devise!
-  gpodder-ruby
+  gpodder!
   guard
   guard-livereload
   jbuilder (~> 2.5)
