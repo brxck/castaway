@@ -37,6 +37,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise', git: 'https://github.com/plataformatec/devise.git', branch: 'master'
 # gpodder.net API interface
 gem "gpodder", github: "brxck/gpodder-ruby", branch: "master"
+# Make http requests
+gem "faraday"
+gem "faraday-http-cache"
+gem "faraday_middleware"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

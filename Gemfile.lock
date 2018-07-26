@@ -1,10 +1,11 @@
 GIT
   remote: https://github.com/brxck/gpodder-ruby.git
-  revision: 46d962e548b563ccd47f16a36467321f018b4419
+  revision: e9040f9e31aa3e7881bfbc98a6b7a95aa797d567
   branch: master
   specs:
     gpodder (0.1.0)
       faraday
+      faraday-http-cache
       faraday_middleware
       json
 
@@ -99,6 +100,8 @@ GEM
     execjs (2.7.0)
     faraday (0.15.2)
       multipart-post (>= 1.2, < 3)
+    faraday-http-cache (2.0.0)
+      faraday (~> 0.8)
     faraday_middleware (0.12.2)
       faraday (>= 0.7.4, < 1.0)
     ffi (1.9.25)
@@ -288,6 +291,9 @@ DEPENDENCIES
   capybara (>= 2.15, < 4.0)
   chromedriver-helper
   devise!
+  faraday
+  faraday-http-cache
+  faraday_middleware
   gpodder!
   guard
   guard-livereload
