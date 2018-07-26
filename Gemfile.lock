@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/brxck/gpodder-ruby.git
-  revision: e9040f9e31aa3e7881bfbc98a6b7a95aa797d567
+  revision: 03916b5f9aecbe6e5c16a38c5a1bee6d3cb39969
   branch: master
   specs:
     gpodder (0.1.0)
