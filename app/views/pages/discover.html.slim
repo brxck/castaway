@@ -1,6 +1,6 @@
   - @toplist.each do |podcast|
     div
       img(src=podcast.artworkUrl100 style="width: 50px;")
-      p: a(href="") = podcast.name
+      p: a(href=podcast_url(id: podcast.id)) = podcast.name
 
       
