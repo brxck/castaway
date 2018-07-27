@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
+  include ItunesHelper
+  
   def home
-    
   end
 
   def discover
@@ -11,6 +12,6 @@ class PagesController < ApplicationController
   end
 
   def search
-
+    @results = Itunes.search(params[:q])
   end
 end

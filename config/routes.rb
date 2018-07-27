@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  get 'podcast/:id', to: "podcast#show", as: "podcast"
+  get "search", to: "pages#search", as: "search"
+  get "podcast/:id", to: "podcast#show", as: "podcast"
 end
