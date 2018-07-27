@@ -1,5 +1,14 @@
 p = @podcast.collectionName
-p = @podcast.primaryGenreName
 img(src=@podcast.artworkUrl100)
 p = @podcast.trackCount
-p = @podcast.feedUrl
+p = @podcast.primaryGenreName
+p = link_to @podcast.feedUrl
+
+p = sanitize @feed.description
+
+- @feed.rss.channel.items.each do |episode|
+  .episode
+    p = sanitize episode.title
+    p = sanitize episode.description
+    p = episode.pub_date
+    p = link_to episode.enclosure.url.to_s

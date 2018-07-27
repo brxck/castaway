@@ -39,6 +39,9 @@ gem 'devise', git: 'https://github.com/plataformatec/devise.git', branch: 'maste
 gem "faraday"
 gem "faraday-http-cache"
 gem "faraday_middleware"
+# Parse podcast feeds
+gem "feedjira"
+gem "feedjira-podcast"
 # gpodder.net API interface
 gem "gpodder", github: "brxck/gpodder-ruby", branch: "master"
 # iTunes API, aliased to Itunes
