@@ -6,7 +6,9 @@ p = link_to @podcast.feedUrl
 
 p = sanitize @feed.description
 
-- @feed.rss.channel.items.each do |episode|
+== pagy_nav(@pagy)
+
+- @episodes.each do |episode|
   .episode
     p = sanitize episode.title
     p = sanitize episode.description
