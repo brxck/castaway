@@ -1,9 +1,14 @@
 #player(data-turbolinks-permanent)
   audio(data-target="player.audio" src="")
 
-  button#back(data-action="player#back")
-    | <15
-  button#toggle(data-target="player.toggle" data-action="player#toggle")
-    | toggle
-  button#forward(data-action="player#forward")
-    | 30>
+  #controls
+    button#back(data-action="player#back")
+      | <15
+    button#toggle(data-target="player.toggle" data-action="player#toggle")
+      | toggle
+    button#forward(data-action="player#forward")
+      | 30>
+
+  #info
+    #episode(data-target="player.episode")
+    #podcast(data-target="player.podcast")

@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["audio", "toggle", "source"]
+  static targets = ["audio", "toggle", "source", "info", "episode", "podcast"]
 
   connect() {
     console.log("player controller connected")
@@ -45,6 +45,9 @@ export default class extends Controller {
 
   load(e) {
     this.audioTarget.src = e.target.dataset.audio
+    this.episodeTarget.textContent = e.target.dataset.episode
+    this.podcastTarget.textContent =
+      e.target.dataset.podcast + " - " + e.target.dataset.date
     this.play()
   }
 }

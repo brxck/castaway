@@ -9,11 +9,16 @@ p = sanitize @feed.description
 == pagy_nav(@pagy)
 
 - @episodes.each do |episode|
-  - audio_url = episode.enclosure.url.to_s
   .episode
-    p = sanitize episode.title
-    p = sanitize episode.description
-    p = episode.pub_date
-    button(data-action="player#load" data-audio=audio_url) play
+    p = episode.title
+    p = episode.description
+    p = episode.date
+    button(
+      data-action = "player#load"
+      data-audio = episode.audio
+      data-episode = episode.title
+      data-podcast = episode.podcast
+      data-date = episode.date
+      ) play
 
 == pagy_nav(@pagy)
