@@ -1,3 +1,10 @@
-#player
-  audio(controls)
-    source(src="http://traffic.libsyn.com/adventurezone/TheAdventureZone010.mp3?dest-id=235309")
+#player(data-controller="player")
+  audio(data-target="player.audio")
+    source(src="https://rss.art19.com/episodes/cc4e691e-9538-4b58-ba15-efd6a8d89bfa.mp3")
+
+  button#back(data-action="player#back")
+    | <15
+  button#toggle(data-target="player.toggle" data-action="player#toggle")
+    | toggle
+  button#forward(data-action="player#forward")
+    | 30>
