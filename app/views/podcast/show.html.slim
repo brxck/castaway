@@ -1,10 +1,10 @@
-p = @podcast.collectionName
-img(src=@podcast.artworkUrl100)
-p = @podcast.trackCount
-p = @podcast.primaryGenreName
-p = link_to @podcast.feedUrl
+p = @podcast.name
+img(src=@podcast.art100)
+p = @podcast.episode_count
+p = @podcast.genre
+p: a(href=@podcast.feed) rss
 
-p = sanitize @feed.description
+p = @podcast.description
 
 == pagy_nav(@pagy)
 

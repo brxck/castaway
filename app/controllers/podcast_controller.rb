@@ -4,12 +4,15 @@ class PodcastController < ApplicationController
   include Pagy::Backend
 
   def show
-    @podcast = Itunes.lookup(params[:id])
+    raw_podcast = Itunes.lookup(params[:id])
 
-    xml = Connect.get(@podcast.feedUrl).body
-    @feed = Feed.parse(xml)
+    xml = Connect.get(raw_podcast.feedUrl).body
+    feed = Feed.parse(xml)
 
-    episodes = process_episodes(@feed.rss.channel.items)
+    @podcast = process_podcast(raw_podcast)
+    @podcast.description = sanitize(feed.description)
+
+    episodes = process_episodes(feed.rss.channel.items)
     @pagy, @episodes = pagy_array(episodes)
   end
 
@@ -20,6 +23,17 @@ class PodcastController < ApplicationController
   end
 
   private
+
+  def process_podcast(podcast)
+    OpenStruct.new(
+      name: podcast.collectionName,
+      art: podcast.artworkUrl,
+      art100: podcast.artworkUrl100,
+      episode_count: podcast.trackCount,
+      genre: podcast.primaryGenreName,
+      feed: podcast.feedUrl
+    )
+  end
 
   def process_episodes(episodes)
     episodes.map do |episode|
