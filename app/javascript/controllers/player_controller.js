@@ -1,10 +1,15 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["audio", "toggle"]
+  static targets = ["audio", "toggle", "source"]
 
   connect() {
     console.log("player controller connected")
+  }
+
+  play() {
+    this.audioTarget.play()
+    this.toggleTarget.classList.toggle("playing", true)
   }
 
   toggle() {
@@ -36,5 +41,10 @@ export default class extends Controller {
     } else {
       this.audioTarget.currentTime = newTime
     }
+  }
+
+  load(e) {
+    this.audioTarget.src = e.target.dataset.audio
+    this.play()
   }
 }
