@@ -3,15 +3,6 @@ import { Controller } from "stimulus"
 export default class extends Controller {
   static targets = ["audio", "toggle", "source", "playlist"]
 
-  initialize() {
-    this.playlist = []
-    this.nowPlaying
-  }
-
-  connect() {
-    console.log("player controller connected")
-  }
-
   toggle() {
     if (this.isPlaying) {
       this.audioTarget.pause()
@@ -44,39 +35,12 @@ export default class extends Controller {
   }
 
   play(e) {
-    if (this.nowPlaying) {
-      this.push(this.nowPlaying)
-    }
-
-    this.nowPlaying = this.episodeFrom(e.target)
-
     this.audioTarget.src = e.target.dataset.audio
     this.audioTarget.play()
     this.toggleTarget.classList.toggle("playing", true)
   }
 
-  queue(e) {
-    const episode = this.episodeFrom(e.target)
-    this.unshift(episode)
-  }
-
   // Internal
-
-  push(episode) {
-    this.playlist.push(episode)
-    this.playlistTarget.insertAdjacentHTML(
-      "beforeend",
-      this.render("playlist_entry", { episode: episode })
-    )
-  }
-
-  unshift(episode) {
-    this.playlist.unshift(episode)
-    this.playlistTarget.insertAdjacentHTML(
-      "afterbegin",
-      this.render("playlist_entry", { episode: episode })
-    )
-  }
 
   render(template, locals) {
     const pug = require(`../partials/${template}.pug`)
