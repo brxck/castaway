@@ -13,7 +13,7 @@ p = @podcast.description
     p = episode.title
     p = episode.description
     p = episode.date
-    == render "shared/episode_button", episode: episode, action: "player#playEpisode", text: "play"
+    == render "shared/episode_button", episode: episode, action: "player#play", text: "play"
     == render "shared/episode_button", episode: episode, action: "player#enqueue", text: "add"
 
 == pagy_nav(@pagy)

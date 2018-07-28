@@ -43,24 +43,21 @@ export default class extends Controller {
     }
   }
 
-  playEpisode(e) {
-    // move already playing episode to playlist
+  play(e) {
     if (this.nowPlaying) {
       this.enqueuePlaying(this.nowPlaying)
     }
 
-    this.nowPlaying = {
-      episode: e.target.dataset.episode,
-      podcast: e.target.dataset.podcast,
-      date: e.target.dataset.date,
-      audio: e.target.dataset.audio
-    }
-    console.log(this.nowPlaying)
+    this.nowPlaying = this.episodeFrom(e.target)
 
     this.audioTarget.src = e.target.dataset.audio
     this.audioTarget.play()
     this.toggleTarget.classList.toggle("playing", true)
   }
+
+  enqueue() {}
+
+  // Internal
 
   enqueuePlaying(episode) {
     this.playlist.push(episode)
@@ -71,7 +68,14 @@ export default class extends Controller {
     )
   }
 
-  enqueue() {}
+  episodeFrom(element) {
+    return {
+      episode: element.dataset.episode,
+      podcast: element.dataset.podcast,
+      date: element.dataset.date,
+      audio: element.dataset.audio
+    }
+  }
 
   isPlaying() {
     this.toggleTarget.classList.contains("playing")
