@@ -45,7 +45,7 @@ export default class extends Controller {
 
   play(e) {
     if (this.nowPlaying) {
-      this.enqueuePlaying(this.nowPlaying)
+      this.shift(this.nowPlaying)
     }
 
     this.nowPlaying = this.episodeFrom(e.target)
@@ -55,17 +55,21 @@ export default class extends Controller {
     this.toggleTarget.classList.toggle("playing", true)
   }
 
-  enqueue() {}
+  shift(episode) {
+    this.playlist.push(episode)
+    this.playlistTarget.insertAdjacentHTML(
+      "beforeend",
+      render("playlist_entry", { episode: episode })
+    )
+  }
+
+  unshift(episode) {}
 
   // Internal
 
-  enqueuePlaying(episode) {
-    this.playlist.push(episode)
-    const entryTemplate = require("../partials/playlist_entry.pug")
-    this.playlistTarget.insertAdjacentHTML(
-      "beforeend",
-      entryTemplate({ episode: episode })
-    )
+  render(templatethrow, locals) {
+    pug = require(`../partials/${template}.pug`)
+    return pug(locals)
   }
 
   episodeFrom(element) {
