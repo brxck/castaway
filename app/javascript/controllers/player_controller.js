@@ -55,20 +55,31 @@ export default class extends Controller {
     this.toggleTarget.classList.toggle("playing", true)
   }
 
+  queue(e) {
+    const episode = this.episodeFrom(e.target)
+    this.unshift(episode)
+  }
+
+  // Internal
+
   push(episode) {
     this.playlist.push(episode)
     this.playlistTarget.insertAdjacentHTML(
       "beforeend",
-      render("playlist_entry", { episode: episode })
+      this.render("playlist_entry", { episode: episode })
     )
   }
 
-  unshift(episode) {}
-
-  // Internal
+  unshift(episode) {
+    this.playlist.unshift(episode)
+    this.playlistTarget.insertAdjacentHTML(
+      "afterbegin",
+      this.render("playlist_entry", { episode: episode })
+    )
+  }
 
   render(template, locals) {
-    pug = require(`../partials/${template}.pug`)
+    const pug = require(`../partials/${template}.pug`)
     return pug(locals)
   }
 
