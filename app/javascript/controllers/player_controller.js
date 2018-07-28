@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["audio", "toggle", "scrub"]
+  static targets = ["audio", "toggle", "scrub", "volume"]
 
   connect() {
     this.scrubUpdater = setInterval(this.updateScrub.bind(this), 500)
@@ -51,6 +51,10 @@ export default class extends Controller {
     this.audioTarget.src = e.target.dataset.audio
     this.audioTarget.play()
     this.toggleTarget.classList.toggle("playing", true)
+  }
+
+  volume() {
+    this.audioTarget.volume = this.volumeTarget.value
   }
 
   // Internal
