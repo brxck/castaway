@@ -1,19 +1,19 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["audio", "toggle", "source", "info", "episode", "podcast"]
+  static targets = ["audio", "toggle", "source", "playlist"]
+
+  initialize() {
+    this.playlist = []
+    this.nowPlaying
+  }
 
   connect() {
     console.log("player controller connected")
   }
 
-  play() {
-    this.audioTarget.play()
-    this.toggleTarget.classList.toggle("playing", true)
-  }
-
   toggle() {
-    if (this.toggleTarget.classList.contains("playing")) {
+    if (this.isPlaying) {
       this.audioTarget.pause()
     } else {
       this.audioTarget.play()
@@ -43,11 +43,37 @@ export default class extends Controller {
     }
   }
 
-  load(e) {
+  playEpisode(e) {
+    // move already playing episode to playlist
+    if (this.nowPlaying) {
+      this.enqueuePlaying(this.nowPlaying)
+    }
+
+    this.nowPlaying = {
+      episode: e.target.dataset.episode,
+      podcast: e.target.dataset.podcast,
+      date: e.target.dataset.date,
+      audio: e.target.dataset.audio
+    }
+    console.log(this.nowPlaying)
+
     this.audioTarget.src = e.target.dataset.audio
-    this.episodeTarget.textContent = e.target.dataset.episode
-    this.podcastTarget.textContent =
-      e.target.dataset.podcast + " - " + e.target.dataset.date
-    this.play()
+    this.audioTarget.play()
+    this.toggleTarget.classList.toggle("playing", true)
+  }
+
+  enqueuePlaying(episode) {
+    this.playlist.push(episode)
+    const entryTemplate = require("../partials/playlist_entry.pug")
+    this.playlistTarget.insertAdjacentHTML(
+      "beforeend",
+      entryTemplate({ episode: episode })
+    )
+  }
+
+  enqueue() {}
+
+  isPlaying() {
+    this.toggleTarget.classList.contains("playing")
   }
 }
