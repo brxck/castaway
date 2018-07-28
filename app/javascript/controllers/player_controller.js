@@ -1,7 +1,15 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["audio", "toggle", "source", "playlist"]
+  static targets = ["audio", "toggle", "scrub"]
+
+  connect() {
+    this.scrubUpdater = setInterval(this.updateScrub.bind(this), 500)
+  }
+
+  disconnect() {
+    clearInterval(this.scrubUpdater)
+  }
 
   toggle() {
     if (this.isPlaying) {
@@ -18,6 +26,11 @@ export default class extends Controller {
 
   back() {
     this.seek(-15)
+  }
+
+  scrub() {
+    this.audioTarget.currentTime =
+      this.scrubTarget.value * this.audioTarget.seekable.end(0)
   }
 
   seek(delta) {
@@ -56,7 +69,18 @@ export default class extends Controller {
     }
   }
 
+  isLoaded() {
+    return this.audioTarget.src === "" ? false : true
+  }
+
   isPlaying() {
     this.toggleTarget.classList.contains("playing")
+  }
+
+  updateScrub() {
+    if (this.isPlaying() && this.isLoaded()) {
+      this.scrubTarget.value =
+        this.audioTarget.currentTime / this.audioTarget.seekable.end(0)
+    }
   }
 }
