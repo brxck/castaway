@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["audio", "toggle", "scrub", "volume"]
+  static targets = ["audio", "toggle", "scrub", "volume", "speed"]
 
   connect() {
     this.scrubUpdater = setInterval(this.updateScrub.bind(this), 500)
@@ -55,6 +55,10 @@ export default class extends Controller {
 
   volume() {
     this.audioTarget.volume = this.volumeTarget.value
+  }
+
+  speed() {
+    this.audioTarget.playbackRate = this.speedTarget.value
   }
 
   // Internal
