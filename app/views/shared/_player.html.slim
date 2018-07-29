@@ -1,21 +1,38 @@
+// Make player persistent across navigation
 #player(data-turbolinks-permanent)
-  audio(data-target="player.audio" src="")
 
-  input#scrub(type="range" data-target="player.scrub" data-action="click->player#scrub"
-              min="0" max="1" value="0" step="0.01")
+  audio(data-target="player.audio"
+  src="")
 
-  #controls
-    button#back(data-action="player#back")
-      | <15
-    button#toggle(data-target="player.toggle" data-action="player#toggle")
-      | toggle
-    button#forward(data-action="player#forward")
-      | 30>
+  input(type="range"
+        data-target="player.scrub"
+        data-action="click->player#scrub"
+        min="0"
+        max="1"
+        value="0"
+        step="0.01")
 
-  input#volume(type="range" data-target="player.volume" data-action="player#volume"
-               min="0" max="1" step="0.01" value="1")
+  button(data-action="player#back")
+    | <15
 
-  input#speed(type="number" data-target="player.speed" data-action="player#speed"
-              min="0.5" max="2" step="0.25" value="1")
-  
-  #playlist(data-target="player.playlist")
+  button(data-target="player.toggle" data-action="player#toggle")
+    | toggle
+
+  button(data-action="player#forward")
+    | 30>
+
+  input(type="range"
+        data-target="player.volume"
+        data-action="player#volume"
+        min="0"
+        max="1"
+        step="0.01"
+        value="1")
+
+  input(type="number"
+        data-target="player.speed"
+        data-action="player#speed"
+        min="0.5"
+        max="2"
+        step="0.25"
+        value="1")

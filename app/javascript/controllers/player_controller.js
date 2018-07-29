@@ -3,6 +3,8 @@ import { Controller } from "stimulus"
 export default class extends Controller {
   static targets = ["audio", "toggle", "scrub", "volume", "speed"]
 
+  /* Controller Actions */
+
   connect() {
     this.scrubUpdater = setInterval(this.updateScrub.bind(this), 500)
   }
@@ -33,20 +35,6 @@ export default class extends Controller {
       this.scrubTarget.value * this.audioTarget.seekable.end(0)
   }
 
-  seek(delta) {
-    const newTime = this.audioTarget.currentTime + delta
-    const startTime = this.audioTarget.seekable.start(0)
-    const endTime = this.audioTarget.seekable.end(0)
-
-    if (newTime < startTime) {
-      this.audioTarget.currentTime = startTime
-    } else if (newTime > endTime) {
-      this.audioTarget.currentTime = endTime
-    } else {
-      this.audioTarget.currentTime = newTime
-    }
-  }
-
   play(e) {
     this.audioTarget.src = e.target.dataset.audio
     this.audioTarget.play()
@@ -61,13 +49,30 @@ export default class extends Controller {
     this.audioTarget.playbackRate = this.speedTarget.value
   }
 
-  // Internal
+  /* Internal functions */
 
+  // Seek forward or backward without overshooting audio range
+  seek(delta) {
+    const newTime = this.audioTarget.currentTime + delta
+    const startTime = this.audioTarget.seekable.start(0)
+    const endTime = this.audioTarget.seekable.end(0)
+
+    if (newTime < startTime) {
+      this.audioTarget.currentTime = startTime
+    } else if (newTime > endTime) {
+      this.audioTarget.currentTime = endTime
+    } else {
+      this.audioTarget.currentTime = newTime
+    }
+  }
+
+  // Compile HTML from Pug template
   render(template, locals) {
     const pug = require(`../partials/${template}.pug`)
     return pug(locals)
   }
 
+  // Create object from HTML data tags
   episodeFrom(element) {
     return {
       episode: element.dataset.episode,
@@ -82,9 +87,10 @@ export default class extends Controller {
   }
 
   isPlaying() {
-    this.toggleTarget.classList.contains("playing")
+    !this.audioTarget.paused
   }
 
+  // Scrub value is the fraction of played audio
   updateScrub() {
     if (this.isPlaying() && this.isLoaded()) {
       this.scrubTarget.value =
