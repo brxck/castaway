@@ -1,4 +1,4 @@
-== pagy_nav(@pagy)
+== pagy_nav_bulma(@pagy)
 
 - @results.each do |podcast|
   .podcast
@@ -6,4 +6,4 @@
     p: a(href=podcast_path(id: podcast.collectionId)) = podcast.collectionName
     p = podcast.primaryGenreName
     
-== pagy_nav(@pagy)
+== pagy_nav_bulma(@pagy)
