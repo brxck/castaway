@@ -13,8 +13,8 @@ export default class extends Controller {
     clearInterval(this.scrubUpdater)
   }
 
-  toggle() {
-    if (this.isPlaying) {
+  togglePlay() {
+    if (this.playing()) {
       this.audioTarget.pause()
     } else {
       this.audioTarget.play()
@@ -22,30 +22,30 @@ export default class extends Controller {
     this.toggleTarget.classList.toggle("playing")
   }
 
-  forward() {
+  seekForward() {
     this.seek(30)
   }
 
-  back() {
+  seekBack() {
     this.seek(-15)
   }
 
-  scrub() {
+  setPosition() {
     this.audioTarget.currentTime =
       this.scrubTarget.value * this.audioTarget.seekable.end(0)
   }
 
-  play(e) {
+  loadEpisode(e) {
     this.audioTarget.src = e.target.dataset.audio
     this.audioTarget.play()
     this.toggleTarget.classList.toggle("playing", true)
   }
 
-  volume() {
+  setVolume() {
     this.audioTarget.volume = this.volumeTarget.value
   }
 
-  speed() {
+  setSpeed() {
     const newSpeed = parseFloat(this.speedTarget.value, 10)
     if (newSpeed < 0) {
       this.speedTarget.value = 0.25
@@ -56,7 +56,7 @@ export default class extends Controller {
     this.audioTarget.playbackRate = this.speedTarget.value
   }
 
-  faster() {
+  increaseSpeed() {
     const currentSpeed = parseFloat(this.speedTarget.value, 10)
     if (currentSpeed <= 1.75) {
       this.speedTarget.value = currentSpeed + 0.25
@@ -65,7 +65,7 @@ export default class extends Controller {
     }
   }
 
-  slower() {
+  decreaseSpeed() {
     const currentSpeed = parseFloat(this.speedTarget.value, 10)
     if (currentSpeed >= 0.5) {
       this.speedTarget.value = currentSpeed - 0.25
@@ -92,7 +92,7 @@ export default class extends Controller {
   }
 
   // Compile HTML from Pug template
-  render(template, locals) {
+  compileTemplate(template, locals) {
     const pug = require(`../partials/${template}.pug`)
     return pug(locals)
   }
@@ -107,17 +107,17 @@ export default class extends Controller {
     }
   }
 
-  isLoaded() {
+  loaded() {
     return this.audioTarget.src === "" ? false : true
   }
 
-  isPlaying() {
+  playing() {
     !this.audioTarget.paused
   }
 
   // Scrub value is the fraction of played audio
   updateScrub() {
-    if (this.isPlaying() && this.isLoaded()) {
+    if (this.playing() && this.loaded()) {
       this.scrubTarget.value =
         this.audioTarget.currentTime / this.audioTarget.seekable.end(0)
     }

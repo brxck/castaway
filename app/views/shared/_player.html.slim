@@ -6,36 +6,36 @@
 
   input(type="range"
         data-target="player.scrub"
-        data-action="click->player#scrub"
+        data-action="click->player#set-position"
         min="0"
         max="1"
         value="0"
         step="0.01")
 
-  button(data-action="player#back")
+  button(data-action="player#seek-back")
     | <15
 
-  button(data-target="player.toggle" data-action="player#toggle")
+  button(data-target="player.toggle" data-action="player#toggle-play")
     | toggle
 
-  button(data-action="player#forward")
+  button(data-action="player#seek-forward")
     | 30>
 
   input(type="range"
         data-target="player.volume"
-        data-action="player#volume"
+        data-action="player#set-volume"
         min="0"
         max="1"
         step="0.01"
         value="1")
 
-  button(data-action="player#slower")
+  button(data-action="player#decrease-speed")
     | <<
 
   input(type="text"
         placeholder="1"
         data-target="player.speed"
-        data-action="player#speed")
+        data-action="player#set-speed")
 
-  button(data-action="player#faster")
+  button(data-action="player#increase-speed")
     | >>
