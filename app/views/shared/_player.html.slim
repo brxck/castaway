@@ -1,41 +1,50 @@
 // Make player persistent across navigation
-#player(data-turbolinks-permanent)
+.navbar.is-fixed-bottom.is-white#player(data-turbolinks-permanent)
+  .container.level
 
-  audio(data-target="player.audio"
-  src="")
+    audio(data-target="player.audio" src="")
 
-  input(type="range"
-        data-target="player.scrub"
-        data-action="click->player#set-position"
-        min="0"
-        max="1"
-        value="0"
-        step="0.01")
+    .level-left
+      .level-item
+        .field.has-addons
+          .control
+            button.button(data-action="player#seek-back")
+              | <15
+          .control
+            button.button(data-target="player.toggle" data-action="player#toggle-play")
+              | toggle
+          .control
+            button.button(data-action="player#seek-forward")
+              | 30>
 
-  button(data-action="player#seek-back")
-    | <15
+    .level-item
+      input.slider.is-fullwidth(type="range"
+            data-target="player.scrub"
+            data-action="click->player#set-position"
+            min="0"
+            max="1"
+            value="0"
+            step="0.01")
 
-  button(data-target="player.toggle" data-action="player#toggle-play")
-    | toggle
-
-  button(data-action="player#seek-forward")
-    | 30>
-
-  input(type="range"
-        data-target="player.volume"
-        data-action="player#set-volume"
-        min="0"
-        max="1"
-        step="0.01"
-        value="1")
-
-  button(data-action="player#decrease-speed")
-    | <<
-
-  input(type="text"
-        placeholder="1"
-        data-target="player.speed"
-        data-action="player#set-speed")
-
-  button(data-action="player#increase-speed")
-    | >>
+    .level-right
+      .level-item
+        .field.has-addons
+          .control
+            button.button.is-small(data-action="player#decrease-speed")
+              | <<
+          .control
+            input.input.is-small(type="text"
+                  placeholder="1"
+                  data-target="player.speed"
+                  data-action="player#set-speed")
+          .control
+            button.button.is-small(data-action="player#increase-speed")
+              | >>
+      .level-item
+        input.input(type="range"
+              data-target="player.volume"
+              data-action="player#set-volume"
+              min="0"
+              max="1"
+              step="0.01"
+              value="1")

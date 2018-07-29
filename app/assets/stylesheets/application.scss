@@ -13,5 +13,7 @@
  *= require normalize-rails
  *= require_tree .
  *= require_self
- *= require bulma/bulma
  */
+
+@import "bulma/bulma";
+@import "bulma-slider/src/sass/index";

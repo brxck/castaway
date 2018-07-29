@@ -4,6 +4,7 @@
   "dependencies": {
     "@rails/webpacker": "3.5",
     "bulma": "^0.7.1",
+    "bulma-slider": "^2.0.0",
     "pug": "^2.0.3",
     "pug-loader": "^2.4.0",
     "stimulus": "^1.0.1"
