@@ -1,9 +1,13 @@
-nav.navbar
+nav.navbar(data-controller="navbar")
   .navbar-brand
     a.navbar-item(href="/") Castaway
-    .navbar-burger
+    a.navbar-burger(data-target="navbar.button" data-action="navbar#toggle_menu"
+                    role="button" aria-label="menu" aria-expanded="false")
+      span(aria-hidden)
+      span(aria-hidden)
+      span(aria-hidden)
 
-  .navbar-menu
+  .navbar-menu(data-target="navbar.menu")
     .navbar-end
       a.navbar-item(href=discover_path) Discover
       

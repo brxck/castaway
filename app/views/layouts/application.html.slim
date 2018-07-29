@@ -13,6 +13,7 @@ html
 
   body data-controller="player" 
     == render "shared/navbar"
-    = yield
-    = render "shared/player"
+    .container
+      = yield
+    == render "shared/player"
     = console
