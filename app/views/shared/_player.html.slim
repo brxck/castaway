@@ -8,19 +8,19 @@
       .level-item
         .field.has-addons
           .control
-            button.button(data-action="player#seek-back")
+            button.button(data-action="player#seekBack")
               | <15
           .control
-            button.button(data-target="player.toggle" data-action="player#toggle-play")
+            button.button(data-target="player.toggle" data-action="player#togglePlay")
               | toggle
           .control
-            button.button(data-action="player#seek-forward")
+            button.button(data-action="player#seekForward")
               | 30>
 
     .level-item
       input.slider.is-fullwidth(type="range"
             data-target="player.scrub"
-            data-action="click->player#set-position"
+            data-action="click->player#setPosition"
             min="0"
             max="1"
             value="0"
@@ -30,20 +30,20 @@
       .level-item
         .field.has-addons
           .control
-            button.button.is-small(data-action="player#decrease-speed")
+            button.button.is-small(data-action="player#decreaseSpeed")
               | <<
           .control
             input.input.is-small(type="text"
                   placeholder="1"
                   data-target="player.speed"
-                  data-action="player#set-speed")
+                  data-action="player#setSpeed")
           .control
-            button.button.is-small(data-action="player#increase-speed")
+            button.button.is-small(data-action="player#increaseSpeed")
               | >>
       .level-item
         input.input(type="range"
               data-target="player.volume"
-              data-action="player#set-volume"
+              data-action="player#setVolume"
               min="0"
               max="1"
               step="0.01"
