@@ -46,7 +46,32 @@ export default class extends Controller {
   }
 
   speed() {
+    const newSpeed = parseFloat(this.speedTarget.value, 10)
+    if (newSpeed < 0) {
+      this.speedTarget.value = 0.25
+    } else if (newSpeed > 2) {
+      this.speedTarget.value = 2
+    }
+
     this.audioTarget.playbackRate = this.speedTarget.value
+  }
+
+  faster() {
+    const currentSpeed = parseFloat(this.speedTarget.value, 10)
+    if (currentSpeed <= 1.75) {
+      this.speedTarget.value = currentSpeed + 0.25
+    } else {
+      this.speedTarget.value = 2
+    }
+  }
+
+  slower() {
+    const currentSpeed = parseFloat(this.speedTarget.value, 10)
+    if (currentSpeed >= 0.5) {
+      this.speedTarget.value = currentSpeed - 0.25
+    } else {
+      this.speedTarget.value = 0.25
+    }
   }
 
   /* Internal functions */

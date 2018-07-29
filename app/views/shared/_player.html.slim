@@ -29,10 +29,13 @@
         step="0.01"
         value="1")
 
-  input(type="number"
+  button(data-action="player#slower")
+    | <<
+
+  input(type="text"
+        placeholder="1"
         data-target="player.speed"
-        data-action="player#speed"
-        min="0.5"
-        max="2"
-        step="0.25"
-        value="1")
+        data-action="player#speed")
+
+  button(data-action="player#faster")
+    | >>
