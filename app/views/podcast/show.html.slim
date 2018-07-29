@@ -1,13 +1,14 @@
-.media
-  .media-left
-    img.image.is-200x200(src=@podcast.art600)
-  .media-content
-    h1.title = @podcast.name
-    h2.subtitle = @podcast.author
-    p = @podcast.description
-  .media-right
-    p #{@podcast.episode_count} episodes
-    a(href=@podcast.feed) rss
+.container
+  .media
+    .media-left
+      img.image.is-200x200(src=@podcast.art600)
+    .media-content
+      h1.title = @podcast.name
+      h2.subtitle = @podcast.author
+      p = @podcast.description
+    .media-right
+      p #{@podcast.episode_count} episodes
+      a(href=@podcast.feed) rss
 
 section.section
 
