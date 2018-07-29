@@ -1,6 +1,6 @@
 nav.navbar(data-controller="navbar")
   .navbar-brand
-    a.navbar-item(href="/") Castaway
+    a.navbar-item.has-text-weight-bold(href="/") Castaway
     a.navbar-burger(data-target="navbar.button" data-action="navbar#toggle_menu"
                     role="button" aria-label="menu" aria-expanded="false")
       span(aria-hidden)
@@ -8,14 +8,15 @@ nav.navbar(data-controller="navbar")
       span(aria-hidden)
 
   .navbar-menu(data-target="navbar.menu")
-    .navbar-end
+    
+    .navbar-start
       a.navbar-item(href=discover_path) Discover
-      
+    
+    .navbar-end
       .navbar-item
         = form_tag("/search", method: "get") do
-          input.input.is-rounded(
+          input.input.is-rounded.is-small(
             type="text"
             name="q"
             placeholder="Search"
             aria-label="search")
-
