@@ -27,11 +27,13 @@ class PodcastController < ApplicationController
   def process_podcast(podcast)
     OpenStruct.new(
       name: podcast.collectionName,
-      art: podcast.artworkUrl,
-      art100: podcast.artworkUrl100,
+      author: podcast.artistName,
       episode_count: podcast.trackCount,
       genre: podcast.primaryGenreName,
-      feed: podcast.feedUrl
+      genres: podcast.genres,
+      feed: podcast.feedUrl,
+      art100: podcast.artworkUrl100,
+      art600: podcast.artworkUrl600
     )
   end
 
@@ -41,7 +43,8 @@ class PodcastController < ApplicationController
         title: sanitize(episode.title),
         podcast: @podcast.collectionName,
         description: sanitize(episode.description),
-        date: episode.pub_date.strftime("%Y %b %-d"),
+        duration: episode.itunes.duration,
+        date: episode.pub_date,
         audio: episode.enclosure.url.to_s
       )
     end

@@ -1,19 +1,31 @@
-p = @podcast.name
-img(src=@podcast.art100)
-p = @podcast.episode_count
-p = @podcast.genre
-p: a(href=@podcast.feed) rss
+.media
+  .media-left
+    img.image.is-200x200(src=@podcast.art600)
+  .media-content
+    h1.title = @podcast.name
+    h2.subtitle = @podcast.author
+    p = @podcast.description
+  .media-right
+    p #{@podcast.episode_count} episodes
+    a(href=@podcast.feed) rss
 
-p = @podcast.description
+section.section
 
-== pagy_nav(@pagy)
+  == pagy_nav_bulma(@pagy)
 
-- @episodes.each do |episode|
-  .episode
-    p = episode.title
-    p = episode.description
-    p = episode.date
-    == render "shared/episode_button",
-      episode: episode, action: "player#load-episode", text: "play"
+  table.table.is-hoverable.is-fullwidth
+    thead
+      th Episode Name
+      th Released
+      th Duration
+      th
+    - @episodes.each do |episode|
+      tr
+        td = episode.title
+        td = episode.date.strftime("%Y %b %-d")
+        td = episode.duration
+        td == render "shared/episode_button",
+                    episode: episode, action: "player#load-episode", text: "play"
+      
 
-== pagy_nav(@pagy)
+  == pagy_nav_bulma(@pagy)
