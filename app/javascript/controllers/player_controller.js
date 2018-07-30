@@ -56,24 +56,6 @@ export default class extends Controller {
     this.audioTarget.playbackRate = this.speedTarget.value
   }
 
-  increaseSpeed() {
-    const currentSpeed = parseFloat(this.speedTarget.value, 10)
-    if (currentSpeed <= 1.75) {
-      this.speedTarget.value = currentSpeed + 0.25
-    } else {
-      this.speedTarget.value = 2
-    }
-  }
-
-  decreaseSpeed() {
-    const currentSpeed = parseFloat(this.speedTarget.value, 10)
-    if (currentSpeed >= 0.5) {
-      this.speedTarget.value = currentSpeed - 0.25
-    } else {
-      this.speedTarget.value = 0.25
-    }
-  }
-
   /* Internal functions */
 
   // Seek forward or backward without overshooting audio range
