@@ -23,11 +23,15 @@ export default class extends Controller {
   }
 
   seekForward() {
-    this.seek(30)
+    if (this.loaded()) {
+      this.seek(30)
+    }
   }
 
   seekBack() {
-    this.seek(-15)
+    if (this.loaded()) {
+      this.seek(-15)
+    }
   }
 
   setPosition() {
