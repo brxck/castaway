@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["audio", "toggle", "scrub", "volume", "speed"]
+  static targets = ["audio", "toggle", "scrub", "volume", "speed", "time"]
 
   /* Controller Actions */
 
@@ -100,6 +100,17 @@ export default class extends Controller {
     if (this.playing() && this.loaded()) {
       this.scrubTarget.value =
         this.audioTarget.currentTime / this.audioTarget.seekable.end(0)
+
+      this.timeTarget.textContent = `${this.formatTime(
+        this.audioTarget.currentTime
+      )} / ${this.formatTime(this.audioTarget.seekable.end(0))}`
     }
+  }
+
+  formatTime(seconds) {
+    return new Date(1000 * seconds)
+      .toISOString()
+      .substr(11, 8)
+      .replace(/^[0:]{3,4}/, "")
   }
 }
