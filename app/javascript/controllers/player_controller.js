@@ -112,7 +112,7 @@ export default class extends Controller {
   }
 
   playing() {
-    !this.audioTarget.paused
+    return !this.audioTarget.paused
   }
 
   // Scrub value is the fraction of played audio
