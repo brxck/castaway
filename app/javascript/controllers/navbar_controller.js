@@ -7,4 +7,8 @@ export default class extends Controller {
     this.buttonTarget.classList.toggle("is-active")
     this.menuTarget.classList.toggle("is-active")
   }
+
+  toggleDropdown(e) {
+    e.target.parentNode.classList.toggle("is-active")
+  }
 }

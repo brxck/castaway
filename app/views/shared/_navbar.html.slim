@@ -20,3 +20,16 @@ nav.navbar(data-controller="navbar")
             name="q"
             placeholder="Search"
             aria-label="search")
+
+      .navbar-item.has-dropdown(data-action="click->navbar#toggleDropdown")
+        a.navbar-link User
+        .navbar-dropdown.is-right
+          - if user_signed_in?
+            a.navbar-item(href=destroy_user_session_path)
+              | Sign out
+          - else
+            a.navbar-item(href=new_user_session_path)
+              | Log in
+            a.navbar-item(href=new_user_registration_path)
+              | Sign up
+        
