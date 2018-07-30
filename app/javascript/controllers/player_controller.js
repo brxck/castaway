@@ -38,6 +38,7 @@ export default class extends Controller {
   loadEpisode(e) {
     this.audioTarget.src = e.target.dataset.audio
     this.audioTarget.play()
+    this.setSpeed()
     this.toggleTarget.classList.toggle("playing", true)
   }
 
@@ -46,13 +47,6 @@ export default class extends Controller {
   }
 
   setSpeed() {
-    const newSpeed = parseFloat(this.speedTarget.value, 10)
-    if (newSpeed < 0) {
-      this.speedTarget.value = 0.25
-    } else if (newSpeed > 2) {
-      this.speedTarget.value = 2
-    }
-
     this.audioTarget.playbackRate = this.speedTarget.value
   }
 
