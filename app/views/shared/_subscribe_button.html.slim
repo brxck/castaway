@@ -1,0 +1,18 @@
+- subscribed
+- podcast
+- classes
+
+div(class=(subscribed ? "" : "hidden") data-target="sub.unsubscribe")
+        = button_to "Unsubscribe", subscriptions_path(itunes_id: podcast.itunes_id),
+                    method: :delete,
+                    remote: true,
+                    class: "button is-info is-outlined" + classes
+
+      div(class=(subscribed ? "hidden" : "") data-target="sub.subscribe")
+        = button_to "Subscribe", subscriptions_path,
+                  method: :post,
+                  remote: true,
+                  params: { subscription: { itunes_id: podcast.itunes_id,
+                                            name: podcast.name,
+                                            feed: podcast.feed } },
+                  class: "button is-info" + classes

@@ -1,27 +1,16 @@
 .container
-  .media
+  .media    
     .media-left
       img.image.is-200x200(src=@podcast.art600)
+    
     .media-content
       h1.title = @podcast.name
       h2.subtitle = @podcast.author
       p = @podcast.description
+    
     .media-right(data-controller="sub")
-      div(class=(@subscribed ? "" : "hidden") data-target="sub.unsubscribe")
-        = button_to "Unsubscribe", subscriptions_path(itunes_id: @podcast.itunes_id),
-                    method: :delete,
-                    remote: true,
-                    class: "button is-info is-outlined"
+      == render "shared/subscribe_button", subscribed: @subscribed, podcast: @podcast
 
-      div(class=(@subscribed ? "hidden" : "") data-target="sub.subscribe")
-        = button_to "Subscribe", subscriptions_path,
-                  method: :post,
-                  remote: true,
-                  params: { subscription: { itunes_id: @podcast.itunes_id,
-                                            name: @podcast.name,
-                                            feed: @podcast.feed } },
-                  class: "button is-info"
-        
       p #{@podcast.episode_count} episodes
       a(href=@podcast.feed) rss
 
