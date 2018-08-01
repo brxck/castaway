@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'history/create'
+  get 'history/destroy'
   root "pages#discover"
 
   devise_for :users

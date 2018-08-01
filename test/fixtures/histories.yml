@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  episode_id: MyString
+  listened: false
+  time: 1.5
+  podcast_id: 1
+  user: one
+
+two:
+  episode_id: MyString
+  listened: false
+  time: 1.5
+  podcast_id: 1
+  user: two
