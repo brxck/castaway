@@ -1,6 +1,5 @@
 class PagesController < ApplicationController
   include ItunesHelper
-  include PodcastHelper
   include Pagy::Backend
   
   def home
@@ -21,8 +20,7 @@ class PagesController < ApplicationController
   end
 
   def search
-    results = Itunes.search(params[:q])
-    @results = results.map { |podcast| process_podcast(podcast) }
+    @results = Itunes.search(params[:q])
     @pagy, @results = pagy_array(@results)
   end
 end

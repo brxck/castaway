@@ -23,8 +23,8 @@ section.section
         td = episode.title
         td = episode.date.strftime("%Y %b %-d")
         td = episode.duration
-        td == render "shared/episode_button",
-                    episode: episode, action: "player#loadEpisode", text: "play"
+        td == render "shared/episode_button", episode: episode,
+                    podcast: @podcast.name, action: "player#loadEpisode", text: "play"
       
 
   == pagy_nav_bulma(@pagy)

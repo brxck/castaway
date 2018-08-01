@@ -1,5 +1,4 @@
 class SubscriptionsController < ApplicationController
-  include PodcastHelper
   include ItunesHelper
 
   before_action :authenticate_user!
@@ -7,7 +6,7 @@ class SubscriptionsController < ApplicationController
   def index
     user_subscriptions = current_user.subscriptions
     @subscriptions = user_subscriptions.map do |subscription|
-      process_podcast(Itunes.lookup(subscription.itunes_id))
+      Itunes.lookup(subscription.itunes_id)
     end
   end
 
