@@ -13,6 +13,10 @@ nav.navbar(data-controller="navbar"
     
     .navbar-start
       a.navbar-item(href=discover_path) Discover
+
+      
+      - if user_signed_in?
+        a.navbar.navbar-item(href=subscriptions_path) Podcasts
     
     .navbar-end
       .navbar-item

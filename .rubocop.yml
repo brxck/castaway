@@ -21,6 +21,7 @@ Style/FrozenStringLiteralComment:
 Metrics/LineLength:
   AllowHeredoc: true
   AllowURI: true
+  IgnoreCopDirectives: true
   URISchemes:
     - https
     - http
