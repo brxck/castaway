@@ -2,7 +2,11 @@ doctype html
 html
   head
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
-    title Castaway
+    - if content_for?(:title)
+      - title = yield (:title)
+      title = title + " | Castaway"
+    - else
+      title Castaway
 
     = csrf_meta_tags
     = csp_meta_tag

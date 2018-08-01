@@ -1,3 +1,5 @@
+- title "Search for \"#{@term}\""
+
 - @results.each do |podcast|
   img(src=podcast.art100)
   p: a(href=podcast_path(id: podcast.itunes_id)) = podcast.name

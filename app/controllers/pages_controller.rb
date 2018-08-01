@@ -20,6 +20,7 @@ class PagesController < ApplicationController
   end
 
   def search
+    @term = params[:q]
     @results = Itunes.search(params[:q])
     @pagy, @results = pagy_array(@results)
   end
