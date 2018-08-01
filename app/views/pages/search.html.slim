@@ -1,7 +1,5 @@
 - @results.each do |podcast|
-  .podcast
-    img(src=podcast.artworkUrl100)
-    p: a(href=podcast_path(id: podcast.collectionId)) = podcast.collectionName
-    p = podcast.primaryGenreName
+  img(src=podcast.art100)
+  p: a(href=podcast_path(id: podcast.itunes_id)) = podcast.name
     
 == pagy_nav_bulma(@pagy)

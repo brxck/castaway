@@ -1,13 +1,3 @@
 h1.title Top Podcasts
 - @toplist.each do |podcast|
-  .tile.is-2
-    a(href=podcast_url(id: podcast.id))
-      img(src=podcast.artworkUrl100)
-      p = podcast.name
-
-h1.title Curated
-- @toplist.each do |podcast|
-  .tile.is-2
-    a(href=podcast_url(id: podcast.id))
-      img(src=podcast.artworkUrl100)
-      p = podcast.name
+  == render "shared/podcast_tile", podcast: podcast
