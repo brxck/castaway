@@ -4,8 +4,12 @@ class PodcastController < ApplicationController
   include Pagy::Backend
 
   def show
-    @podcast = Itunes.lookup(params[:id])
+    if user_signed_in?
+      @subscribed = current_user.subscriptions
+                                .where(itunes_id: params[:id]).any?
+    end
 
+    @podcast = Itunes.lookup(params[:id])
     xml = Connect.get(@podcast.feed).body
     feed = Feed.parse(xml)
     @episodes = feed[:episodes]

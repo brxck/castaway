@@ -11,9 +11,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def create
-    @subscription = current_user.subscriptions.new(itunes_id: params[:id],
-                                                   name: params[:name],
-                                                   feed: params[:feed])
+    @subscription = current_user.subscriptions.new(subscription_params)
 
     if @subscription.save
       render json: { status: 200 }
@@ -24,12 +22,18 @@ class SubscriptionsController < ApplicationController
 
   def destroy
     @subscription = current_user.subscriptions
-                                .where(itunes_id: params[:itunes_id])
+                                .where(itunes_id: params[:itunes_id]).take
 
     if @subscription.destroy
       render json: { status: 200 }
     else
       render json: { status: 500 }
     end
+  end
+
+  private
+
+  def subscription_params
+    params.require(:subscription).permit(:itunes_id, :name, :feed)
   end
 end

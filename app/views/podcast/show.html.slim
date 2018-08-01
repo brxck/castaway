@@ -6,7 +6,14 @@
       h1.title = @podcast.name
       h2.subtitle = @podcast.author
       p = @podcast.description
-    .media-right
+    .media-right(data-controller="subscriptions")
+      - if @subscribed
+        = button_to "Unsubscribe", subscriptions_path(itunes_id: @podcast.itunes_id),
+                    method: :delete, remote: true
+      - else
+        = button_to "Subscribe", subscriptions_path, method: :post, remote: true,
+          params: { subscription: { itunes_id: @podcast.itunes_id, name: @podcast.name, feed: @podcast.feed } }
+        
       p #{@podcast.episode_count} episodes
       a(href=@podcast.feed) rss
 
