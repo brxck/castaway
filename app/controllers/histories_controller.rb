@@ -4,7 +4,7 @@ class HistoriesController < ApplicationController
 
   def create
     @history = current_user.histories.new(history_params)
-    
+
     if @history.save
       render json: { status: 200 }
     else
@@ -13,7 +13,8 @@ class HistoriesController < ApplicationController
   end
 
   def update
-    if @history.update(listened: params[:history][:listened], time: params[:history][:time])
+    if @history.update(listened: params[:history][:listened],
+                       time: params[:history][:time])
       render json: { status: 200 }
     else
       render json: { status: 500 }
@@ -35,7 +36,9 @@ class HistoriesController < ApplicationController
   end
 
   def set_history
-    @history = current_user.histories.where(episode_id: params[:history][:episode_id],
-                                            podcast_id: params[:history][:podcast_id]).first
+    @history = current_user.histories
+                           .where(episode_id: params[:history][:episode_id],
+                                  podcast_id: params[:history][:podcast_id])
+                           .first
   end
 end
