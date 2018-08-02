@@ -10,7 +10,7 @@
       h2.subtitle = @podcast.author
       p = @podcast.description
     
-    .media-right(data-controller="sub")
+    .media-right
       == render "shared/subscribe_button", subscribed: @subscribed, podcast: @podcast
 
       p #{@podcast.episode_count} episodes
@@ -29,8 +29,12 @@ section.section
         td = episode.title
         td = episode.date.strftime("%Y %b %-d")
         td = episode.duration
-        td == render "shared/episode_button", episode: episode,
+        td
+          == render "shared/episode_button", episode: episode,
                     podcast: @podcast.name, action: "player#loadEpisode", text: "play"
+          
+          == render "shared/listen_button", episode: episode, podcast: podcast,
+                    
       
 
   == pagy_nav_bulma(@pagy)
