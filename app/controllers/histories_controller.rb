@@ -1,4 +1,4 @@
-class HistoryController < ApplicationController
+class HistoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_history, only: %i[update destroy]
 
@@ -13,7 +13,7 @@ class HistoryController < ApplicationController
   end
 
   def update
-    if @history.update(listened: params[:listened], time: params[:time])
+    if @history.update(listened: params[:history][:listened], time: params[:history][:time])
       render json: { status: 200 }
     else
       render json: { status: 500 }
@@ -35,7 +35,7 @@ class HistoryController < ApplicationController
   end
 
   def set_history
-    @history = current_user.histories.where(episode_id: params[:episode_id],
-                                            podcast_id: params[:podcast_id]).take
+    @history = current_user.histories.where(episode_id: params[:history][:episode_id],
+                                            podcast_id: params[:history][:podcast_id]).first
   end
 end

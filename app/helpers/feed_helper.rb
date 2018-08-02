@@ -10,7 +10,14 @@ module FeedHelper
 
     def self.process_episodes(episodes)
       episodes.map do |episode|
+        id = if episode.guid.class == Addressable::URI
+               episode.guid.to_s
+             else
+               episode.guid.guid
+             end
+
         OpenStruct.new(
+          id: id,
           title: sanitize(episode.title),
           description: sanitize(episode.description),
           duration: episode.itunes.duration,

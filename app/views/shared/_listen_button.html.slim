@@ -1,0 +1,20 @@
+- episode
+- podcast
+
+div(data-controller="listen")
+  div(class=(episode.listened ? "" : "hidden") data-target="listen.no")
+    = button_to "uncheck", histories_path,
+                method: :delete,
+                remote: true,
+                params: { history: { podcast_id: podcast.itunes_id,
+                                     episode_id: episode.id } },
+                class: "button is-small"
+
+  div(class=(episode.listened ? "hidden" : "") data-target="listen.yes")
+    = button_to "check", histories_path,
+              method: :post,
+              remote: true,
+              params: { history: { podcast_id: podcast.itunes_id,
+                                   episode_id: episode.id,
+                                   listened: true } },
+              class: "button is-small"

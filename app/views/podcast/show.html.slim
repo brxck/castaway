@@ -33,8 +33,6 @@ section.section
           == render "shared/episode_button", episode: episode,
                     podcast: @podcast.name, action: "player#loadEpisode", text: "play"
           
-          == render "shared/listen_button", episode: episode, podcast: podcast,
-                    
-      
+          == render "shared/listen_button", episode: episode, podcast: @podcast
 
   == pagy_nav_bulma(@pagy)
