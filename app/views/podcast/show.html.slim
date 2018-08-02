@@ -33,7 +33,7 @@ section.section
           .field.is-grouped
             .control
               == render "shared/episode_button", episode: episode,
-                        podcast: @podcast.name, action: "player#loadEpisode",
+                        podcast: @podcast, action: "player#loadEpisode",
                         text: "play"
             .control
               == render "shared/listen_button", episode: episode, podcast: @podcast

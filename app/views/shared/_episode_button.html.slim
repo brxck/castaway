@@ -1,7 +1,12 @@
+- episode
+- podcast
+
 button.button.is-small(data-action = action
+    data-episode-id = episode.id
+    data-podcast-id = podcast.itunes_id
     data-audio = episode.audio
     data-episode = episode.title
-    data-podcast = podcast
+    data-podcast = podcast.name
     data-date = episode.date
   )
   = text

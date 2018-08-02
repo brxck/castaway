@@ -7,10 +7,15 @@ export default class extends Controller {
 
   connect() {
     this.scrubUpdater = setInterval(this.updateScrub.bind(this), 500)
+    this.listenEvent = this.audioTarget.addEventListener(
+      "ended",
+      this.markListened.bind(this)
+    )
   }
 
   disconnect() {
     clearInterval(this.scrubUpdater)
+    this.audioTarget.removeEventListener(this.listenEvent)
   }
 
   togglePlay() {
@@ -40,9 +45,14 @@ export default class extends Controller {
   }
 
   loadEpisode(e) {
+    this.field = e.target.parentNode.parentNode
     this.audioTarget.src = e.target.dataset.audio
+    this.data.set("episodeId", e.target.dataset.episodeId)
+    this.data.set("podcastId", e.target.dataset.podcastId)
+
     this.audioTarget.play()
     this.setSpeed()
+
     this.toggleTarget.classList.toggle("playing", true)
   }
 
@@ -69,6 +79,34 @@ export default class extends Controller {
     } else {
       this.audioTarget.currentTime = newTime
     }
+  }
+
+  markListened() {
+    if (document.getElementById("signed-in") === null) {
+      return
+    }
+
+    const token = document.querySelector("meta[name=csrf-token]").content
+
+    const historyParams = {
+      history: {
+        episode_id: this.data.get("episodeId"),
+        podcast_id: this.data.get("podcastId"),
+        listened: true
+      }
+    }
+
+    fetch("/histories", {
+      method: "POST",
+      body: JSON.stringify(historyParams),
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": token
+      }
+    })
+
+    this.field.getElementsByClassName("yes")[0].classList.toggle("hidden", true)
+    this.field.getElementsByClassName("no")[0].classList.toggle("hidden", false)
   }
 
   // Compile HTML from Pug template

@@ -2,6 +2,7 @@ doctype html
 html
   head
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+
     - if content_for?(:title)
       - title = yield (:title)
       title = title + " | Castaway"
@@ -15,9 +16,14 @@ html
     = javascript_include_tag "application", "data-turbolinks-track": "reload"
     = javascript_pack_tag "application"
 
-  body data-controller="player" 
+  body data-controller="player"
+    - if user_signed_in?
+      #signed-in
+
     == render "shared/navbar"
+    
     section.section
       .container
       = yield
+
     == render "shared/player"

@@ -2,7 +2,7 @@
 - podcast
 
 div(data-controller="listen")
-  div(class=(episode.listened ? "" : "hidden") data-target="listen.no")
+  .no(class=(episode.listened ? "" : "hidden") data-target="listen.no")
     = button_to "uncheck", histories_path,
                 method: :delete,
                 remote: true,
@@ -10,7 +10,7 @@ div(data-controller="listen")
                                      episode_id: episode.id } },
                 class: "button is-small"
 
-  div(class=(episode.listened ? "hidden" : "") data-target="listen.yes")
+  .yes(class=(episode.listened ? "hidden" : "") data-target="listen.yes")
     = button_to "check", histories_path,
               method: :post,
               remote: true,
