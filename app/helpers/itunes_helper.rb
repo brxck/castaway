@@ -17,7 +17,7 @@ module ItunesHelper
         author: podcast["artistName"],
         episode_count: podcast["trackCount"],
         genre: podcast["primaryGenreName"],
-        genres: podcast["genres"],
+        genres: podcast["genres"] - ["Podcasts"],
         feed: podcast["feedUrl"],
         art100: podcast["artworkUrl100"],
         art600: podcast["artworkUrl600"]

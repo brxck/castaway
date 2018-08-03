@@ -4,4 +4,4 @@
   img(src=podcast.art100)
   p: a(href=podcast_path(id: podcast.itunes_id)) = podcast.name
     
-== pagy_nav_bulma(@pagy)
+== pagy_nav_bulma(@pagy) if @pagy.pages > 1

@@ -1,18 +1,20 @@
 - subscribed
 - podcast
 
-div(data-controller="sub")
-  div(class=(subscribed ? "" : "hidden") data-target="sub.unsubscribe")
-    = button_to "Unsubscribe", subscriptions_path(itunes_id: podcast.itunes_id),
-                method: :delete,
-                remote: true,
-                class: "button is-info is-outlined"
+.control
+  div(data-controller="sub")
+    div(class=(subscribed ? "" : "hidden") data-target="sub.unsubscribe")
+      = button_to mdi_svg("minus") + "Unsubscribe", subscriptions_path(itunes_id: podcast.itunes_id),
+                  method: :delete,
+                  remote: true,
+                  class: "button is-info is-outlined"
 
-  div(class=(subscribed ? "hidden" : "") data-target="sub.subscribe")
-    = button_to "Subscribe", subscriptions_path,
-              method: :post,
-              remote: true,
-              params: { subscription: { itunes_id: podcast.itunes_id,
-                                        name: podcast.name,
-                                        feed: podcast.feed } },
-              class: "button is-info"
+    div(class=(subscribed ? "hidden" : "") data-target="sub.subscribe")
+      = link_to mdi_svg("plus") + "Subscribe", subscriptions_path,
+                method: :post,
+                remote: true,
+                params: { subscription: { itunes_id: podcast.itunes_id,
+                                          name: podcast.name,
+                                          feed: podcast.feed } },
+                class: "button is-info"
+    
