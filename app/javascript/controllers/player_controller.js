@@ -1,7 +1,17 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["audio", "toggle", "scrub", "volume", "speed", "time"]
+  static targets = [
+    "audio",
+    "toggle",
+    "scrub",
+    "volume",
+    "speed",
+    "time",
+    "art",
+    "episode",
+    "podcast"
+  ]
 
   /* Controller Actions */
 
@@ -46,10 +56,13 @@ export default class extends Controller {
 
   loadEpisode(e) {
     this.field = e.target.parentNode.parentNode
-    this.audioTarget.src = e.target.dataset.audio
-    this.data.set("episodeId", e.target.dataset.episodeId)
-    this.data.set("podcastId", e.target.dataset.podcastId)
 
+    const episode = this.episodeFrom(e.target)
+    this.audioTarget.src = episode.audio
+    this.data.set("episodeId", episode.episodeId)
+    this.data.set("podcastId", episode.podcastId)
+
+    this.setNowPlaying(episode)
     this.audioTarget.play()
     this.setSpeed()
 
@@ -79,6 +92,12 @@ export default class extends Controller {
     } else {
       this.audioTarget.currentTime = newTime
     }
+  }
+
+  setNowPlaying(episode) {
+    this.artTarget.src = episode.art
+    this.episodeTarget.textContent = episode.episode
+    this.podcastTarget.textContent = episode.podcast + " - " + episode.date
   }
 
   markListened() {
@@ -121,7 +140,10 @@ export default class extends Controller {
       episode: element.dataset.episode,
       podcast: element.dataset.podcast,
       date: element.dataset.date,
-      audio: element.dataset.audio
+      audio: element.dataset.audio,
+      art: element.dataset.art,
+      episodeId: element.dataset.episodeId,
+      podcastId: element.dataset.podcastId
     }
   }
 

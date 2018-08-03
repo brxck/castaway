@@ -1,10 +1,12 @@
 // Make player persistent across navigation
-.navbar.is-fixed-bottom.is-white#player(data-turbolinks-permanent)
+.navbar.is-fixed-bottom.is-white.has-shadow#player(data-turbolinks-permanent)
+  audio(data-target="player.audio")
+
   .container.level
-
-    audio(data-target="player.audio" src="")
-
     .level-left
+      .level-item
+        img.image.is-128x128(data-target="player.art")
+
       .level-item
         .field.has-addons
           .control
@@ -18,13 +20,17 @@
               | ↻
 
     .level-item
-      input.input.is-small.is-fullwidth(type="range"
-            data-target="player.scrub"
-            data-action="click->player#setPosition"
-            min="0"
-            max="1"
-            value="0"
-            step="0.01")
+      div.has-text-centered
+        p(data-target="player.episode")
+        p(data-target="player.podcast")
+
+        input.input.is-small.is-fullwidth(type="range"
+              data-target="player.scrub"
+              data-action="click->player#setPosition"
+              min="0"
+              max="1"
+              value="0"
+              step="0.01")
 
     .level-item(data-target="player.time") 0:00 / 0:00
 
