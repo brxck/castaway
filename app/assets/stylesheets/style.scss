@@ -6,3 +6,50 @@
 .hidden {
   display: none;
 }
+
+svg {
+  fill: #363636;
+}
+
+/* player */
+
+#player {
+  padding-right: 1em;
+
+  & > .level {
+    width: 100%;
+  }
+
+  input[type="range"] {
+    border: none;
+    box-shadow: none;
+  }
+}
+
+#player-center {
+  width: 100%;
+}
+
+.player-info {
+  height: 1em;
+  font-size: 0.85em;
+  margin-bottom: 0.3em;
+}
+
+#scrub {
+  margin-top: 0.2em;
+  padding-top: 0.5em;
+}
+
+#playing-art {
+  background: whitesmoke;
+}
+
+.player-time {
+  font-size: 0.8em;
+  padding-bottom: 1.5em;
+}
+
+#transform {
+  transform: rotate(-90deg);
+}

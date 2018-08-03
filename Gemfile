@@ -53,6 +53,8 @@ gem "pagy"
 # HTML templating
 gem "slim-rails"
 
+gem "material_design_icons"
+
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.1.0", require: false
 

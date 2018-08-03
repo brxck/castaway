@@ -2,29 +2,35 @@
 .navbar.is-fixed-bottom.is-white.has-shadow#player(data-turbolinks-permanent)
   audio(data-target="player.audio")
 
-  .container.level
+  .level.is-mobile
     .level-left
       .level-item
-        img.image.is-128x128(data-target="player.art")
+        img.image.is-128x128#playing-art(data-target="player.art")
 
       .level-item
         .field.has-addons
+        
           .control
-            button.button(data-action="player#seekBack")
-              | ↺
+            button.button.is-large(data-action="player#seekBack")
+              div(style="transform: rotate(-90deg)") ↺
+          
           .control
-            button.button(data-target="player.toggle" data-action="player#togglePlay")
-              | >
+            button.button.is-large(data-target="player.toggle" data-action="player#togglePlay")
+              span.icon.is-medium.is-marginless#play-icon
+                = mdi_svg("play", size: "2em")
+              span.icon.is-medium.is-marginless#pause-icon(style="display: none")
+                = mdi_svg("pause", size: "2em")
+
           .control
-            button.button(data-action="player#seekForward")
-              | ↻
+            button.button.is-large(data-action="player#seekForward")
+              div(style="transform: rotate(90deg)") ↻
 
     .level-item
-      div.has-text-centered
-        p(data-target="player.episode")
-        p(data-target="player.podcast")
+      #player-center.has-text-centered
+        p.player-info(data-target="player.episode")
+        p.player-info(data-target="player.podcast")
 
-        input.input.is-small.is-fullwidth(type="range"
+        input.input.is-fullwidth#scrub(type="range"
               data-target="player.scrub"
               data-action="click->player#setPosition"
               min="0"
@@ -32,7 +38,7 @@
               value="0"
               step="0.01")
 
-    .level-item(data-target="player.time") 0:00 / 0:00
+        p.player-time (data-target="player.time") 0:00 / 0:00
 
     .level-right
       .level-item
@@ -47,6 +53,8 @@
             option(value="1.5") x1.5
 
       .level-item
+        span.icon
+          = mdi_svg("volume-high")
         input.input.is-small(type="range"
               data-target="player.volume"
               data-action="player#setVolume"
