@@ -14,26 +14,25 @@ class PodcastController < ApplicationController
     end
 
     feed = Rails.cache.fetch("feed/#{params[:id]}", expires_in: 1.hour) do
-    xml = Connect.get(@podcast.feed).body
+      xml = Connect.get(@podcast.feed).body
       Feed.parse(xml)
     end
 
-    @episodes = feed[:episodes]
     @podcast.description = feed[:description]
 
-    if user_signed_in?
-      @episodes.map! do |episode|
-        if (history = current_user.histories
-                                  .where(podcast_id: params[:id], episode_id: episode.id)
-                                  .take)
-          episode.listened = history.listened
-          episode.time = history.time
-        end
-        episode
-      end
+    @episodes = feed[:episodes].map { |episode| [episode.id, episode] }.to_h
+    episode_ids = @episodes.each_with_object([]) do |(_, episode), ids|
+      ids << episode.id
     end
 
-    @pagy, @episodes = pagy_array(@episodes)
+    histories = current_user.histories.where(podcast_id: params[:id], episode_id: episode_ids)
+
+    @episodes = histories.each_with_object(@episodes) do |history, (_, episodes)|
+      episodes[history.episode_id].listened = history.listened
+      episodes[history.episode_id].time = history.time
+    end
+
+    @pagy, @episodes = pagy_array(@episodes.values)
   end
 
   def listen
