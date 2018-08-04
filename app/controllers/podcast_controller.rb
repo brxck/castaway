@@ -9,9 +9,14 @@ class PodcastController < ApplicationController
                                 .where(itunes_id: params[:id]).any?
     end
 
-    @podcast = Itunes.lookup(params[:id])
+    @podcast = Rails.cache.fetch("podcast/#{params[:id]}", expires_in: 1.day) do
+      Itunes.lookup(params[:id])
+    end
+
+    feed = Rails.cache.fetch("feed/#{params[:id]}", expires_in: 1.hour) do
     xml = Connect.get(@podcast.feed).body
-    feed = Feed.parse(xml)
+      Feed.parse(xml)
+    end
 
     @episodes = feed[:episodes]
     @podcast.description = feed[:description]
