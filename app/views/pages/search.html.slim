@@ -1,7 +1,7 @@
 - title "Search for \"#{@term}\""
 
-- @results.each do |podcast|
-  img(src=podcast.art100)
-  p: a(href=podcast_path(id: podcast.itunes_id)) = podcast.name
+.podcast-grid
+  - @results.each do |podcast|
+    == render "shared/podcast_tile", podcast: podcast
     
 == pagy_nav_bulma(@pagy) if @pagy.pages > 1
