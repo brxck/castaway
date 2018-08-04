@@ -15,19 +15,23 @@ svg {
   margin-top: 1em;
 }
 
-.podcast-row {
-  display: flex;
-}
-
 .podcast {
   flex: 0 0 auto;
   margin: 0 10px;
-  max-width: 210px;
+  max-width: 200px;
   font-size: 0.9em;
+  height: 275px;
+  overflow: hidden;
+  margin-bottom: 1em;
 
   img {
     margin-bottom: 0.5em;
   }
+}
+
+.podcast-grid {
+  display: flex;
+  flex-flow: row wrap;
 }
 
 /* player */

@@ -6,7 +6,7 @@ class PagesController < ApplicationController
   end
 
   def discover
-    rss = "https://rss.itunes.apple.com/api/v1/us/podcasts/top-podcasts/all/10/explicit.json"
+    rss = "https://rss.itunes.apple.com/api/v1/us/podcasts/top-podcasts/all/25/explicit.json"
 
     results = Rails.cache.fetch("toplist", expires_in: 1.day) do
       Connect.get(rss).body["feed"]["results"]

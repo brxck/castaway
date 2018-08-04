@@ -1,6 +1,7 @@
 - title "Discover"
 
 h1.title Top Podcasts
-.podcast-row 
+
+.podcast-grid(data-target="scroll.view")
   - @toplist.each do |podcast|
     == render "shared/podcast_tile", podcast: podcast
