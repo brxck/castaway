@@ -10,7 +10,7 @@ module FeedHelper
 
     def self.process_episodes(episodes)
       episodes.map do |episode|
-        id = if episode.respond_to?(:to_s)
+        id = if episode.is_a? Addressable::URI
                episode.guid.to_s
              else
                episode.guid.guid
