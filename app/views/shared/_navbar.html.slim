@@ -1,8 +1,12 @@
-nav.navbar(data-controller="navbar"
+nav.navbar.is-link(data-controller="navbar"
            role="navigation" aria-label="dropdown navigation")
 
+
   .navbar-brand
-    a.navbar-item.has-text-weight-bold(href="/") Castaway
+    a.navbar-item.has-text-weight-bold(href="/")
+      span.icon.is-medium == mdi_svg("ship-wheel", size: "1.75em")
+      span.is-size-5 = Castaway
+
     a.navbar-burger(data-target="navbar.button" data-action="navbar#toggleMenu"
                     role="button" aria-label="menu" aria-expanded="false")
       span(aria-hidden)
@@ -14,9 +18,8 @@ nav.navbar(data-controller="navbar"
     .navbar-start
       a.navbar-item(href=discover_path) Discover
 
-      
       - if user_signed_in?
-        a.navbar.navbar-item(href=subscriptions_path) Subscriptions
+        a.navbar-item(href=subscriptions_path) Subscriptions
     
     .navbar-end
       .navbar-item
@@ -28,7 +31,9 @@ nav.navbar(data-controller="navbar"
             aria-label="search")
 
       .navbar-item.has-dropdown(data-action="click->navbar#toggleDropdown")
-        a.navbar-link User
+        a.navbar-link
+          span.icon = mdi_svg("account")
+          span = user_signed_in? ? current_user.email : ""
         .navbar-dropdown.is-right
           - if user_signed_in?
             a.navbar-item(href=destroy_user_session_path)
