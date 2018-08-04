@@ -27,7 +27,7 @@ class PodcastController < ApplicationController
 
     histories = current_user.histories.where(podcast_id: params[:id], episode_id: episode_ids)
 
-    @episodes = histories.each_with_object(@episodes) do |history, (_, episodes)|
+    @episodes = histories.each_with_object(@episodes) do |history, episodes|
       episodes[history.episode_id].listened = history.listened
       episodes[history.episode_id].time = history.time
     end
