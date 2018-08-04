@@ -18,7 +18,7 @@ class PagesController < ApplicationController
         name: podcast["name"],
         author: podcast["artistName"],
         genre: podcast["genres"][0]["name"],
-        art: podcast["artworkUrl100"] # Is actually 200x200px
+        art600: podcast["artworkUrl100"] # Is actually 200x200px
       )
     end
   end

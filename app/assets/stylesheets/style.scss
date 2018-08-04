@@ -15,6 +15,21 @@ svg {
   margin-top: 1em;
 }
 
+.podcast-row {
+  display: flex;
+}
+
+.podcast {
+  flex: 0 0 auto;
+  margin: 0 10px;
+  max-width: 210px;
+  font-size: 0.9em;
+
+  img {
+    margin-bottom: 0.5em;
+  }
+}
+
 /* player */
 
 #player {

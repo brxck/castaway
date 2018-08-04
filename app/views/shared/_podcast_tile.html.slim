@@ -1,6 +1,7 @@
 - podcast
 
-.tile.is-2
+.podcast
   a(href=podcast_url(id: podcast.itunes_id))
-    img.image.is-128x128(src=podcast.art100)
-    p = podcast.name
+    img.image.is-200x200(src=podcast.art600)
+    strong = podcast.name
+    p = podcast.author
