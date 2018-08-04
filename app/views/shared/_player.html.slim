@@ -7,7 +7,7 @@
       .level-item
         img.image#playing-art(data-target="player.art")
         .art-placeholder
-          = mdi_svg("headphones", size: "3em")
+          = mdi_svg("headphones", size: "2em")
 
       .level-item
         .field.has-addons
@@ -20,7 +20,7 @@
             button.button.is-large(data-target="player.toggle" data-action="player#togglePlay")
               span.icon.is-medium.is-marginless#play-icon
                 = mdi_svg("play", size: "2em")
-              span.icon.is-medium.is-marginless#pause-icon(style="display: none")
+              span.icon.is-medium.is-marginless.hidden#pause-icon
                 = mdi_svg("pause", size: "2em")
 
           .control

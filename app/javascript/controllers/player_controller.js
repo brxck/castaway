@@ -34,7 +34,7 @@ export default class extends Controller {
     } else {
       this.audioTarget.play()
     }
-    this.toggleTarget.classList.toggle("playing")
+    this.updateButton()
   }
 
   seekForward() {
@@ -66,7 +66,7 @@ export default class extends Controller {
     this.audioTarget.play()
     this.setSpeed()
 
-    this.toggleTarget.classList.toggle("playing", true)
+    this.updateButton()
   }
 
   setVolume() {
@@ -98,6 +98,16 @@ export default class extends Controller {
     this.artTarget.src = episode.art
     this.episodeTarget.textContent = episode.episode
     this.podcastTarget.textContent = episode.podcast + " - " + episode.date
+  }
+
+  updateButton() {
+    if (this.playing()) {
+      this.toggleTarget.firstChild.classList.toggle("hidden", true)
+      this.toggleTarget.lastChild.classList.toggle("hidden", false)
+    } else {
+      this.toggleTarget.firstChild.classList.toggle("hidden", false)
+      this.toggleTarget.lastChild.classList.toggle("hidden", true)
+    }
   }
 
   markListened() {
