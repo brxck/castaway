@@ -5,7 +5,9 @@
   .level.is-mobile
     .level-left
       .level-item
-        img.image.is-128x128#playing-art(data-target="player.art")
+        img.image#playing-art(data-target="player.art")
+        .art-placeholder
+          = mdi_svg("headphones", size: "3em")
 
       .level-item
         .field.has-addons
@@ -28,7 +30,9 @@
     .level-item
       #player-center.has-text-centered
         p.player-info.is-size-6(data-target="player.episode")
+          | Do you hear that?
         p.player-info(data-target="player.podcast")
+          | Me neither.
 
         input.input.is-fullwidth#scrub(type="range"
               data-target="player.scrub"
