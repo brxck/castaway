@@ -20,9 +20,9 @@
           button.button(href=@podcast.feed)
             span.icon = mdi_svg("rss")
 
-section.section
+section.section.container
 
-  table.table.is-hoverable.is-fullwidth
+  table.table.is-hoverable
     thead
       th Episode Name
       th Released
@@ -30,16 +30,19 @@ section.section
       th
     - @episodes.each do |episode|
       tr
-        td = episode.title
+        td
+          .level
+            .level-right
+              .level-item
+                == render "shared/listen_button", episode: episode, podcast: @podcast
+              .level-item
+                span = episode.title
         td = episode.date.strftime("%Y %b %-d")
         td = episode.duration
         td
           .field.is-grouped
             .control
               == render "shared/episode_button", episode: episode,
-                        podcast: @podcast, action: "player#loadEpisode",
-                        text: "play"
-            .control
-              == render "shared/listen_button", episode: episode, podcast: @podcast
+                        podcast: @podcast, action: "player#loadEpisode"
 
   == pagy_nav_bulma(@pagy) if @pagy.pages > 1 if @pagy.pages > 1

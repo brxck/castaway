@@ -1,7 +1,7 @@
 - episode
 - podcast
 
-button.button.is-small(data-action = action
+button.button.is-small.is-rounded(data-action = action
     data-episode-id = episode.id
     data-podcast-id = podcast.itunes_id
     data-art = podcast.art600
@@ -9,5 +9,6 @@ button.button.is-small(data-action = action
     data-episode = episode.title
     data-podcast = podcast.name
     data-date = episode.date.strftime("%b %-d, %Y")
-  )
-  = text
+  ) 
+  span.icon = mdi_svg("play")
+ 
