@@ -16,8 +16,9 @@ class PagesController < ApplicationController
       OpenStruct.new(
         itunes_id: podcast["id"],
         name: podcast["name"],
-        art100: podcast["artworkUrl100"],
-        art600: podcast["artworkUrl600"]
+        author: podcast["artistName"],
+        genre: podcast["genres"][0]["name"],
+        art: podcast["artworkUrl100"] # Is actually 200x200px
       )
     end
   end
