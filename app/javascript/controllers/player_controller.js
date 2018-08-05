@@ -15,17 +15,19 @@ export default class extends Controller {
 
   /* Controller Actions */
 
-  connect() {
-    this.scrubUpdater = setInterval(this.updateScrub.bind(this), 500)
+  initialize() {
     this.listenEvent = this.audioTarget.addEventListener(
       "ended",
       this.markListened.bind(this)
     )
   }
 
+  connect() {
+    this.scrubUpdater = setInterval(this.updateScrub.bind(this), 500)
+  }
+
   disconnect() {
     clearInterval(this.scrubUpdater)
-    this.audioTarget.removeEventListener(this.listenEvent)
   }
 
   togglePlay() {
