@@ -34,10 +34,14 @@ nav.navbar.is-link(data-controller="navbar"
         .navbar-link
           span.icon = mdi_svg("account")
           span = user_signed_in? ? current_user.email : ""
+
         .navbar-dropdown.is-right
           - if user_signed_in?
+            a.navbar-item(href=edit_user_registration_path)
+              | Settings
             a.navbar-item(href=destroy_user_session_path)
               | Sign out
+
           - else
             a.navbar-item(href=new_user_session_path)
               | Log in
