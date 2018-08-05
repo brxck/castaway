@@ -32,11 +32,12 @@ nav.navbar.is-link(data-controller="navbar"
 
       .navbar-item.has-dropdown(data-action="click->navbar#toggleDropdown")
         .navbar-link
-          span.icon = mdi_svg("account")
-          span = user_signed_in? ? current_user.email : ""
+          span.icon = user_signed_in? ? mdi_svg("account") : mdi_svg("account-outline")
 
         .navbar-dropdown.is-right
           - if user_signed_in?
+            .navbar-item = current_user.email
+            .navbar-divider
             a.navbar-item(href=edit_user_registration_path)
               | Settings
             a.navbar-item(href=destroy_user_session_path)
