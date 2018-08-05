@@ -9,6 +9,6 @@ export default class extends Controller {
   }
 
   toggleDropdown(e) {
-    e.target.parentNode.classList.toggle("is-active")
+    e.currentTarget.classList.toggle("is-active")
   }
 }

@@ -31,7 +31,7 @@ nav.navbar.is-link(data-controller="navbar"
             aria-label="search")
 
       .navbar-item.has-dropdown(data-action="click->navbar#toggleDropdown")
-        a.navbar-link
+        .navbar-link
           span.icon = mdi_svg("account")
           span = user_signed_in? ? current_user.email : ""
         .navbar-dropdown.is-right
