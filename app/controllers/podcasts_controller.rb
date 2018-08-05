@@ -1,6 +1,6 @@
 class PodcastsController < ApplicationController
   
-  include FeedHelper
+  
   include Pagy::Backend
 
   def show
