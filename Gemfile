@@ -37,8 +37,6 @@ gem "jbuilder", "~> 2.5"
 gem "devise", git: "https://github.com/plataformatec/devise.git", branch: "master"
 # Make http requests
 gem "faraday"
-gem "faraday-http-cache"
-gem "faraday_middleware"
 # Parse podcast feeds
 gem "feedjira"
 gem "feedjira-podcast"
