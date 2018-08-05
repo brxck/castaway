@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  include ItunesHelper
+  
   include Pagy::Backend
   
   def home

@@ -1,5 +1,5 @@
 class SubscriptionsController < ApplicationController
-  include ItunesHelper
+  
 
   before_action :authenticate_user!
 

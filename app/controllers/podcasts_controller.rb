@@ -1,5 +1,5 @@
 class PodcastsController < ApplicationController
-  include ItunesHelper
+  
   include FeedHelper
   include Pagy::Backend
 
