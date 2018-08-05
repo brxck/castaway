@@ -38,7 +38,7 @@ section.section.container
               .level-item
                 = link_to episode.title, "?" + URI.encode_www_form(episode_id: episode.id)
         td = episode.date.strftime("%Y %b %-d")
-        td = episode.duration
+        td = format_seconds(episode.duration)
         td
           .field.is-grouped
             .control

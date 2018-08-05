@@ -13,7 +13,7 @@
             br
             .has-text-centered
               p = episode.date.strftime("%B %-d, %Y")
-              p = episode.duration
+              p = format_seconds(episode.duration)
           
           .media-content
             h2.title.is-size-4 = episode.title
