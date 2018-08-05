@@ -13,10 +13,11 @@ class PodcastsController < ApplicationController
       Itunes.lookup(params[:id])
     end
 
-    feed = Rails.cache.fetch("feed/#{params[:id]}", expires_in: 1.hour) do
-      xml = Connect.get(@podcast.feed).body
-      Feed.parse(xml)
+    xml = ApiResponse.cache(@podcast.feed, -> { 1.hour.ago }) do
+      Connect.get(@podcast.feed).body
     end
+
+    feed = Feed.parse(xml)
 
     @podcast.description = feed[:description]
 

@@ -8,9 +8,11 @@ class PagesController < ApplicationController
   def discover
     rss = "https://rss.itunes.apple.com/api/v1/us/podcasts/top-podcasts/all/25/explicit.json"
 
-    results = Rails.cache.fetch("toplist", expires_in: 1.day) do
-      Connect.get(rss).body["feed"]["results"]
+    feed = ApiResponse.cache(rss, -> { 1.day.ago }) do
+      Connect.get(rss).body
     end
+
+    results = JSON.parse(feed)["feed"]["results"]
 
     @toplist = results.map do |podcast|
       OpenStruct.new(
