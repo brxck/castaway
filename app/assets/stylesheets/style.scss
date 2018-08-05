@@ -2,6 +2,10 @@
   height: 6em;
 }
 
+.image {
+  background-color: whitesmoke;
+}
+
 .is-200x200 {
   width: 200px;
   height: 200px;
@@ -86,6 +90,7 @@ svg {
 }
 
 .art-placeholder {
+  z-index: 2;
   display: flex;
   color: gray;
   justify-content: center;
