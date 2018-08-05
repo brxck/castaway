@@ -3,17 +3,16 @@
 
 span(data-controller="listen")
   span.no(class=(episode.listened ? "" : "hidden") data-target="listen.no")
-    = link_to mdi_svg("check-circle"), histories_path,
-                method: :delete,
-                remote: true,
-                params: { history: { podcast_id: podcast.itunes_id,
-                                     episode_id: episode.id } },
-                class: "button is-small"
+    = link_to mdi_svg("check-circle"),
+              histories_path(history: { podcast_id: podcast.itunes_id,
+                                        episode_id: episode.id }),
+              method: :delete,
+              remote: true
 
   span.yes(class=(episode.listened ? "hidden" : "") data-target="listen.yes")
-    = link_to mdi_svg("check-circle-outline"), histories_path,
+    = link_to mdi_svg("check-circle-outline"),
+              histories_path(history: { podcast_id: podcast.itunes_id,
+                                        episode_id: episode.id,
+                                        listened: true }),
               method: :post,
-              remote: true,
-              params: { history: { podcast_id: podcast.itunes_id,
-                                   episode_id: episode.id,
-                                   listened: true } }
+              remote: true
