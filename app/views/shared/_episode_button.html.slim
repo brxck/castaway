@@ -1,14 +1,14 @@
 - episode
 - podcast
 
-button.button.is-small.is-rounded(data-action = action
-    data-episode-id = episode.id
-    data-podcast-id = podcast.itunes_id
-    data-art = podcast.art600
-    data-audio = episode.audio
-    data-episode = episode.title
-    data-podcast = podcast.name
-    data-date = episode.date.strftime("%b %-d, %Y")
-  ) 
-  span.icon = mdi_svg("play")
+a.table-icon(data-action = action
+  data-episode-id = episode.id
+  data-podcast-id = podcast.itunes_id
+  data-art = podcast.art600
+  data-audio = episode.audio
+  data-episode = episode.title
+  data-podcast = podcast.name
+  data-date = episode.date.strftime("%b %-d, %Y")
+) 
+  span = mdi_svg("play-circle-outline", size: "2em")
  

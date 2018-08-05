@@ -1,7 +1,7 @@
 - episode
 - podcast
 
-span(data-controller="listen")
+span.listen-button(data-controller="listen")
   span.no(class=(episode.listened ? "" : "hidden") data-target="listen.no")
     = link_to mdi_svg("check-circle"),
               histories_path(history: { podcast_id: podcast.itunes_id,

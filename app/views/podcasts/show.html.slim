@@ -39,11 +39,9 @@ section.section.container
                 = link_to episode.title, "?" + { episode_id: episode.id }.to_query
         td = episode.date.strftime("%Y %b %-d")
         td = format_seconds(episode.duration)
-        td
-          .field.is-grouped
-            .control
-              == render "shared/episode_button", episode: episode,
-                        podcast: @podcast, action: "player#loadEpisode"
+        td.table-icon-container
+          == render "shared/episode_button", episode: episode,
+                    podcast: @podcast, action: "player#loadEpisode"
 
   == pagy_nav_bulma(@pagy) if @pagy.pages > 1 if @pagy.pages > 1
 

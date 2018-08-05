@@ -1,0 +1,59 @@
+#player {
+  padding-right: 1em;
+
+  & > .level {
+    width: 100%;
+  }
+
+  input[type="range"] {
+    border: none;
+    box-shadow: none;
+  }
+}
+
+#player-center {
+  width: 100%;
+}
+
+.player-info {
+  height: 1em;
+  font-size: 0.85em;
+  margin-bottom: 0.3em;
+}
+
+#scrub {
+  margin-top: 0.2em;
+  padding-top: 0.5em;
+}
+
+#playing-art {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 128px;
+  height: 128px;
+}
+
+.art-placeholder {
+  z-index: 2;
+  display: flex;
+  color: gray;
+  justify-content: center;
+  align-items: center;
+  width: 128px;
+  height: 128px;
+  background-color: whitesmoke;
+}
+
+.player-time {
+  font-size: 0.8em;
+}
+
+#transform {
+  transform: rotate(-90deg);
+}
+
+.under-player {
+  height: 6em;
+}
