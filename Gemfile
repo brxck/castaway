@@ -44,8 +44,6 @@ gem "feedjira"
 gem "feedjira-podcast"
 # gpodder.net API interface
 gem "gpodder", github: "brxck/gpodder-ruby", branch: "master"
-# iTunes API, aliased to Itunes
-gem "itunes-search-api"
 # CSS reset
 gem "normalize-rails"
 # Exciting new pagination gem
