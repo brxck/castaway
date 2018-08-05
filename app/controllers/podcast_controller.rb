@@ -32,12 +32,11 @@ class PodcastController < ApplicationController
       episodes[history.episode_id].time = history.time
     end
 
+    if params[:episode_id]
+      return unless params[:episode_id]
+      @modal_episode = @episodes[params[:episode_id]]
+    end
+
     @pagy, @episodes = pagy_array(@episodes.values)
-  end
-
-  def listen
-  end
-
-  def subscribe
   end
 end

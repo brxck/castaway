@@ -36,7 +36,7 @@ section.section.container
               .level-item
                 == render "shared/listen_button", episode: episode, podcast: @podcast
               .level-item
-                span = episode.title
+                = link_to episode.title, "?" + URI.encode_www_form(episode_id: episode.id)
         td = episode.date.strftime("%Y %b %-d")
         td = episode.duration
         td
@@ -46,3 +46,6 @@ section.section.container
                         podcast: @podcast, action: "player#loadEpisode"
 
   == pagy_nav_bulma(@pagy) if @pagy.pages > 1 if @pagy.pages > 1
+
+  - if @modal_episode
+    == render "shared/modal", episode: @modal_episode, podcast: @podcast

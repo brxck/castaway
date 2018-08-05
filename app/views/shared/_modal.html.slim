@@ -1,0 +1,32 @@
+- episode
+- podcast
+
+.modal.is-active(data-controller="modal")
+  .modal-background(data-action="click->modal#close")
+
+  .modal-content
+    .card
+      .card-content
+        .media    
+          .media-left
+            img.image.is-200x200(src=podcast.art600)
+            br
+            .has-text-centered
+              p = episode.date.strftime("%B %-d, %Y")
+              p = episode.duration
+          
+          .media-content
+            h2.title.is-size-4 = episode.title
+            h3.subtitle.is-size-6 = podcast.name
+            p = episode.description
+  
+          .media-right
+            button.delete(data-action="click->modal#close")
+        
+      .card-footer
+        .card-footer-item 
+          a(href=episode.audio) = mdi_svg("download")
+        .card-footer-item
+          a = mdi_svg("share")
+        .card-footer-item
+          == render "shared/listen_button", episode: episode, podcast: podcast
