@@ -1,18 +1,18 @@
 require 'test_helper'
 
-class PodcastControllerTest < ActionDispatch::IntegrationTest
+class PodcastsControllerTest < ActionDispatch::IntegrationTest
   test "should get show" do
-    get podcast_show_url
+    get podcasts_show_url
     assert_response :success
   end
 
   test "should get listen" do
-    get podcast_listen_url
+    get podcasts_listen_url
     assert_response :success
   end
 
   test "should get subscribe" do
-    get podcast_subscribe_url
+    get podcasts_subscribe_url
     assert_response :success
   end
 
