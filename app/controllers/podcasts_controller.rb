@@ -1,12 +1,8 @@
 class PodcastsController < ApplicationController
-  
-  
   include Pagy::Backend
 
   def show
-    @podcast = Rails.cache.fetch("podcast/#{params[:id]}", expires_in: 1.day) do
-      Itunes.lookup(params[:id])
-    end
+    @podcast = Itunes.lookup(params[:id])
 
     xml = ApiResponse.cache(@podcast.feed, -> { 1.hour.ago }) do
       Connect.get(@podcast.feed).body
@@ -24,16 +20,16 @@ class PodcastsController < ApplicationController
     if user_signed_in?
       @subscribed = current_user.subscriptions
                                 .where(itunes_id: params[:id]).any?
-    
 
-      histories = current_user.histories.where(podcast_id: params[:id], episode_id: episode_ids)
+      histories = current_user.histories.where(podcast_id: params[:id],
+                                               episode_id: episode_ids)
 
       @episodes = histories.each_with_object(@episodes) do |history, episodes|
         episodes[history.episode_id].listened = history.listened
         episodes[history.episode_id].time = history.time
       end
     end
-    
+
     if params[:episode_id]
       return unless params[:episode_id]
       @modal_episode = @episodes[params[:episode_id]]
