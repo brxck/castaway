@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resource :histories, only: %i[create destroy update]
 
+  get "about", to: "pages#about", as: "about"
   get "discover", to: "pages#discover", as: "discover"
   get "search", to: "pages#search", as: "search"
   get "podcasts/:id", to: "podcasts#show", as: "podcast"

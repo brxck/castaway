@@ -17,6 +17,7 @@ nav.navbar.is-link(data-controller="navbar"
     
     .navbar-start
       a.navbar-item(href=discover_path) Discover
+      a.navbar-item(href=about_path) About
 
       - if user_signed_in?
         a.navbar-item(href=subscriptions_path) Subscriptions
@@ -40,8 +41,8 @@ nav.navbar.is-link(data-controller="navbar"
             .navbar-divider
             a.navbar-item(href=edit_user_registration_path)
               | Settings
-            a.navbar-item(href=destroy_user_session_path)
-              | Sign out
+            = link_to("Sign out", destroy_user_session_path,
+                      method: :delete, class: "navbar-item")
 
           - else
             a.navbar-item(href=new_user_session_path)

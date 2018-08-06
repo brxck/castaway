@@ -31,3 +31,11 @@
   display: flex;
   flex-flow: row wrap;
 }
+
+#about-hero {
+  position: absolute;
+  top: 2em;
+  left: 0;
+  width: 100vw;
+  height: 90vh;
+}
