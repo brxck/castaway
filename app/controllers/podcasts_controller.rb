@@ -4,11 +4,6 @@ class PodcastsController < ApplicationController
   include Pagy::Backend
 
   def show
-    if user_signed_in?
-      @subscribed = current_user.subscriptions
-                                .where(itunes_id: params[:id]).any?
-    end
-
     @podcast = Rails.cache.fetch("podcast/#{params[:id]}", expires_in: 1.day) do
       Itunes.lookup(params[:id])
     end
@@ -26,13 +21,19 @@ class PodcastsController < ApplicationController
       ids << episode.id
     end
 
-    histories = current_user.histories.where(podcast_id: params[:id], episode_id: episode_ids)
+    if user_signed_in?
+      @subscribed = current_user.subscriptions
+                                .where(itunes_id: params[:id]).any?
+    
 
-    @episodes = histories.each_with_object(@episodes) do |history, episodes|
-      episodes[history.episode_id].listened = history.listened
-      episodes[history.episode_id].time = history.time
+      histories = current_user.histories.where(podcast_id: params[:id], episode_id: episode_ids)
+
+      @episodes = histories.each_with_object(@episodes) do |history, episodes|
+        episodes[history.episode_id].listened = history.listened
+        episodes[history.episode_id].time = history.time
+      end
     end
-
+    
     if params[:episode_id]
       return unless params[:episode_id]
       @modal_episode = @episodes[params[:episode_id]]
