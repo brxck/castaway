@@ -28,6 +28,7 @@ export default class extends Controller {
 
   disconnect() {
     clearInterval(this.scrubUpdater)
+    this.markTime()
   }
 
   togglePlay() {
@@ -57,6 +58,9 @@ export default class extends Controller {
   }
 
   loadEpisode(e) {
+    if (this.loaded()) {
+      this.markTime()
+    }
     this.field = e.target.parentNode.parentNode
 
     const episode = this.episodeFrom(e.currentTarget)
@@ -65,6 +69,7 @@ export default class extends Controller {
     this.data.set("podcastId", episode.podcastId)
 
     this.setNowPlaying(episode)
+    this.currentTime = episode.time
     this.audioTarget.play()
     this.setSpeed()
 
@@ -112,12 +117,31 @@ export default class extends Controller {
     }
   }
 
+  markTime() {
+    if (
+      document.getElementById("signed-in") === null ||
+      this.audioTarget.currentTime === "0" ||
+      !this.loaded()
+    ) {
+      return
+    }
+
+    const historyParams = {
+      history: {
+        episode_id: this.data.get("episodeId"),
+        podcast_id: this.data.get("podcastId"),
+        listened: false,
+        time: this.audioTarget.currentTime
+      }
+    }
+
+    this.sendHistory(historyParams)
+  }
+
   markListened() {
     if (document.getElementById("signed-in") === null) {
       return
     }
-
-    const token = document.querySelector("meta[name=csrf-token]").content
 
     const historyParams = {
       history: {
@@ -127,17 +151,23 @@ export default class extends Controller {
       }
     }
 
+    this.sendHistory(historyParams)
+
+    this.field.getElementsByClassName("yes")[0].classList.toggle("hidden", true)
+    this.field.getElementsByClassName("no")[0].classList.toggle("hidden", false)
+  }
+
+  sendHistory(params) {
+    const token = document.querySelector("meta[name=csrf-token]").content
+
     fetch("/histories", {
       method: "POST",
-      body: JSON.stringify(historyParams),
+      body: JSON.stringify(params),
       headers: {
         "Content-Type": "application/json",
         "X-CSRF-Token": token
       }
     })
-
-    this.field.getElementsByClassName("yes")[0].classList.toggle("hidden", true)
-    this.field.getElementsByClassName("no")[0].classList.toggle("hidden", false)
   }
 
   // Compile HTML from Pug template
