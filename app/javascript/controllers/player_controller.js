@@ -24,11 +24,12 @@ export default class extends Controller {
 
   connect() {
     this.scrubUpdater = setInterval(this.updateScrub.bind(this), 500)
+    this.timeUpdater = setInterval(this.markTime.bind(this), 60000)
   }
 
   disconnect() {
     clearInterval(this.scrubUpdater)
-    this.markTime()
+    clearInterval(this.timeUpdater)
   }
 
   togglePlay() {
