@@ -4,14 +4,15 @@ class PodcastsController < ApplicationController
   def show
     @podcast = Itunes.lookup(params[:id])
 
-    xml = ApiResponse.cache(@podcast.feed, -> { 1.hour.ago }) do
+    feed_xml = ApiResponse.cache(@podcast.feed, -> { 1.hour.ago }) do
       Connect.get(@podcast.feed).body
     end
 
-    feed = Feed.parse(xml)
+    feed = Feed.parse(feed_xml)
 
     @podcast.description = feed[:description]
 
+    # Create { episode_id: episode } hash to integrate with history data
     @episodes = feed[:episodes].map { |episode| [episode.id, episode] }.to_h
     episode_ids = @episodes.each_with_object([]) do |(_, episode), ids|
       ids << episode.id
@@ -21,6 +22,7 @@ class PodcastsController < ApplicationController
       @subscribed = current_user.subscriptions
                                 .where(itunes_id: params[:id]).any?
 
+      # Integrate history data with episode list
       histories = current_user.histories.where(podcast_id: params[:id],
                                                episode_id: episode_ids)
 
