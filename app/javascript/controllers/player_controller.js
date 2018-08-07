@@ -69,11 +69,13 @@ export default class extends Controller {
     this.data.set("podcastId", episode.podcastId)
 
     this.setNowPlaying(episode)
-    this.currentTime = episode.time
-    this.audioTarget.play()
-    this.setSpeed()
+    this.audioTarget.currentTime = episode.time
 
-    this.updateButton()
+    this.audioTarget.addEventListener("canplay", () => {
+      this.audioTarget.play()
+      this.setSpeed()
+      this.updateButton()
+    })
   }
 
   setVolume() {
@@ -184,6 +186,7 @@ export default class extends Controller {
       date: element.dataset.date,
       audio: element.dataset.audio,
       art: element.dataset.art,
+      time: parseFloat(element.dataset.time),
       episodeId: element.dataset.episodeId,
       podcastId: element.dataset.podcastId
     }

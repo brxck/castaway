@@ -24,6 +24,7 @@ class Feed
         description: sanitize(episode.description),
         duration: episode.itunes.duration,
         date: episode.pub_date,
+        time: 0, # Will be overwritten if history exists.
         audio: episode.enclosure.url.to_s
       )
     end
