@@ -16,10 +16,10 @@ export default class extends Controller {
   /* Controller Actions */
 
   initialize() {
-    this.listenEvent = this.audioTarget.addEventListener(
-      "ended",
-      this.markListened.bind(this)
-    )
+    this.audioListeners = []
+
+    this.audioListeners <<
+      this.audioTarget.addEventListener("ended", this.markListened.bind(this))
 
     if (this.data.get("lastPlayed") === "true" && this.loaded()) {
       console.log("loading last played data")
@@ -39,6 +39,10 @@ export default class extends Controller {
   disconnect() {
     clearInterval(this.scrubUpdater)
     clearInterval(this.timeUpdater)
+
+    for (let listener in this.audioListeners) {
+      this.audioTarget.removeEventListener(listener)
+    }
   }
 
   togglePlay() {
