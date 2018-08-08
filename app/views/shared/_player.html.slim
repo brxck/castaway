@@ -4,7 +4,7 @@
 
   .level.is-mobile
     .level-left
-      .level-item
+      a.level-item(data-target="player.art-link" href="/podcasts/#{@last_played["podcast_id"]}")
         img.image#playing-art(data-target="player.art" src=@last_played["art_url"])
         .art-placeholder
           = mdi_svg("headphones", size: "2em")
