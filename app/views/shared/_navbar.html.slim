@@ -17,10 +17,11 @@ nav.navbar.is-link(data-controller="navbar"
     
     .navbar-start
       a.navbar-item(href=discover_path) Discover
-      a.navbar-item(href=about_path) About
 
       - if user_signed_in?
         a.navbar-item(href=subscriptions_path) Subscriptions
+
+      a.navbar-item(href=about_path) About
     
     .navbar-end
       .navbar-item
