@@ -17,10 +17,10 @@ html
     = javascript_pack_tag "application"
 
   body(data-controller="player"
-       data-player-last-played="#{!@last_played.nil?}"
-       data-player-podcast-id="#{@last_played["podcast_id"] || ''}"
-       data-player-episode-id="#{@last_played["episode_id"] || ''}"
-       data-player-last-time="#{@last_played["time_played"] || ''}")
+       data-player-last-played=!@last_played.nil?
+       data-player-podcast-id=@last_played.try(:[], "podcast_id")
+       data-player-episode-id=@last_played.try(:[], "episode_id")
+       data-player-last-time=@last_played.try(:[], "time_played"))
 
     - if user_signed_in?
       #signed-in

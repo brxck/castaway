@@ -31,11 +31,11 @@
       #player-center.has-text-centered
         p.player-info.is-size-6
           a(data-target="player.episode" href=last_episode_path)
-            | #{@last_played["episode_title"] || "Do you hear that?"}
+            | #{try_last("episode_title") || "Do you hear that?"}
 
         p.player-info
           a(data-target="player.podcast" href=last_podcast_path)
-            | #{@last_played["podcast_name"] || "Me neither."}
+            | #{try_last("podcast_name") || "Me neither."}
 
         input.input.is-fullwidth#scrub(type="range"
               data-target="player.scrub"
