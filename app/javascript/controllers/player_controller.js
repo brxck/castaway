@@ -78,7 +78,8 @@ export default class extends Controller {
     this.data.set("lastPlayed", "false")
     this.field = e.target.parentNode.parentNode
 
-    const episode = this.episodeFrom(e.currentTarget)
+    bulma
+    episode = this.episodeFrom(e.currentTarget)
     this.audioTarget.src = episode.audio
     this.data.set("episodeId", episode.episodeId)
     this.data.set("podcastId", episode.podcastId)

@@ -1,7 +1,8 @@
 - episode
 - podcast
+- size
 
-a.table-icon(data-action = action
+a(data-action = "player#loadEpisode"
   data-episode-id = episode.id
   data-podcast-id = podcast.itunes_id
   data-art = podcast.art600
@@ -11,5 +12,5 @@ a.table-icon(data-action = action
   data-time = episode.time
   data-date = episode.date.strftime("%b %-d, %Y")
 ) 
-  span = mdi_svg("play-circle-outline", size: "2em")
+  span = mdi_svg("play-circle-outline", size: size)
  

@@ -17,16 +17,17 @@
           
           .media-content
             h2.title.is-size-4 = episode.title
-            h3.subtitle.is-size-6 = podcast.name
+            h3.subtitle.is-size-6
+              a(href="/podcasts/#{podcast.itunes_id}") = podcast.name
             p = episode.description
   
           .media-right
             button.delete(data-action="click->modal#close")
         
       .card-footer
+        .card-footer-item
+          == render "shared/episode_button", episode: episode, podcast: podcast, size: "1.5em"
         .card-footer-item 
           a(href=episode.audio) = mdi_svg("download")
-        .card-footer-item
-          a = mdi_svg("share")
         .card-footer-item
           == render "shared/listen_button", episode: episode, podcast: podcast
