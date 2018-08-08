@@ -147,20 +147,20 @@ export default class extends Controller {
           time: this.audioTarget.currentTime
         }
       })
-    } else {
-      this.post("/cookies", {
-        cookie: {
-          podcast_id: this.data.get("podcastId"),
-          podcast_name: this.podcastTarget.textContent,
-          art_url: this.artTarget.src,
-          episode_title: this.episodeTarget.textContent,
-          episode_id: this.data.get("episodeId"),
-          episode_url: this.audioTarget.src,
-          time_played:
-            this.audioTarget.currentTime / this.audioTarget.seekable.end(0)
-        }
-      })
     }
+
+    this.post("/cookies", {
+      cookie: {
+        podcast_id: this.data.get("podcastId"),
+        podcast_name: this.podcastTarget.textContent,
+        art_url: this.artTarget.src,
+        episode_title: this.episodeTarget.textContent,
+        episode_id: this.data.get("episodeId"),
+        episode_url: this.audioTarget.src,
+        time_played:
+          this.audioTarget.currentTime / this.audioTarget.seekable.end(0)
+      }
+    })
   }
 
   markListened() {
