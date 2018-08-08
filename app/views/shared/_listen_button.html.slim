@@ -1,18 +1,19 @@
 - episode
 - podcast
 
-span.listen-button(data-controller="listen")
-  span.no(class=(episode.listened ? "" : "hidden") data-target="listen.no")
-    = link_to mdi_svg("check-circle"),
-              histories_path(history: { podcast_id: podcast.itunes_id,
-                                        episode_id: episode.id }),
-              method: :delete,
-              remote: true
+- if user_signed_in?
+  span.listen-button(data-controller="listen")
+    span.no(class=(episode.listened ? "" : "hidden") data-target="listen.no")
+      = link_to mdi_svg("check-circle"),
+                histories_path(history: { podcast_id: podcast.itunes_id,
+                                          episode_id: episode.id }),
+                method: :delete,
+                remote: true
 
-  span.yes(class=(episode.listened ? "hidden" : "") data-target="listen.yes")
-    = link_to mdi_svg("check-circle-outline"),
-              histories_path(history: { podcast_id: podcast.itunes_id,
-                                        episode_id: episode.id,
-                                        listened: true }),
-              method: :post,
-              remote: true
+    span.yes(class=(episode.listened ? "hidden" : "") data-target="listen.yes")
+      = link_to mdi_svg("check-circle-outline"),
+                histories_path(history: { podcast_id: podcast.itunes_id,
+                                          episode_id: episode.id,
+                                          listened: true }),
+                method: :post,
+                remote: true
