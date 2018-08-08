@@ -1,0 +1,45 @@
+.hero.is-link#about-hero
+  .container
+    .hero-body
+      .level.is-marginless
+        .level-item
+          div = mdi_svg("ship-wheel", size: "8em")
+      h1.title.is-size-1.has-text-centered Castaway
+            
+      section.section
+        .columns
+          .column
+            h2.title.is-size-5 About
+            p Castaway is an open source webapp for listening to podcasts.
+            p
+              | It was developed by Brock McElroy.
+              a(href="https://brockmcelroy.com")
+                span.icon.is-small = mdi_svg("open-in-new")
+            br
+            p: a(href="https://github.com/brxck/castaway")
+              span.icon = mdi_svg("github-circle")
+            
+          .column
+            h2.title.is-size-5 Keyboard Controls
+
+            table.keyboard
+              tbody
+                tr
+                  td: span.tag space
+                  td Play/Pause
+                tr
+                  td: span.tag d
+                  td Skip forward
+                tr
+                  td: span.tag a
+                  td Skip backward
+                tr
+                  td: span.tag w
+                  td Volume up
+                tr
+                  td: span.tag s
+                  td Volume down
+
+            br
+            p.is-size-7 Or try using your media keys.
+            

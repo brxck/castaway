@@ -13,8 +13,6 @@ export default class extends Controller {
     "podcast"
   ]
 
-  /* Controller Actions */
-
   initialize() {
     this.audioListeners = []
 
@@ -29,6 +27,8 @@ export default class extends Controller {
         this.updateScrub(true)
       })
     }
+
+    document.body.addEventListener("keydown", this.keyboardShortcut.bind(this))
   }
 
   connect() {
@@ -44,6 +44,8 @@ export default class extends Controller {
       this.audioTarget.removeEventListener(listener)
     }
   }
+
+  /* Controller Actions */
 
   togglePlay() {
     if (!this.loaded()) {
@@ -232,5 +234,36 @@ export default class extends Controller {
       .toISOString()
       .substr(11, 8)
       .replace(/^[0:]{3,4}/, "")
+  }
+
+  keyboardShortcut(e) {
+    if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") {
+      return
+    }
+
+    switch (e.key) {
+      case " ":
+        this.togglePlay()
+        e.preventDefault()
+        break
+      case "d":
+        this.seekForward()
+        e.preventDefault()
+        break
+      case "a":
+        this.seekBack()
+        e.preventDefault()
+        break
+      case "w":
+        this.volumeTarget.value = parseFloat(this.volumeTarget.value) + 0.1
+        this.setVolume()
+        e.preventDefault()
+        break
+      case "s":
+        this.volumeTarget.value = parseFloat(this.volumeTarget.value) - 0.1
+        this.setVolume()
+        e.preventDefault()
+        break
+    }
   }
 }
