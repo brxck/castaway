@@ -133,23 +133,22 @@ export default class extends Controller {
     }
   }
 
-  markTime(force) {
+  markTime() {
     if (this.audioTarget.currentTime === "0" || !this.playing()) {
       return
     }
 
     if (document.getElementById("signed-in")) {
-      const historyParams = {
+      this.post("/histories", {
         history: {
           episode_id: this.data.get("episodeId"),
           podcast_id: this.data.get("podcastId"),
           listened: false,
           time: this.audioTarget.currentTime
         }
-      }
-      this.sendHistory(historyParams)
+      })
     } else {
-      const cookieParams = {
+      this.post("/cookies", {
         cookie: {
           podcast_id: this.data.get("podcastId"),
           podcast_name: this.podcastTarget.textContent,
@@ -160,8 +159,7 @@ export default class extends Controller {
           time_played:
             this.audioTarget.currentTime / this.audioTarget.seekable.end(0)
         }
-      }
-      this.sendCookie(cookieParams)
+      })
     }
   }
 
@@ -170,37 +168,22 @@ export default class extends Controller {
       return
     }
 
-    const historyParams = {
+    this.post("/history", {
       history: {
         episode_id: this.data.get("episodeId"),
         podcast_id: this.data.get("podcastId"),
         listened: true
       }
-    }
-
-    this.sendHistory(historyParams)
+    })
 
     this.field.getElementsByClassName("yes")[0].classList.toggle("hidden", true)
     this.field.getElementsByClassName("no")[0].classList.toggle("hidden", false)
   }
 
-  sendHistory(params) {
+  post(path, params) {
     const token = document.querySelector("meta[name=csrf-token]").content
 
-    fetch("/histories", {
-      method: "POST",
-      body: JSON.stringify(params),
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRF-Token": token
-      }
-    })
-  }
-
-  sendCookie(params) {
-    const token = document.querySelector("meta[name=csrf-token]").content
-
-    fetch("/cookies", {
+    fetch(path, {
       method: "POST",
       body: JSON.stringify(params),
       headers: {
