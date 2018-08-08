@@ -27,9 +27,14 @@ html
 
     == render "shared/navbar"
     
+    .container
+      - flash.each do |name, message|
+        article.message(class="is-#{name}")
+          .message-body = message
+    
     section.section
       .container
-      = yield
+        = yield
 
     == render "shared/player"
     .under-player
