@@ -2,10 +2,12 @@ class PagesController < ApplicationController
   include Pagy::Backend
 
   def discover
+    cached = true
     rss = "https://rss.itunes.apple.com/api/v1/us/podcasts/top-podcasts/all/25/explicit.json"
 
     feed = ApiResponse.cache(rss, -> { 1.day.ago }) do
       Connect.get(rss).body
+      cached = false
     end
 
     results = JSON.parse(feed)["feed"]["results"]
@@ -19,6 +21,8 @@ class PagesController < ApplicationController
         art600: podcast["artworkUrl100"] # Is actually 200x200px
       )
     end
+
+    CacheToplistJob.perform_later(@toplist.map(&:to_h))
   end
 
   def search
