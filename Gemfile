@@ -40,8 +40,6 @@ gem "faraday"
 # Parse podcast feeds
 gem "feedjira"
 gem "feedjira-podcast"
-# gpodder.net API interface
-gem "gpodder", github: "brxck/gpodder-ruby", branch: "master"
 # CSS reset
 gem "normalize-rails"
 # Exciting new pagination gem
