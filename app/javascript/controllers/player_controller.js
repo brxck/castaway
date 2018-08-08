@@ -33,7 +33,9 @@ export default class extends Controller {
   }
 
   togglePlay() {
-    if (this.playing()) {
+    if (!this.loaded()) {
+      return
+    } else if (this.playing()) {
       this.audioTarget.pause()
     } else {
       this.audioTarget.play()
