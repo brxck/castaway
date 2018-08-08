@@ -1,6 +1,7 @@
 - title "Search for \"#{@term}\""
 
 .container
+  h1.title Search for "#{@term}"
   .podcast-grid
     - @results.each do |podcast|
       == render "shared/podcast_tile", podcast: podcast
