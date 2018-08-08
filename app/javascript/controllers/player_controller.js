@@ -20,11 +20,20 @@ export default class extends Controller {
       "ended",
       this.markListened.bind(this)
     )
+
+    if (this.data.get("lastPlayed") === "true" && this.loaded()) {
+      console.log("loading last played data")
+      this.audioTarget.addEventListener("loadedmetadata", () => {
+        this.audioTarget.currentTime =
+          this.data.get("lastTime") * this.audioTarget.seekable.end(0)
+        this.updateScrub(true)
+      })
+    }
   }
 
   connect() {
     this.scrubUpdater = setInterval(this.updateScrub.bind(this), 500)
-    this.timeUpdater = setInterval(this.markTime.bind(this), 60000)
+    this.timeUpdater = setInterval(this.markTime.bind(this), 10000) // Increase later
   }
 
   disconnect() {
@@ -61,9 +70,7 @@ export default class extends Controller {
   }
 
   loadEpisode(e) {
-    if (this.loaded()) {
-      this.markTime()
-    }
+    this.data.set("lastPlayed", "false")
     this.field = e.target.parentNode.parentNode
 
     const episode = this.episodeFrom(e.currentTarget)
@@ -72,9 +79,9 @@ export default class extends Controller {
     this.data.set("podcastId", episode.podcastId)
 
     this.setNowPlaying(episode)
-    this.audioTarget.currentTime = episode.time
 
     this.audioTarget.addEventListener("canplay", () => {
+      this.audioTarget.currentTime = episode.time
       this.audioTarget.play()
       this.setSpeed()
       this.updateButton()
@@ -122,8 +129,8 @@ export default class extends Controller {
     }
   }
 
-  markTime() {
-    if (this.audioTarget.currentTime === "0" || !this.loaded()) {
+  markTime(force) {
+    if (this.audioTarget.currentTime === "0" || !this.playing()) {
       return
     }
 
@@ -143,9 +150,11 @@ export default class extends Controller {
           podcast_id: this.data.get("podcastId"),
           podcast_name: this.podcastTarget.textContent,
           art_url: this.artTarget.src,
-          episode_name: this.episodeTarget.textContent,
+          episode_title: this.episodeTarget.textContent,
           episode_id: this.data.get("episodeId"),
-          time: this.audioTarget.currentTime
+          episode_url: this.audioTarget.src,
+          time_played:
+            this.audioTarget.currentTime / this.audioTarget.seekable.end(0)
         }
       }
       this.sendCookie(cookieParams)
@@ -185,7 +194,6 @@ export default class extends Controller {
   }
 
   sendCookie(params) {
-    console.log("sending cookie")
     const token = document.querySelector("meta[name=csrf-token]").content
 
     fetch("/cookies", {
@@ -227,8 +235,8 @@ export default class extends Controller {
   }
 
   // Scrub value is the fraction of played audio
-  updateScrub() {
-    if (this.playing() && this.loaded()) {
+  updateScrub(force) {
+    if (force || (this.playing() && this.loaded())) {
       this.scrubTarget.value =
         this.audioTarget.currentTime / this.audioTarget.seekable.end(0)
 

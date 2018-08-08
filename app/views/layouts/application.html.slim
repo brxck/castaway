@@ -16,7 +16,12 @@ html
     = javascript_include_tag "application", "data-turbolinks-track": "reload"
     = javascript_pack_tag "application"
 
-  body data-controller="player"
+  body(data-controller="player"
+       data-player-last-played="#{!@last_played.nil?}"
+       data-player-podcast-id=@last_played["podcast_id"]
+       data-player-episode-id=@last_played["episode_id"]
+       data-player-last-time=@last_played["time_played"])
+
     - if user_signed_in?
       #signed-in
 

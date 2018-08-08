@@ -1,11 +1,11 @@
 // Make player persistent across navigation
 .navbar.is-fixed-bottom.is-white.has-shadow#player(data-turbolinks-permanent)
-  audio(data-target="player.audio")
+  audio(data-target="player.audio", src=@last_played["episode_url"])
 
   .level.is-mobile
     .level-left
       .level-item
-        img.image#playing-art(data-target="player.art")
+        img.image#playing-art(data-target="player.art" src=@last_played["art_url"])
         .art-placeholder
           = mdi_svg("headphones", size: "2em")
 
@@ -30,16 +30,16 @@
     .level-item
       #player-center.has-text-centered
         p.player-info.is-size-6(data-target="player.episode")
-          | Do you hear that?
+          | #{@last_played["episode_title"] || "Do you hear that?"}
         p.player-info(data-target="player.podcast")
-          | Me neither.
+          | #{@last_played["podcast_name"] || "Me neither."}
 
         input.input.is-fullwidth#scrub(type="range"
               data-target="player.scrub"
               data-action="click->player#setPosition"
               min="0"
               max="1"
-              value="0"
+              value="#{@last_played || '0'}"
               step="0.01")
 
         p.player-time (data-target="player.time") 0:00 / 0:00

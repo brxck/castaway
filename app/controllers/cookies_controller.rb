@@ -5,14 +5,19 @@ class CookiesController < ApplicationController
       podcast_name: params[:cookie][:podcast_name],
       art_url: params[:cookie][:art_url],
       episode_id: params[:cookie][:episode_id],
-      episode_name: params[:cookie][:episode_name],
-      time: params[:cookie][:time]
+      episode_title: params[:cookie][:episode_title],
+      episode_url: params[:cookie][:episode_url],
+      time_played: params[:cookie][:time_played]
     }
 
     cookies[:last_played] = JSON.generate(cookie_values)
+
+    render json: { status: 200 }
   end
 
   def destroy
     cookies.delete :last_played
+
+    render json: { status: 200 }
   end
 end
