@@ -1,9 +1,6 @@
 class PagesController < ApplicationController
-  
+  before_action :set_continue_listening, only: :discover
   include Pagy::Backend
-  
-  def home
-  end
 
   def discover
     rss = "https://rss.itunes.apple.com/api/v1/us/podcasts/top-podcasts/all/25/explicit.json"
@@ -29,5 +26,15 @@ class PagesController < ApplicationController
     @term = params[:q]
     @results = Itunes.search(params[:q])
     @pagy, @results = pagy_array(@results)
+  end
+
+  private
+
+  def set_continue_listening
+    if user_signed_in?
+      # Read from database
+    elsif cookies[:last_played]
+      @last_played = JSON.parse(cookies[:last_played])
+    end
   end
 end

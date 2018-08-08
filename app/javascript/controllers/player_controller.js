@@ -121,24 +121,33 @@ export default class extends Controller {
   }
 
   markTime() {
-    if (
-      document.getElementById("signed-in") === null ||
-      this.audioTarget.currentTime === "0" ||
-      !this.loaded()
-    ) {
+    if (this.audioTarget.currentTime === "0" || !this.loaded()) {
       return
     }
 
-    const historyParams = {
-      history: {
-        episode_id: this.data.get("episodeId"),
-        podcast_id: this.data.get("podcastId"),
-        listened: false,
-        time: this.audioTarget.currentTime
+    if (document.getElementById("signed-in")) {
+      const historyParams = {
+        history: {
+          episode_id: this.data.get("episodeId"),
+          podcast_id: this.data.get("podcastId"),
+          listened: false,
+          time: this.audioTarget.currentTime
+        }
       }
+      this.sendHistory(historyParams)
+    } else {
+      const cookieParams = {
+        cookie: {
+          podcast_id: this.data.get("podcastId"),
+          podcast_name: this.podcastTarget.textContent,
+          art_url: this.artTarget.src,
+          episode_name: this.episodeTarget.textContent,
+          episode_id: this.data.get("episodeId"),
+          time: this.audioTarget.currentTime
+        }
+      }
+      this.sendCookie(cookieParams)
     }
-
-    this.sendHistory(historyParams)
   }
 
   markListened() {
@@ -164,6 +173,20 @@ export default class extends Controller {
     const token = document.querySelector("meta[name=csrf-token]").content
 
     fetch("/histories", {
+      method: "POST",
+      body: JSON.stringify(params),
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": token
+      }
+    })
+  }
+
+  sendCookie(params) {
+    console.log("sending cookie")
+    const token = document.querySelector("meta[name=csrf-token]").content
+
+    fetch("/cookies", {
       method: "POST",
       body: JSON.stringify(params),
       headers: {

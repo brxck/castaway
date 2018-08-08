@@ -2,6 +2,8 @@
 
 h1.title Top Podcasts
 
+- if @last_played
+  p = @last_played.inspect
 .podcast-grid
   - @toplist.each do |podcast|
     == render "shared/podcast_tile", podcast: podcast

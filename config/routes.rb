@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "subscriptions", to: "subscriptions#index"
 
   resource :histories, only: %i[create destroy update]
+  resource :cookies, only: %i[create destroy]
 
   get "about", to: "pages#about", as: "about"
   get "discover", to: "pages#discover", as: "discover"
