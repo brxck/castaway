@@ -210,12 +210,6 @@ export default class extends Controller {
     })
   }
 
-  // Compile HTML from Pug template
-  compileTemplate(template, locals) {
-    const pug = require(`../partials/${template}.pug`)
-    return pug(locals)
-  }
-
   // Create object from HTML data tags
   episodeFrom(element) {
     return {
