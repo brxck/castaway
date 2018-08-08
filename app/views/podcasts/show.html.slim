@@ -25,7 +25,10 @@ section.section.container
   table.table.is-hoverable
     thead
       th Episode Name
-      th Released
+      - if params[:order] == "up"
+        th: a(href="?order=down") Released ▲
+      - else
+        th: a(href="?order=up") Released ▼
       th Duration
       th
     - @episodes.each do |episode|

@@ -33,8 +33,11 @@ class PodcastsController < ApplicationController
     end
 
     if params[:episode_id]
-      return unless params[:episode_id]
       @modal_episode = @episodes[params[:episode_id]]
+    end
+    
+    if params[:order] == "up"
+      @episodes = @episodes.reverse_each.to_h
     end
 
     @pagy, @episodes = pagy_array(@episodes.values)
