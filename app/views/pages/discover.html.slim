@@ -1,7 +1,8 @@
 - title "Discover"
 
-h1.title Top Podcasts
+.container
+  h1.title Top Podcasts
 
-.podcast-grid
-  - @toplist.each do |podcast|
-    == render "shared/podcast_tile", podcast: podcast
+  .podcast-grid
+    - @toplist.each do |podcast|
+      == render "shared/podcast_tile", podcast: podcast

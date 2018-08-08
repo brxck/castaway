@@ -1,7 +1,8 @@
 - title "Subscriptions"
 
-h1.title Subscriptions
+.container
+  h1.title Subscriptions
 
-.podcast-grid
-  - @subscriptions.each do |podcast|
-    == render "shared/podcast_tile", podcast: podcast
+  .podcast-grid
+    - @subscriptions.each do |podcast|
+      == render "shared/podcast_tile", podcast: podcast

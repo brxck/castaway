@@ -1,7 +1,8 @@
 - title "Search for \"#{@term}\""
 
-.podcast-grid
-  - @results.each do |podcast|
-    == render "shared/podcast_tile", podcast: podcast
-    
-== pagy_nav_bulma(@pagy) if @pagy.pages > 1
+.container
+  .podcast-grid
+    - @results.each do |podcast|
+      == render "shared/podcast_tile", podcast: podcast
+      
+  == pagy_nav_bulma(@pagy) if @pagy.pages > 1
