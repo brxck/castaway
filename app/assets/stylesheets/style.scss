@@ -39,3 +39,17 @@
   width: 100vw;
   height: 90vh;
 }
+
+table.keyboard {
+  margin: 0 1em;
+
+  tr > :first-child {
+    text-align: right;
+  }
+  tr > :last-child {
+    padding-left: 1em;
+  }
+  td {
+    padding: 0.25em 0;
+  }
+}
