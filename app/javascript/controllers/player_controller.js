@@ -120,7 +120,11 @@ export default class extends Controller {
 
   setNowPlaying(episode) {
     this.artTarget.src = episode.art
+    this.episodeTarget.href = `/podcasts/${episode.podcastId}?episode_id=${
+      episode.episodeId
+    }`
     this.episodeTarget.textContent = episode.episode
+    this.podcastTarget.href = `/podcasts/${episode.podcastId}`
     this.podcastTarget.textContent = episode.podcast + " - " + episode.date
   }
 

@@ -29,10 +29,14 @@
 
     .level-item
       #player-center.has-text-centered
-        p.player-info.is-size-6(data-target="player.episode")
-          | #{@last_played["episode_title"] || "Do you hear that?"}
-        p.player-info(data-target="player.podcast")
-          | #{@last_played["podcast_name"] || "Me neither."}
+        p.player-info.is-size-6
+          a(data-target="player.episode"
+            href="/podcasts/#{@last_played["podcast_id"]}?episode_id=#{@last_played["episode_id"]}")
+            | #{@last_played["episode_title"] || "Do you hear that?"}
+
+        p.player-info
+          a(data-target="player.podcast" href="/podcasts/#{@last_played["podcast_id"]}")
+            | #{@last_played["podcast_name"] || "Me neither."}
 
         input.input.is-fullwidth#scrub(type="range"
               data-target="player.scrub"
