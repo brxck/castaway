@@ -20,7 +20,6 @@ export default class extends Controller {
       this.audioTarget.addEventListener("ended", this.markListened.bind(this))
 
     if (this.data.get("lastPlayed") === "true" && this.loaded()) {
-      console.log("loading last played data")
       this.audioTarget.addEventListener("loadedmetadata", () => {
         this.audioTarget.currentTime =
           this.data.get("lastTime") * this.audioTarget.seekable.end(0)
