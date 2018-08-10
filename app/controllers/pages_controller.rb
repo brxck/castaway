@@ -6,8 +6,8 @@ class PagesController < ApplicationController
     rss = "https://rss.itunes.apple.com/api/v1/us/podcasts/top-podcasts/all/25/explicit.json"
 
     feed = ApiResponse.cache(rss, -> { 1.day.ago }) do
-      Connect.get(rss).body
       cached = false
+      Connect.get(rss).body
     end
 
     results = JSON.parse(feed)["feed"]["results"]
