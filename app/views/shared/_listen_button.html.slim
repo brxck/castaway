@@ -17,5 +17,6 @@
                 method: :post,
                 remote: true do
         = mdi_tag("check-circle-outline 24px")
-  
-  // TODO: disable icon when logged out
+   
+- else
+  span.has-text-grey-light = mdi_tag("check-circle-outline 24px")
