@@ -4,10 +4,10 @@
 
   .level.is-mobile
     .level-left
-      a.level-item(data-target="player.art-link" href=last_episode_path)
-        img.image#playing-art(data-target="player.art" src=last_art_url)
+      a.level-item(data-target="player.artLink" href=last_episode_path)
+        img#playing-art(data-target="player.art" src=last_art_url)
         .art-placeholder
-          = mdi_svg("headphones", size: "2em")
+          = mdi_tag("headphones 36px")
 
       .level-item
         .field.has-addons
@@ -19,9 +19,9 @@
           .control
             button.button.is-large(data-target="player.toggle" data-action="player#togglePlay")
               span.icon.is-medium.is-marginless#play-icon
-                = mdi_svg("play", size: "2em")
+                = mdi_tag("play 36px")
               span.icon.is-medium.is-marginless.hidden#pause-icon
-                = mdi_svg("pause", size: "2em")
+                = mdi_tag("pause 36px")
 
           .control
             button.button.is-large(data-action="player#seekForward")
@@ -61,7 +61,7 @@
 
       .level-item
         span.icon
-          = mdi_svg("volume-high")
+          = mdi_tag("volume-high 24px")
         input.input.is-small(type="range"
               data-target="player.volume"
               data-action="player#setVolume"

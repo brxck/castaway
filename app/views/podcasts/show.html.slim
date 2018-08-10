@@ -18,7 +18,7 @@
         == render "shared/subscribe_button", subscribed: @subscribed, podcast: @podcast
         .control
           button.button(href=@podcast.feed)
-            span.icon = mdi_svg("rss")
+            span.icon = mdi_tag("rss 24px")
 
 section.section.container
 
@@ -46,7 +46,7 @@ section.section.container
         td.table-icon-container
           .table-icon
             == render "shared/episode_button", episode: episode, podcast: @podcast,
-                      size: "2em"
+                      size: "36px"
 
   == pagy_nav_bulma(@pagy) if @pagy.pages > 1 if @pagy.pages > 1
 

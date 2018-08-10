@@ -4,14 +4,14 @@
 .control
   div(data-controller="sub")
     div(class=(subscribed ? "" : "hidden") data-target="sub.unsubscribe")
-      = link_to mdi_svg("minus") + "Unsubscribe",
+      = link_to mdi_tag("minus 24px") + "Unsubscribe",
                 subscriptions_path(subscription: { itunes_id: podcast.itunes_id }),
                 method: :delete,
                 remote: true,
                 class: "button is-info is-outlined"
 
     div(class=(subscribed ? "hidden" : "") data-target="sub.subscribe")
-      = link_to mdi_svg("plus") + "Subscribe",
+      = link_to mdi_tag("plus 24px") + "Subscribe",
                 subscriptions_path(subscription: { itunes_id: podcast.itunes_id,
                                                    name: podcast.name,
                                                    feed: podcast.feed }),

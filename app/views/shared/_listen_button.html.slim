@@ -4,16 +4,18 @@
 - if user_signed_in?
   span(data-controller="listen")
     span.no(class=(episode.listened ? "" : "hidden") data-target="listen.no")
-      = link_to mdi_svg("check-circle"),
-                histories_path(history: { podcast_id: podcast.itunes_id,
+      = link_to histories_path(history: { podcast_id: podcast.itunes_id,
                                           episode_id: episode.id }),
                 method: :delete,
-                remote: true
+                remote: true do
+        = mdi_tag("check-circle 24px")
 
     span.yes(class=(episode.listened ? "hidden" : "") data-target="listen.yes")
-      = link_to mdi_svg("check-circle-outline"),
-                histories_path(history: { podcast_id: podcast.itunes_id,
+      = link_to histories_path(history: { podcast_id: podcast.itunes_id,
                                           episode_id: episode.id,
                                           listened: true }),
                 method: :post,
-                remote: true
+                remote: true do
+        = mdi_tag("check-circle-outline 24px")
+  
+  // TODO: disable icon when logged out

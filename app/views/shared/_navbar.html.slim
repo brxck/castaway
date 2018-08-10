@@ -4,7 +4,7 @@ nav.navbar.is-link(data-controller="navbar"
 
   .navbar-brand
     a.navbar-item.has-text-weight-bold(href="/")
-      span.icon.is-medium == mdi_svg("ship-wheel", size: "1.75em")
+      span.icon#nav-logo == mdi_tag("ship-wheel 36px")
       span.is-size-5 = Castaway
 
     a.navbar-burger(data-target="navbar.button" data-action="navbar#toggleMenu"
@@ -34,7 +34,7 @@ nav.navbar.is-link(data-controller="navbar"
 
       .navbar-item.has-dropdown(data-action="click->navbar#toggleDropdown")
         .navbar-link
-          span.icon = user_signed_in? ? mdi_svg("account") : mdi_svg("account-outline")
+          span.icon = user_signed_in? ? mdi_tag("account 24px") : mdi_tag("account-outline 24px")
 
         .navbar-dropdown.is-right
           - if user_signed_in?

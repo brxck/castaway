@@ -15,7 +15,7 @@
               p = episode.date.strftime("%B %-d, %Y")
               p = format_seconds(episode.duration)
           
-          .media-content
+          b.media-content
             h2.title.is-size-4 = episode.title
             h3.subtitle.is-size-6
               a(href="/podcasts/#{podcast.itunes_id}") = podcast.name
@@ -26,8 +26,8 @@
         
       .card-footer
         .card-footer-item
-          == render "shared/episode_button", episode: episode, podcast: podcast, size: "1.5em"
+          == render "shared/episode_button", episode: episode, podcast: podcast, size: "24px"
         .card-footer-item 
-          a(href=episode.audio) = mdi_svg("download")
+          a(href=episode.audio) = mdi_tag("download 24px"),
         .card-footer-item
           == render "shared/listen_button", episode: episode, podcast: podcast
