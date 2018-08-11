@@ -28,6 +28,6 @@
         .card-footer-item
           == render "shared/episode_button", episode: episode, podcast: podcast, size: "24px"
         .card-footer-item 
-          a(href=episode.audio) = mdi_tag("download 24px"),
+          a(href=episode.audio) = mdi_tag("download 24px")
         .card-footer-item
           == render "shared/listen_button", episode: episode, podcast: podcast
