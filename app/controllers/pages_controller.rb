@@ -23,6 +23,9 @@ class PagesController < ApplicationController
     end
 
     CacheToplistJob.perform_later(@toplist.map(&:to_h))
+
+    # Pick random subcategory
+    @category = Category.find(Category.where.not(parent_id: nil).pluck(:id).sample)
   end
 
   def search
