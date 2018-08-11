@@ -23,6 +23,18 @@ class Itunes
     process_podcast(result)
   end
 
+  def self.genre(genre_id)
+    url = BASE_URL + "search?" +
+          { term: "podcast", genre_id: genre_id, country: "US" }.to_query
+
+    response = ApiResponse.cache(url, -> { 1.day.ago }) do
+      Connect.get(url).body
+    end
+
+    results = JSON.parse(response)["results"]
+    results.map { |item| process_podcast(item) }
+  end
+
   def self.process_podcast(podcast)
     OpenStruct.new(
       itunes_id: podcast["collectionId"],
