@@ -1,8 +1,20 @@
 - title "Discover"
 
 .container
-  h1.title Top Podcasts
 
+  = form_tag("/search", method: "get") do
+          .field.is-pulled-right
+            .control.has-icons-left
+              input.input.is-rounded(
+                type="text"
+                name="q"
+                placeholder="Find your favorite podcast"
+                aria-label="search")
+              span.icon.is-left = mdi_tag("magnify 24px")
+
+  h1.title.is-size-2 Discover
+
+  h2.title Top Podcasts
   .podcast-grid
     - @toplist.each do |podcast|
       == render "shared/podcast_tile", podcast: podcast
