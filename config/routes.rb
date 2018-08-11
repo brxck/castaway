@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   get "discover", to: "pages#discover", as: "discover"
   get "search", to: "pages#search", as: "search"
   get "podcasts/:id", to: "podcasts#show", as: "podcast"
+  get "categories", to: "categories#index", as: "categories"
+  get "categories/:id", to: "categories#show", as: "category"
 end
