@@ -26,14 +26,17 @@ nav.navbar.is-link(data-controller="navbar"
     .navbar-end
       .navbar-item
         = form_tag("/search", method: "get") do
-          input.input.is-rounded.is-small(
-            type="text"
-            name="q"
-            placeholder="Search"
-            aria-label="search")
+          .field
+            .control.has-icons-left
+              input.input.is-rounded.is-small(
+                type="text"
+                name="q"
+                placeholder="Search"
+                aria-label="search")
+              span.icon.is-left.is-small = mdi_tag("magnify 18px")
 
       .navbar-item.has-dropdown(data-action="click->navbar#toggleDropdown")
-        .navbar-link
+        a.navbar-link
           span.icon = user_signed_in? ? mdi_tag("account 24px") : mdi_tag("account-outline 24px")
 
         .navbar-dropdown.is-right
