@@ -4,10 +4,12 @@ html
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
 
     - if content_for?(:title)
-      - title = yield (:title)
+      - title = yield(:title)
       title = title + " | Castaway"
     - else
       title Castaway
+
+    = favicon_link_tag
 
     = csrf_meta_tags
     = csp_meta_tag
