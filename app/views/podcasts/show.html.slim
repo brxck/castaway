@@ -41,8 +41,8 @@ section.section.container
                   == render "shared/listen_button", episode: episode, podcast: @podcast
               .level-item
                 = link_to episode.title, "?" + { episode_id: episode.id }.to_query
-        td = episode.date.strftime("%Y %b %-d")
-        td = format_seconds(episode.duration)
+        td.td = episode.date.strftime("%Y %b %-d")
+        td.td = format_seconds(episode.duration)
         td.table-icon-container
           .table-icon
             == render "shared/episode_button", episode: episode, podcast: @podcast,
