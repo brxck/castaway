@@ -12,13 +12,11 @@ genres_url = "https://itunes.apple.com/WebObjects/MZStoreServices.woa/ws/genres?
 genres = JSON.parse(Connect.get(genres_url).body)["26"]["subgenres"]
 
 genres.each do |_, genre|
-  parent = Category.create!(id: genre["id"], name: genre["name"],
-                           url: genre["rssUrls"]["topAudioPodcasts"])
+  parent = Category.create!(id: genre["id"], name: genre["name"])
 
   if genre["subgenres"]
     genre["subgenres"].each do |_, subgenre|
-      parent.subcategories.create!(id: subgenre["id"], name: subgenre["name"],
-                                  url: subgenre["rssUrls"]["topAudioPodcasts"])
+      parent.subcategories.create!(id: subgenre["id"], name: subgenre["name"])
     end
   end
 end
