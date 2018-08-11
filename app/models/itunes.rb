@@ -25,7 +25,7 @@ class Itunes
 
   def self.genre(genre_id)
     url = BASE_URL + "search?" +
-          { term: "podcast", genre_id: genre_id, country: "US" }.to_query
+          { term: "podcast", genreId: genre_id, country: "US" }.to_query
 
     response = ApiResponse.cache(url, -> { 1.day.ago }) do
       Connect.get(url).body
