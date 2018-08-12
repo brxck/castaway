@@ -2,24 +2,17 @@
 
 .container
 
-  = form_tag("/search", method: "get") do
-          .field.is-pulled-right
-            .control.has-icons-left
-              input.input.is-rounded(
-                type="text"
-                name="q"
-                placeholder="Find your favorite podcast"
-                aria-label="search")
-              span.icon.is-left = mdi_tag("magnify 24px")
+  .columns
+    == render "shared/discover_menu", categories: @categories
 
-  h1.title.is-size-2 Discover
+    .column.is-one-half
+      h1.title Discover
+      h2.subtitle Top Podcasts
+      .podcast-grid
+        - @toplist.each do |podcast|
+          == render "shared/podcast_tile", podcast: podcast
 
-  h2.title Top Podcasts
-  .podcast-grid
-    - @toplist.each do |podcast|
-      == render "shared/podcast_tile", podcast: podcast
-
-  h2.title Explore: #{@category.name}
-  .podcast-grid
-    - @category.podcasts.each do |podcast|
-      == render "shared/podcast_tile", podcast: podcast
+      h2.subtitle Explore: #{@category.name}
+      .podcast-grid
+        - @category.podcasts.each do |podcast|
+          == render "shared/podcast_tile", podcast: podcast

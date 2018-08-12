@@ -1,0 +1,30 @@
+- categories
+
+.column.is-one-quarter
+    aside.menu.box
+      ul.menu-list
+        = form_tag("/search", method: "get") do
+          .field
+            .control.has-icons-left
+              input.input.is-rounded(
+                type="text"
+                name="q"
+                placeholder="Search"
+                aria-label="search")
+              span.icon.is-left = mdi_tag("magnify 24px")
+
+        p.menu-label Castaway
+        li = link_to "Discover", "/"
+        li = link_to "Popular", "/"
+        - if user_signed_in?
+          li = link_to "Subscriptions", subscriptions_path
+
+        p.menu-label Categories
+        - @categories.each do |category|
+          li
+            = link_to category.name, category
+  
+            - if category.subcategories.any?
+              ul.hidden
+                - category.subcategories.each do |subcategory|
+                  li = link_to subcategory.name, subcategory

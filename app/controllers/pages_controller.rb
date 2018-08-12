@@ -24,6 +24,8 @@ class PagesController < ApplicationController
 
     CacheToplistJob.perform_later(@toplist.map(&:to_h))
 
+    @categories = Category.where(parent_id: nil)
+
     # Pick random subcategory
     @category = Category.find(Category.where.not(parent_id: nil).pluck(:id).sample)
   end
