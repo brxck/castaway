@@ -1,7 +1,6 @@
 class CategoriesController < ApplicationController
-  def index
-  end
-
   def show
+    @categories = Category.where(parent_id: nil)
+    @category = Category.find(params[:id])
   end
 end
