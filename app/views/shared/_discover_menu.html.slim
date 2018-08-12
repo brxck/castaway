@@ -1,7 +1,7 @@
 - categories
 
 .column.is-one-quarter
-    aside.menu.box
+    aside.menu.box(data-controller="menu")
       ul.menu-list
         = form_tag("/search", method: "get") do
           .field
@@ -22,9 +22,12 @@
         p.menu-label Categories
         - @categories.each do |category|
           li
-            = link_to category.name, category
+            a(href=category_path(category.id) class=active_category(category, "is-active"))
+              = category.name
   
             - if category.subcategories.any?
-              ul.hidden
+              ul(class=inactive_category(category, "hidden"))
                 - category.subcategories.each do |subcategory|
-                  li = link_to subcategory.name, subcategory
+                  li
+                    a(href=category_path(subcategory.id) class=active_category(subcategory, "is-active"))
+                      = subcategory.name
