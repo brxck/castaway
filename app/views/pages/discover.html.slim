@@ -13,12 +13,20 @@
         - @curated.each do |podcast|
           == render "shared/podcast_tile", podcast: podcast
 
-      h2.subtitle Top Podcasts
+      h2.subtitle
+        span Top Podcasts
+        a.is-size-6.more-link(href=popular_path)
+          | more
+          = mdi_tag("chevron-right")
       .podcast-grid
         - @toplist.each do |podcast|
           == render "shared/podcast_tile", podcast: podcast
 
-      h2.subtitle Explore: #{@category.name}
+      h2.subtitle
+        span Explore: #{@category.name}
+        a.is-size-6.more-link(href=category_path(id: @category.id))
+          | more
+          = mdi_tag("chevron-right")
       .podcast-grid
         - @category.podcasts(8).each do |podcast|
           == render "shared/podcast_tile", podcast: podcast
