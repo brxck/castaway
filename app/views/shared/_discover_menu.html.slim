@@ -13,14 +13,14 @@
 
         p.menu-label Castaway
         li: a(href="/")
-          span.menu-icon = mdi_tag("cloud-search 18px")
+          span.menu-icon = mdi_tag("ferry 18px")
           | Discover
         li: a(href=popular_path)
-          span.menu-icon = mdi_tag("chart-line 18px")
+          span.menu-icon = mdi_tag("chart-areaspline 18px")
           | Popular
         - if user_signed_in?
           li: a(href=subscriptions_path)
-            span.menu-icon = mdi_tag("email-outline 18px")
+            span.menu-icon = mdi_tag("email 18px")
             | Subscriptions
 
         p.menu-label Categories
