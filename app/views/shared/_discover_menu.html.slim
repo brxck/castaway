@@ -12,10 +12,16 @@
               span.icon.is-left = mdi_tag("magnify 24px")
 
         p.menu-label Castaway
-        li = link_to "Discover", "/"
-        li = link_to "Popular", "/"
+        li: a(href="/")
+          span.menu-icon = mdi_tag("cloud-search 18px")
+          | Discover
+        li: a(href="#")
+          span.menu-icon = mdi_tag("chart-line 18px")
+          | Popular
         - if user_signed_in?
-          li = link_to "Subscriptions", subscriptions_path
+          li: a(href=subscriptions_path)
+            span.menu-icon = mdi_tag("email-outline 18px")
+            | Subscriptions
 
         p.menu-label Categories
         - @categories.each do |category|
