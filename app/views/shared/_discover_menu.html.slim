@@ -1,5 +1,3 @@
-- categories
-
 .column.is-one-quarter
     aside.menu.box(data-controller="menu")
       ul.menu-list
@@ -29,7 +27,7 @@
               = category.name
   
             - if category.subcategories.any?
-              ul(class=inactive_category(category, current_category, "hidden"))
+              ul(class=inactive_category(category, @category, "hidden"))
                 - category.subcategories.each do |subcategory|
                   li
                     a(href=category_path(subcategory.id) class=active_category(subcategory, "is-active"))
