@@ -2,8 +2,12 @@
 
 .container
   h1.title Search for "#{@term}"
-  .podcast-grid
-    - @results.each do |podcast|
-      == render "shared/podcast_tile", podcast: podcast
-      
+
+  - if @results.any?
+    .podcast-grid
+      - @results.each do |podcast|
+        == render "shared/podcast_tile", podcast: podcast
+  - else
+    p No results found. 
+
   == pagy_nav_bulma(@pagy) if @pagy.pages > 1
