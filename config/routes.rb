@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   get "about", to: "pages#about", as: "about"
   get "discover", to: "pages#discover", as: "discover"
+  get "popular", to: "pages#popular", as: "popular"
   get "search", to: "pages#search", as: "search"
   get "podcasts/:id", to: "podcasts#show", as: "podcast"
   get "categories", to: "categories#index", as: "categories"

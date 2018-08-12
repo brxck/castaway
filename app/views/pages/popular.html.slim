@@ -1,0 +1,12 @@
+- title "Popular"
+
+.container
+
+  .columns
+    == render "shared/discover_menu"
+
+    .column.is-one-half
+      h1.title Popular
+      .podcast-grid
+        - @toplist.each do |podcast|
+          == render "shared/podcast_tile", podcast: podcast

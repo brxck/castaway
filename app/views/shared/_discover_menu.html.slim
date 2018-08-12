@@ -15,7 +15,7 @@
         li: a(href="/")
           span.menu-icon = mdi_tag("cloud-search 18px")
           | Discover
-        li: a(href="#")
+        li: a(href=popular_path)
           span.menu-icon = mdi_tag("chart-line 18px")
           | Popular
         - if user_signed_in?
