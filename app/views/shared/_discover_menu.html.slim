@@ -23,10 +23,13 @@
         - @categories.each do |category|
           li
             a(href=category_path(category.id) class=active_category(category, "is-active"))
+              span.menu-icon(data-action="click->menu#toggleSublist")
+                - if category.subcategories.any?
+                  = mdi_tag("chevron-right 18px")
               = category.name
   
             - if category.subcategories.any?
-              ul(class=inactive_category(category, "hidden"))
+              ul(class=inactive_category(category, current_category, "hidden"))
                 - category.subcategories.each do |subcategory|
                   li
                     a(href=category_path(subcategory.id) class=active_category(subcategory, "is-active"))

@@ -61,3 +61,13 @@ table.keyboard {
 #nav-logo {
   margin: 0.5em 0.75em 0.5em 0.5em;
 }
+
+.menu-icon {
+  display: inline-block;
+  width: 2em;
+  height: 1.5em;
+
+  i {
+    transition: all 1s;
+  }
+}
