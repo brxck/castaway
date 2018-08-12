@@ -7,6 +7,12 @@
 
     .column.is-one-half
       h1.title Discover
+
+      h2.subtitle Curated by Castaway
+      .podcast-grid
+        - @curated.each do |podcast|
+          == render "shared/podcast_tile", podcast: podcast
+
       h2.subtitle Top Podcasts
       .podcast-grid
         - @toplist.each do |podcast|
@@ -14,5 +20,5 @@
 
       h2.subtitle Explore: #{@category.name}
       .podcast-grid
-        - @category.podcasts.each do |podcast|
+        - @category.podcasts(8).each do |podcast|
           == render "shared/podcast_tile", podcast: podcast

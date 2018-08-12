@@ -2,11 +2,15 @@ class PagesController < ApplicationController
   include Pagy::Backend
 
   def discover
-    set_toplist(25)
+    set_toplist(8)
     @categories = Category.where(parent_id: nil)
 
-    # Pick random subcategory
-    @category = Category.find(Category.where.not(parent_id: nil).pluck(:id).sample)
+    @curated = CuratedPodcast.all.each_with_object([]) do |podcast, array|
+      array << Itunes.lookup(podcast.id)
+    end
+
+    # Pick random category
+    @category = Category.find(Category.where(parent_id: nil).pluck(:id).sample)
   end
 
   def popular

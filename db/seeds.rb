@@ -21,3 +21,10 @@ genres.each do |_, genre|
   end
 end
 
+# Load curated podcasts from file
+file = File.new(Rails.root.join("db", "curated.yml"))
+curated = YAML.safe_load(file)
+
+curated.each do |_, id|
+  CuratedPodcast.create!(id: id)
+end
