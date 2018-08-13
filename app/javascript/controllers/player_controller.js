@@ -86,12 +86,10 @@ export default class extends Controller {
 
     this.setNowPlaying(episode)
 
-    this.audioTarget.addEventListener("canplay", () => {
       this.audioTarget.currentTime = episode.time
       this.audioTarget.play()
       this.setSpeed()
       this.updateButton()
-    })
   }
 
   setVolume() {
