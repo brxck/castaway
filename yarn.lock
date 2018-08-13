@@ -1180,9 +1180,9 @@ builtin-status-codes@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
 
-bulma-slider@^2.0.0:
+"bulma-slider@https://github.com/brxck/bulma-slider.git":
   version "2.0.0"
-  resolved "https://registry.yarnpkg.com/bulma-slider/-/bulma-slider-2.0.0.tgz#0be9b016228b62b8189891e67eafbf5aba846699"
+  resolved "https://github.com/brxck/bulma-slider.git#1103610ad2853386359055fe5d2dd35bb7fd656d"
 
 bulma@^0.7.1:
   version "0.7.1"

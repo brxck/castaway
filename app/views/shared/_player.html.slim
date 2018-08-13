@@ -37,7 +37,7 @@
           a(data-target="player.podcast" href=last_podcast_path)
             | #{try_last("podcast_name") || "Me neither."}
 
-        input.input.is-fullwidth#scrub(type="range"
+        input.slider.is-fullwidth#scrub(type="range"
               data-target="player.scrub"
               data-action="click->player#setPosition"
               min="0"
@@ -62,7 +62,7 @@
       .level-item
         span.icon
           = mdi_tag("volume-high 24px")
-        input.input.is-small(type="range"
+        input.slider(type="range"
               data-target="player.volume"
               data-action="player#setVolume"
               min="0"

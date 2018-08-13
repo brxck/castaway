@@ -17,5 +17,10 @@
  */
 
 $modal-content-width: 800px;
+$slider-thumb-size: 5px;
+$slider-thumb-radius: 20px;
+$slider-thumb-border: 4px solid hsl(217, 71%, 53%);
+$slider-track-background: hsl(0, 0%, 86%);
+
 @import "bulma/bulma";
 @import "bulma-slider/src/sass/index";
