@@ -15,7 +15,7 @@
               p = episode.date.strftime("%B %-d, %Y")
               p = format_seconds(episode.duration)
           
-          b.media-content
+          .media-content
             h2.title.is-size-4 = episode.title
             h3.subtitle.is-size-6
               a(href="/podcasts/#{podcast.itunes_id}") = podcast.name
