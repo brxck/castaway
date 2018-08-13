@@ -11,7 +11,8 @@ export default class extends Controller {
     "art",
     "episode",
     "podcast",
-    "artLink"
+    "artLink",
+    "loading"
   ]
 
   initialize() {
@@ -29,6 +30,10 @@ export default class extends Controller {
     }
 
     document.body.addEventListener("keydown", this.keyboardShortcut.bind(this))
+
+    this.audioTarget.addEventListener("playing", () => {
+      this.loadingTarget.classList.toggle("player-loading-show", false)
+    })
   }
 
   connect() {
@@ -90,6 +95,8 @@ export default class extends Controller {
     this.audioTarget.play()
     this.setSpeed()
     this.updateButton()
+
+    this.loadingTarget.classList.toggle("player-loading-show", true)
   }
 
   setVolume() {

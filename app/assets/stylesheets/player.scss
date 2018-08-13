@@ -57,3 +57,23 @@
 .under-player {
   height: 6em;
 }
+
+.player-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 128px;
+  height: 128px;
+
+  .button {
+    width: 2.2em;
+  }
+}
+
+.player-loading-show {
+  display: flex;
+}
