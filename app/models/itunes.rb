@@ -35,6 +35,26 @@ class Itunes
     results.map { |item| process_podcast(item) }
   end
 
+  def self.toplist(count)
+    rss = "https://rss.itunes.apple.com/api/v1/us/podcasts/top-podcasts/all/#{count}/explicit.json"
+
+    feed = ApiResponse.cache(rss, -> { 1.day.ago }) do
+      Connect.get(rss).body
+    end
+
+    results = JSON.parse(feed)["feed"]["results"]
+
+    results.map do |podcast|
+      OpenStruct.new(
+        itunes_id: podcast["id"],
+        name: podcast["name"],
+        author: podcast["artistName"],
+        genre: podcast["genres"][0]["name"],
+        art600: podcast["artworkUrl100"] # Is actually 200x200px
+      )
+    end
+  end
+
   def self.process_podcast(podcast)
     OpenStruct.new(
       itunes_id: podcast["collectionId"],
