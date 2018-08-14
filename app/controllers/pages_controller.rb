@@ -4,10 +4,7 @@ class PagesController < ApplicationController
   def discover
     set_toplist(8)
     @categories = Category.where(parent_id: nil)
-
-    @curated = CuratedPodcast.all.each_with_object([]) do |podcast, array|
-      array << Itunes.lookup(podcast.id)
-    end
+    @curated = CuratedPodcast.all_podcasts
 
     # Pick random category
     @category = Category.find(Category.where(parent_id: nil).pluck(:id).sample)
