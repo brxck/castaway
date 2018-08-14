@@ -27,11 +27,11 @@ class PagesController < ApplicationController
   private
 
   def set_toplist(count)
-    cached = false
+    cached = true
     rss = "https://rss.itunes.apple.com/api/v1/us/podcasts/top-podcasts/all/#{count}/explicit.json"
 
     feed = ApiResponse.cache(rss, -> { 1.day.ago }) do
-      cached = true
+      cached = false
       Connect.get(rss).body
     end
 
