@@ -29,6 +29,10 @@
   img {
     margin-bottom: 0.5em;
   }
+
+  @media (max-width: 768px) {
+    margin: 0 auto;
+  }
 }
 
 .podcast-grid {
@@ -81,8 +85,8 @@ table.keyboard {
 }
 
 .media-art {
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   @media (max-width: 768px) {
     margin: 0 auto;
   }
