@@ -7,7 +7,8 @@
   .modal-content
     .card
       .card-content
-        .media    
+        button.delete.is-hidden-desktop.is-pulled-right(data-action="click->modal#close")
+        .media.modal-media.is-block-mobile
           .media-left
             img.image.is-200x200(src=podcast.art600)
             br
@@ -21,7 +22,7 @@
               a(href="/podcasts/#{podcast.itunes_id}") = podcast.name
             p = episode.description
   
-          .media-right
+          .media-right.is-hidden-mobile
             button.delete(data-action="click->modal#close")
         
       .card-footer
