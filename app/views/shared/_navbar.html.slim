@@ -18,6 +18,7 @@ nav.navbar.is-link(data-controller="navbar"
     .navbar-start
       a.navbar-item(href=discover_path) Discover
       a.navbar-item(href=popular_path) Popular
+      a.navbar-item.is-hidden-desktop(href=categories_path) Browse
 
       - if user_signed_in?
         a.navbar-item(href=subscriptions_path) Subscriptions
@@ -25,7 +26,7 @@ nav.navbar.is-link(data-controller="navbar"
       a.navbar-item(href=about_path) About
     
     .navbar-end
-      .navbar-item
+      .navbar-item.is-hidden-touch
         = form_tag("/search", method: "get") do
           .field
             .control.has-icons-left
@@ -39,6 +40,7 @@ nav.navbar.is-link(data-controller="navbar"
       .navbar-item.has-dropdown(data-action="click->navbar#toggleDropdown")
         a.navbar-link
           span.icon = user_signed_in? ? mdi_tag("account 24px") : mdi_tag("account-outline 24px")
+          span.is-hidden-desktop User
 
         .navbar-dropdown.is-right
           - if user_signed_in?
