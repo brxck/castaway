@@ -20,12 +20,4 @@ class PagesController < ApplicationController
     @results = Itunes.search(params[:q])
     @pagy, @results = pagy_array(@results)
   end
-
-  private
-
-  def preload(*groups)
-    groups.each do |group|
-      PreloadToplistJob.perform_later(group.map(&:to_h))
-    end
-  end
 end
