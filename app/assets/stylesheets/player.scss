@@ -33,6 +33,10 @@
   z-index: 3;
   width: 128px;
   height: 128px;
+  @media (max-width: 1023px) {
+    width: 100px;
+    height: 100px;
+  }
 }
 
 #player-controls {
@@ -43,17 +47,13 @@
 
 #mobile-player {
   @media (max-width: 768px) {
-    height: 128px;
+    height: 100px;
     width: 100%;
-    padding-left: 128px;
+    padding-left: 100px;
   }
 }
 
 .art-placeholder {
-  @media (max-width: 768px) {
-    position: absolute;
-    left: 0;
-  }
   z-index: 2;
   display: flex;
   color: gray;
@@ -62,6 +62,12 @@
   width: 128px;
   height: 128px;
   background-color: whitesmoke;
+  @media (max-width: 768px) {
+    position: absolute;
+    left: 0;
+    height: 100px;
+    width: 100px;
+  }
 }
 
 .player-time {
