@@ -1,32 +1,30 @@
 - title "Discover"
 
-.container
+.columns
+  == render "shared/discover_menu"
 
-  .columns
-    == render "shared/discover_menu"
+  .column.is-one-half
+    h1.title Discover
 
-    .column.is-one-half
-      h1.title Discover
+    h2.subtitle
+      span Top Podcasts
+      a.is-size-6.more-link(href=popular_path)
+        | more
+        = mdi_tag("chevron-right")
+    .podcast-grid
+      - @toplist.each do |podcast|
+        == render "shared/podcast_tile", podcast: podcast
 
-      h2.subtitle
-        span Top Podcasts
-        a.is-size-6.more-link(href=popular_path)
-          | more
-          = mdi_tag("chevron-right")
-      .podcast-grid
-        - @toplist.each do |podcast|
-          == render "shared/podcast_tile", podcast: podcast
+    h2.subtitle Curated by Castaway
+    .podcast-grid
+      - @curated.each do |podcast|
+        == render "shared/podcast_tile", podcast: podcast
 
-      h2.subtitle Curated by Castaway
-      .podcast-grid
-        - @curated.each do |podcast|
-          == render "shared/podcast_tile", podcast: podcast
-
-      h2.subtitle
-        span Explore: #{@category.name}
-        a.is-size-6.more-link(href=category_path(id: @category.id))
-          | more
-          = mdi_tag("chevron-right")
-      .podcast-grid
-        - @category.podcasts(8).each do |podcast|
-          == render "shared/podcast_tile", podcast: podcast
+    h2.subtitle
+      span Explore: #{@category.name}
+      a.is-size-6.more-link(href=category_path(id: @category.id))
+        | more
+        = mdi_tag("chevron-right")
+    .podcast-grid
+      - @category.podcasts(8).each do |podcast|
+        == render "shared/podcast_tile", podcast: podcast
