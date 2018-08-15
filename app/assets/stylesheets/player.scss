@@ -96,6 +96,11 @@
   .button {
     width: 2.2em;
   }
+
+  @media (max-width: 768px) {
+    width: 100px;
+    height: 100px;
+  }
 }
 
 .player-loading-show {
