@@ -35,7 +35,7 @@ class Itunes
     results.map { |item| process_podcast(item) }
   end
 
-  def self.toplist(count)
+  def self.toplist(count = 100)
     rss = "https://rss.itunes.apple.com/api/v1/us/podcasts/top-podcasts/all/#{count}/explicit.json"
 
     feed = ApiResponse.cache(rss, -> { 1.day.ago }) do
