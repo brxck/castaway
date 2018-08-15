@@ -28,3 +28,6 @@ curated = YAML.safe_load(file)
 curated.each do |_, id|
   CuratedPodcast.create!(id: id)
 end
+
+# Preload top podcasts
+PreloadToplistJob.perform_later
