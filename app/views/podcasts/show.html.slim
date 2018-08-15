@@ -1,9 +1,9 @@
 - title @podcast.name
 
 .container
-  .media    
+  .media.is-block-mobile
     .media-left
-      img.image.is-200x200(src=@podcast.art600)
+      img.image.media-art(src=@podcast.art600)
     
     .media-content
       h1.title = @podcast.name
@@ -14,41 +14,41 @@
           li.tag = genre
     
     .media-right
-      .field.is-grouped
-        == render "shared/subscribe_button", subscribed: @subscribed, podcast: @podcast
-        .control
-          button.button(href=@podcast.feed)
-            span.icon = mdi_tag("rss 24px")
+      .subscribe-container
+        .field.is-grouped
+          == render "shared/subscribe_button", subscribed: @subscribed, podcast: @podcast
+          .control
+            button.button(href=@podcast.feed)
+              span.icon = mdi_tag("rss 24px")
 
-section.section.container
 
-  table.table.is-hoverable
-    thead
-      th Episode Name
-      - if params[:order] == "up"
-        th: a(href="?order=down") Released ▲
-      - else
-        th: a(href="?order=up") Released ▼
-      th Duration
-      th
-    - @episodes.each do |episode|
-      tr
-        td
-          .level
-            .level-right
-              .level-item
-                span.listen_button
-                  == render "shared/listen_button", episode: episode, podcast: @podcast
-              .level-item
-                = link_to episode.title, "?" + { episode_id: episode.id }.to_query
-        td.td = episode.date.strftime("%Y %b %-d")
-        td.td = format_seconds(episode.duration)
-        td.table-icon-container
-          .table-icon
-            == render "shared/episode_button", episode: episode, podcast: @podcast,
-                      size: "36px"
+table.table.is-hoverable
+  thead.is-hidden-mobile
+    th Episode Name
+    - if params[:order] == "up"
+      th: a(href="?order=down") Released ▲
+    - else
+      th: a(href="?order=up") Released ▼
+    th Duration
+    th
+  - @episodes.each do |episode|
+    tr
+      td
+        .level.is-mobile.is-clipped
+          .level-right
+            .level-item.is-hidden-mobile
+              span.listen_button
+                == render "shared/listen_button", episode: episode, podcast: @podcast
+            .level-item
+              = link_to episode.title, "?" + { episode_id: episode.id }.to_query
+      td.td.is-hidden-mobile = episode.date.strftime("%Y %b %-d")
+      td.td.is-hidden-mobile = format_seconds(episode.duration)
+      td.table-icon-container
+        .table-icon
+          == render "shared/episode_button", episode: episode, podcast: @podcast,
+                    size: "36px"
 
-  == pagy_nav_bulma(@pagy) if @pagy.pages > 1 if @pagy.pages > 1
+== pagy_nav_bulma(@pagy) if @pagy.pages > 1 if @pagy.pages > 1
 
-  - if @modal_episode
-    == render "shared/modal", episode: @modal_episode, podcast: @podcast
+- if @modal_episode
+  == render "shared/modal", episode: @modal_episode, podcast: @podcast

@@ -2,11 +2,6 @@
   background-color: whitesmoke;
 }
 
-.is-200x200 {
-  width: 200px;
-  height: 200px;
-}
-
 .hidden {
   display: none;
 }
@@ -25,8 +20,20 @@ svg {
 
 .table {
   width: 100%;
+  max-width: 1700px;
+  margin: 0 auto;
 
   .td {
     padding-top: 1em;
   }
+
+  @media (max-width: 768px) {
+    position: relative;
+    left: -1.5rem;
+    width: 100vw;
+  }
+}
+
+.media > div {
+  margin-bottom: 1.5em;
 }

@@ -6,6 +6,10 @@
   position: absolute;
   top: 0px;
   right: 15px;
+  @media (max-width: 768px) {
+    top: -5px;
+    right: 0;
+  }
 }
 
 .listen-button {
@@ -74,4 +78,19 @@ table.keyboard {
 
 .more-link {
   margin-left: 1em;
+}
+
+.media-art {
+  width: 200px;
+  height: 200px;
+  @media (max-width: 768px) {
+    margin: 0 auto;
+  }
+}
+
+.subscribe-container {
+  width: 200px;
+  @media (max-width: 768px) {
+    margin: 0 auto;
+  }
 }
