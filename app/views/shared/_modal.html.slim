@@ -10,7 +10,7 @@
         button.delete.is-hidden-desktop.is-pulled-right(data-action="click->modal#close")
         .media.modal-media.is-block-mobile
           .media-left
-            img.image.is-200x200(src=podcast.art600)
+            img.image.media-art(src=podcast.art600)
             br
             .has-text-centered
               p = episode.date.strftime("%B %-d, %Y")
