@@ -3,7 +3,7 @@
   audio(data-target="player.audio", src=last_audio_url)
 
   .level.is-mobile
-    .level-left
+    .level-left#mobile-player
       a.level-item(data-target="player.artLink" href=last_episode_path)
         img#playing-art(data-target="player.art" src=last_art_url)
         .art-placeholder
@@ -11,7 +11,7 @@
         .player-loading(data-target="player.loading")
           .button.is-link.is-loading.is-large.is-rounded
 
-      .level-item
+      .level-item#player-controls
         .field.has-addons
         
           .control
@@ -29,7 +29,7 @@
             button.button.is-large(data-action="player#seekForward")
               div(style="transform: rotate(90deg)") ↻
 
-    .level-item
+    .level-item.is-hidden-mobile
       #player-center.has-text-centered
         p.player-info.is-size-6
           a(data-target="player.episode" href=last_episode_path)
@@ -49,7 +49,7 @@
 
         p.player-time (data-target="player.time") 0:00 / 0:00
 
-    .level-right
+    .level-right.is-hidden-touch
       .level-item
         .select.is-rounded.is-small
           select(type="text"

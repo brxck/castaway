@@ -129,11 +129,12 @@ export default class extends Controller {
     this.episodeTarget.textContent = episode.episode
     this.podcastTarget.textContent = episode.podcast + " - " + episode.date
 
-    this.artLinkTarget.href = `/podcasts/${episode.podcastId}`
-    this.podcastTarget.href = `/podcasts/${episode.podcastId}`
-    this.episodeTarget.href = `/podcasts/${episode.podcastId}?episode_id=${
+    episodeUrl = `/podcasts/${episode.podcastId}?episode_id=${
       episode.episodeId
     }`
+    this.artLinkTarget.href = episodeUrl
+    this.episodeTarget.href = episodeUrl
+    this.podcastTarget.href = `/podcasts/${episode.podcastId}`
   }
 
   updateButton() {

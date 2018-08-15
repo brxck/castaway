@@ -35,7 +35,25 @@
   height: 128px;
 }
 
+#player-controls {
+  @media (max-width: 768px) {
+    margin: 0 calc(50% - 110px);
+  }
+}
+
+#mobile-player {
+  @media (max-width: 768px) {
+    height: 128px;
+    width: 100%;
+    padding-left: 128px;
+  }
+}
+
 .art-placeholder {
+  @media (max-width: 768px) {
+    position: absolute;
+    left: 0;
+  }
   z-index: 2;
   display: flex;
   color: gray;
