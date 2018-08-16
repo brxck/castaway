@@ -1,4 +1,4 @@
-# [![icon](/app/assets/images/ship-wheel.png)Castaway](http://castaway.brockmcelroy.com)
+# [Castaway](http://castaway.brockmcelroy.com)
 
 Castaway is an application for discovering, subscribing to, and listening to
 podcasts in your web browser.
