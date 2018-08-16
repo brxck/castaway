@@ -1,45 +1,45 @@
-.hero.is-link#about-hero
+.hero.is-link.hero-pattern#about-hero
   .container
     .hero-body
-      .level.is-marginless
-        .level-item
-          = mdi_tag("ship-wheel", class: "big-logo")
-      h1.title.is-size-1.has-text-centered Castaway
-            
-      section.section
-        .columns
-          .column
-            h2.title.is-size-5 About
-            p Castaway is an open source webapp for listening to podcasts.
-            p
-              | It was developed by Brock McElroy
-              a(href="https://brockmcelroy.com")
-                span.icon.is-small = mdi_tag("open-in-new")
-            br
-            p: a(href="https://github.com/brxck/castaway")
-              span.icon = mdi_tag("github-circle 36px")
-            
-          .column
-            h2.title.is-size-5 Keyboard Controls
+      h1.title.is-size-1 
+        span.icon.is-large = mdi_tag("ship-wheel 48px")
+        | Castaway
 
-            table.keyboard
-              tbody
-                tr
-                  td: span.tag space
-                  td Play/Pause
-                tr
-                  td: span.tag d
-                  td Skip forward
-                tr
-                  td: span.tag a
-                  td Skip backward
-                tr
-                  td: span.tag w
-                  td Volume up
-                tr
-                  td: span.tag s
-                  td Volume down
+      .columns
+        .column
+          h2.title.is-size-5 About
+          p
+            | Castaway is an application for discovering, subscribing to, and
+            | listening to podcasts in your web browser. 
+            | It was developed by Brock McElroy 
+            a(href="https://brockmcelroy.com")
+              span.icon.is-small = mdi_tag("open-in-new")
+          br
+          p: a(href="https://github.com/brxck/castaway")
+            | The source code can be found on Github
+            span.icon = mdi_tag("github-circle 18px")
+          
+        .column
+          h2.title.is-size-5 Keyboard Controls
 
-            br
-            p.is-size-7 Or try using your media keys.
+          table.keyboard
+            tbody
+              tr
+                td: span.tag space
+                td Play/Pause
+              tr
+                td: span.tag d
+                td Skip forward
+              tr
+                td: span.tag a
+                td Skip backward
+              tr
+                td: span.tag w
+                td Volume up
+              tr
+                td: span.tag s
+                td Volume down
+
+          br
+          p.is-size-7 Or try using your media keys.
             
