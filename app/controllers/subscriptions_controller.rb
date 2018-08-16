@@ -22,7 +22,7 @@ class SubscriptionsController < ApplicationController
 
   def destroy
     @subscription = current_user.subscriptions
-                                .where(itunes_id: params[:itunes_id]).take
+                                .where(itunes_id: params[:subscription][:itunes_id]).take
 
     if @subscription.destroy
       render json: { status: 200 }
