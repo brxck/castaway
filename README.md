@@ -3,11 +3,9 @@
 Castaway is an application for discovering, subscribing to, and listening to
 podcasts in your web browser.
 
-![Desktop discover screenshot](/screenshots/desktop-discover.png)
+![Desktop discover screenshot](/screenshots/responsive-discover.png)
 
 ![Desktop podcast screenshot](/screenshots/desktop-show.png)
-
-![Mobile discover screenshot](/screenshots/mobile-discover.png)
 
 ## Features
 
