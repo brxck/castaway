@@ -1,33 +1,44 @@
 # Castaway
 
-## Planning
+Discover, subscribe, and listen to podcasts in your web browser.
 
-### Models
+## Features
 
-- User has_many Subscriptions
-- Subscription has_many Histories
+- Player with skip & speed controls
+- Responsive
+- Podcast charts
+- Subscriptions
+- Listening history
+- Search
+- Categories
+- Curated podcasts
+- API response caching
 
-Podcast data through API.
+## Deployment
 
-Only user data in database.
+Prerequisite: set up Postgres database.
 
-### Controllers
+1. Clone this repository:
+  
+  $ git clone
 
-- User (Devise)
-- Podcast
-  - show
-  - subscribe
-  - listen
-- Episode
-  - show
-  - listen
-  - mark
-- Page
-  - discover
-  - search
+2. Install dependencies:
 
-### API Integration
+  $ cd castaway
 
-- Developing gpodder-ruby
-- Grab all podcast data from API
-- Optional gpodder.net sync
+  $ bundle install
+
+3. Set up database:
+
+  $ rails db:setup
+
+Or when deploying to Heroku:
+
+  $ rails db:migrate
+
+  $ rails db:seed
+
+4. Run server:
+
+  $ rails server
+
