@@ -7,7 +7,7 @@ podcasts in your web browser.
 
 ![Desktop podcast screenshot](/screenshots/desktop-show.png)
 
-## Features
+## Main Features
 
 - Player with skip & speed controls
 - Responsive
