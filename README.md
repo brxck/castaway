@@ -1,4 +1,4 @@
-# Castaway
+# [![icon](/app/assets/images/ship-wheel.png)Castaway](http://castaway.brockmcelroy.com)
 
 Castaway is an application for discovering, subscribing to, and listening to
 podcasts in your web browser.
@@ -19,7 +19,7 @@ podcasts in your web browser.
 - Curated podcasts
 - API response caching
 
-## Deployment
+## Development & Deployment
 
 Prerequisite: set up [Postgres.](https://www.digitalocean.com/community/tutorials/how-to-setup-ruby-on-rails-with-postgres)
 
