@@ -1,6 +1,9 @@
 # Castaway
 
-Discover, subscribe, and listen to podcasts in your web browser.
+Castaway is an application for discovering, subscribing to, and listening to
+podcasts in your web browser.
+
+![Desktop discover screenshot](/desktop-discover.png)
 
 ## Features
 
@@ -16,29 +19,29 @@ Discover, subscribe, and listen to podcasts in your web browser.
 
 ## Deployment
 
-Prerequisite: set up Postgres database.
+Prerequisite: set up [Postgres.](https://www.digitalocean.com/community/tutorials/how-to-setup-ruby-on-rails-with-postgres)
 
 1. Clone this repository:
   
-  $ git clone
+        $ git clone
 
 2. Install dependencies:
 
-  $ cd castaway
+        $ cd castaway
 
-  $ bundle install
+        $ bundle install
 
 3. Set up database:
 
-  $ rails db:setup
+        $ rails db:setup
 
-Or when deploying to Heroku:
+    Or when deploying to Heroku:
 
-  $ rails db:migrate
+        $ rails db:migrate
 
-  $ rails db:seed
+        $ rails db:seed
 
 4. Run server:
 
-  $ rails server
+        $ rails server
 
