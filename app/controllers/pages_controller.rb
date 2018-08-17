@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   include Pagy::Backend
 
   def discover
-    @toplist = Itunes.toplist(8)
+    @toplist = Itunes.toplist(12)
     @categories = Category.where(parent_id: nil)
     @curated = CuratedPodcast.all_podcasts
 
