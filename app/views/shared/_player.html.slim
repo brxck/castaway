@@ -16,7 +16,7 @@
         
           .control
             button.button.is-large(data-action="player#seekBack")
-              div(style="transform: rotate(-90deg)") ↺
+              span = mdi_tag("rewind 24px")
           
           .control
             button.button.is-large(data-target="player.toggle" data-action="player#togglePlay")
@@ -27,7 +27,7 @@
 
           .control
             button.button.is-large(data-action="player#seekForward")
-              div(style="transform: rotate(90deg)") ↻
+              span = mdi_tag("fast-forward 24px")
 
     .level-item.is-hidden-mobile
       #player-center.has-text-centered
