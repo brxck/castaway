@@ -16,15 +16,25 @@ nav.navbar.is-link(data-controller="navbar"
   .navbar-menu(data-target="navbar.menu")
     
     .navbar-start
-      a.navbar-item(href=discover_path) Discover
-      a.navbar-item(href=popular_path) Popular
-      a.navbar-item.is-hidden-desktop(href=categories_path) Browse
+      a.navbar-item(href=discover_path)
+        span.is-hidden-desktop.icon.is-medium = mdi_tag("ferry")
+        | Discover
+      a.navbar-item(href=popular_path)
+        span.is-hidden-desktop.icon.is-medium = mdi_tag("chart-areaspline")
+        | Popular
+      a.navbar-item.is-hidden-desktop(href=categories_path)
+        span.is-hidden-desktop.icon.is-medium = mdi_tag("view-list")
+        | Browse
 
       - if user_signed_in?
-        a.navbar-item(href=subscriptions_path) Subscriptions
+        a.navbar-item(href=subscriptions_path)
+          span.is-hidden-desktop.icon.is-medium = mdi_tag("email")
+          | Subscriptions
 
-      a.navbar-item(href=about_path) About
-    
+      a.navbar-item(href=about_path)
+        span.is-hidden-desktop.icon.is-medium = mdi_tag("information")
+        | About
+
     .navbar-end
       .navbar-item.is-hidden-touch
         = form_tag("/search", method: "get") do
@@ -39,7 +49,8 @@ nav.navbar.is-link(data-controller="navbar"
 
       .navbar-item.has-dropdown(data-action="click->navbar#toggleDropdown")
         a.navbar-link
-          span.icon = user_signed_in? ? mdi_tag("account 24px") : mdi_tag("account-outline 24px")
+          span.is-hidden-touch.icon = user_signed_in? ? mdi_tag("account 24px") : mdi_tag("account-outline 24px")
+          span.is-hidden-desktop.icon = user_signed_in? ? mdi_tag("account") : mdi_tag("account-outline")
           span.is-hidden-desktop User
 
         .navbar-dropdown.is-right
