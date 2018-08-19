@@ -1,15 +1,17 @@
 class PodcastsController < ApplicationController
   include Pagy::Backend
 
+  # This controller gets messy because we are integrating data from several sources on request.  
+  
   def show
     @podcast = Itunes.lookup(params[:id])
 
     feed_xml = ApiResponse.cache(@podcast.feed, -> { 1.hour.ago }) do
       Connect.get(@podcast.feed).body
     end
-
     feed = Feed.parse(feed_xml)
 
+    # Grab description from feed because it's not included in iTunes look up
     @podcast.description = feed[:description]
 
     # Create { episode_id: episode } hash to integrate with history data
@@ -18,11 +20,11 @@ class PodcastsController < ApplicationController
       ids << episode.id
     end
 
+    # Integrate user history with episode list
     if user_signed_in?
       @subscribed = current_user.subscriptions
                                 .where(itunes_id: params[:id]).any?
 
-      # Integrate history data with episode list
       histories = current_user.histories.where(podcast_id: params[:id],
                                                episode_id: episode_ids)
 
@@ -32,13 +34,9 @@ class PodcastsController < ApplicationController
       end
     end
 
-    if params[:episode_id]
-      @modal_episode = @episodes[params[:episode_id]]
-    end
-    
-    if params[:order] == "up"
-      @episodes = @episodes.reverse_each.to_h
-    end
+    # Handle episode and sort parameters
+    @modal_episode = @episodes[params[:episode_id]] if params[:episode_id]
+    @episodes = @episodes.reverse_each.to_h if params[:order] == "up"
 
     @pagy, @episodes = pagy_array(@episodes.values)
   end
