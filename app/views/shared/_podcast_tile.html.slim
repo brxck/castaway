@@ -2,6 +2,6 @@
 
 .podcast
   a(href=podcast_url(id: podcast.itunes_id))
-    img.image.is-200x200(src=podcast.art600)
+    img.image(src=podcast.art600)
     p: strong = podcast.name
     p = podcast.author

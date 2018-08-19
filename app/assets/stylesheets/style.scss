@@ -28,17 +28,85 @@
 
   img {
     margin-bottom: 0.5em;
-  }
-
-  @media (max-width: 768px) {
-    max-width: 35vw;
-    max-height: 50vw;
+    width: 200px;
+    height: 200px;
   }
 }
 
-.podcast-grid {
+.podcast-grid,
+.podcast-scroll {
   display: flex;
   flex-flow: row wrap;
+
+  .podcast {
+    @media (max-width: 768px) {
+      max-width: 35vw;
+      max-height: 50vw;
+      img {
+        width: 35vw;
+        height: 35vw;
+      }
+    }
+  }
+}
+
+.podcast-container {
+  position: relative;
+  width: 95%;
+}
+
+.podcast-scroll {
+  @media (min-width: 769px) {
+    width: 100%;
+    overflow: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: 0.5em;
+    position: relative;
+    scroll-behavior: smooth;
+    overflow: hidden;
+  }
+}
+
+.scroll-left,
+.scroll-right {
+  transition: opacity 0.2s;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  span {
+    z-index: 3;
+    padding-bottom: 100px;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.scroll-right {
+  background: linear-gradient(to right, hsla(0, 0, 0, 0), white);
+  right: 0;
+  span {
+    padding-left: 50px;
+  }
+}
+
+.scroll-left {
+  background: linear-gradient(to left, hsla(0, 0, 0, 0), white);
+  left: 0;
+  span {
+    padding-right: 50px;
+  }
+}
+
+.is-transparent {
+  opacity: 0;
 }
 
 #about-hero {
