@@ -35,9 +35,10 @@ export default class extends Controller {
   }
 
   toggleVisibility(element, force = false) {
+    const delay = force === true ? 0 : 300
     element.classList.toggle("is-transparent", force)
     setTimeout(() => {
       element.classList.toggle("is-invisible", force)
-    }, 250)
+    }, delay)
   }
 }
