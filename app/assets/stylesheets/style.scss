@@ -148,8 +148,8 @@ table.keyboard {
   width: 2em;
   height: 1.5em;
 
-  i {
-    transition: all 1s;
+  i:hover {
+    color: hsl(217, 71%, 53%);
   }
 }
 
@@ -175,5 +175,11 @@ table.keyboard {
 .modal-media {
   @media (max-width: 768px) {
     padding-top: 2.5em;
+  }
+}
+
+.expand-icon {
+  :hover {
+    color: hsl(217, 71%, 53%);
   }
 }
