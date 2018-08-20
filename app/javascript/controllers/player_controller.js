@@ -129,7 +129,7 @@ export default class extends Controller {
     this.episodeTarget.textContent = episode.episode
     this.podcastTarget.textContent = episode.podcast + " - " + episode.date
 
-    episodeUrl = `/podcasts/${episode.podcastId}?episode_id=${
+    const episodeUrl = `/podcasts/${episode.podcastId}?episode_id=${
       episode.episodeId
     }`
     this.artLinkTarget.href = episodeUrl
