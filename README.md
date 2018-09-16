@@ -33,6 +33,8 @@ Prerequisite: set up [Postgres.](https://www.digitalocean.com/community/tutorial
 
         $ bundle install
 
+        $ yarn install
+
 3. Set up database:
 
         $ rails db:setup
