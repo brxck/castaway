@@ -136,12 +136,15 @@ table.keyboard {
   }
 }
 
-.big-logo {
-  font-size: 8em;
-}
-
+#big-logo,
 #nav-logo {
-  margin: 0.5em 0.75em 0.5em 0.5em;
+  transition: transform 5s;
+
+  &:hover {
+    transform: rotate(360deg);
+  }
+
+  margin: 0.5rem 0.75rem 0.5rem 0.5rem;
 }
 
 .menu-icon {
