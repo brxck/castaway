@@ -5,7 +5,7 @@
   - if user_signed_in?
     div(data-controller="sub")
       div(class=(subscribed ? "" : "hidden") data-target="sub.unsubscribe")
-        = link_to mdi_tag("minus 24px") + "Unsubscribe",
+        = link_to mdi_tag("minus 24px") + "Subscribed",
                   subscription_path(subscription: { itunes_id: podcast.itunes_id }),
                   method: :delete,
                   remote: true,
