@@ -23,34 +23,43 @@ podcasts in your web browser.
 
 Prerequisite: set up [Postgres.](https://www.digitalocean.com/community/tutorials/how-to-setup-ruby-on-rails-with-postgres)
 
-1. Clone this repository:
-  
-        $ git clone
+1.  Clone this repository:
 
-2. Install dependencies:
+    ```
+    git clone
+    ```
 
-        $ cd castaway
+2.  Install dependencies:
 
-        $ bundle install
+    ```
+    cd castaway
+    bundle install
+    yarn install
+    ```
 
-        $ yarn install
+3.  Set up database:
 
-3. Set up database:
-
-        $ rails db:setup
+    ```
+    rails db:setup
+    ```
 
     Or when deploying to Heroku:
 
-        $ rails db:migrate
+    ```
+    rails db:migrate
+    rails db:seed
+    ```
 
-        $ rails db:seed
+4.  Run server:
 
-4. Run server:
-
-        $ rails server
+    ```
+    rails server
+    ```
 
 To drop the production database and reseed:
 
-        $ heroku pg:reset DATABASE_URL
-        $ heroku run rails db:migrate
-        $ heroku run rails db:seed
+```
+heroku pg:reset DATABASE_URL
+heroku run rails db:migrate
+heroku run rails db:seed
+```
