@@ -213,7 +213,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
     public_suffix (3.0.2)
-    puma (3.12.0)
+    puma (3.12.6)
     rack (2.0.5)
     rack-proxy (0.6.4)
       rack
@@ -354,7 +354,7 @@ DEPENDENCIES
   normalize-rails
   pagy
   pg (>= 0.18, < 2.0)
-  puma (~> 3.11)
+  puma (~> 3.12)
   rails (~> 5.2.0)
   rubocop
   sass-rails (~> 5.0)
