@@ -10,7 +10,7 @@ export default class extends Controller {
     )
 
     this.element.addEventListener("ajax:failure", e =>
-      console.log("(un)subscribe failed", e)
+      console.error("(un)subscribe failed", e)
     )
   }
 

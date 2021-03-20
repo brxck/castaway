@@ -8,11 +8,11 @@
 
     h2.subtitle Curated by Castaway
     .podcast-container(data-controller="scroll")
-      .scroll-left(data-target="scroll.left" data-action="click->scroll#scrollLeft")
+      .scroll-left(data-scroll-target="left" data-action="click->scroll#scrollLeft")
         span.is-grey = mdi_tag("chevron-left 48px")
-      .scroll-right(data-target="scroll.right" data-action="click->scroll#scrollRight")
+      .scroll-right(data-scroll-target="right" data-action="click->scroll#scrollRight")
         span.is-gray = mdi_tag("chevron-right 48px")
-      .podcast-scroll(data-target="scroll.area" data-action="scroll->scroll#updateOverlays")
+      .podcast-scroll(data-scroll-target="area" data-action="scroll->scroll#updateOverlays")
         - @curated.each do |podcast|
           == render "shared/podcast_tile", podcast: podcast
 
@@ -22,11 +22,11 @@
         | more
         = mdi_tag("chevron-right")
     .podcast-container(data-controller="scroll")
-      .scroll-left(data-target="scroll.left" data-action="click->scroll#scrollLeft")
+      .scroll-left(data-scroll-target="left" data-action="click->scroll#scrollLeft")
         span.is-grey = mdi_tag("chevron-left 48px")
-      .scroll-right(data-target="scroll.right" data-action="click->scroll#scrollRight")
+      .scroll-right(data-scroll-target="right" data-action="click->scroll#scrollRight")
         span.is-gray = mdi_tag("chevron-right 48px")
-      .podcast-scroll(data-target="scroll.area" data-action="scroll->scroll#updateOverlays")
+      .podcast-scroll(data-scroll-target="area" data-action="scroll->scroll#updateOverlays")
         - @toplist.each do |podcast|
           == render "shared/podcast_tile", podcast: podcast
 
@@ -36,11 +36,10 @@
         | more
         = mdi_tag("chevron-right")
     .podcast-container(data-controller="scroll")
-      .scroll-left(data-target="scroll.left" data-action="click->scroll#scrollLeft")
+      .scroll-left(data-scroll-target="left" data-action="click->scroll#scrollLeft")
         span.is-grey = mdi_tag("chevron-left 48px")
-      .scroll-right(data-target="scroll.right" data-action="click->scroll#scrollRight")
+      .scroll-right(data-scroll-target="right" data-action="click->scroll#scrollRight")
         span.is-gray = mdi_tag("chevron-right 48px")
-      .podcast-scroll(data-target="scroll.area" data-action="scroll->scroll#updateOverlays")
+      .podcast-scroll(data-scroll-target="area" data-action="scroll->scroll#updateOverlays")
         - @category.podcasts(8).each do |podcast|
           == render "shared/podcast_tile", podcast: podcast
-    

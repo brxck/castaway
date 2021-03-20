@@ -24,7 +24,6 @@ export default class extends Controller {
   }
 
   scrollRight() {
-    console.log(this.areaTarget.clientWidth, this.areaTarget.clientWidth % 220)
     this.areaTarget.scrollLeft +=
       220 * Math.floor(this.areaTarget.clientWidth / 220)
   }

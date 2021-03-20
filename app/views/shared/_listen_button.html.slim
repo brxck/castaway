@@ -3,14 +3,14 @@
 
 - if user_signed_in?
   span(data-controller="listen")
-    span.no(class=(episode.listened ? "" : "hidden") data-target="listen.no")
+    span.no(class=(episode.listened ? "" : "hidden") data-listen-target="no")
       = link_to history_path(history: { podcast_id: podcast.itunes_id,
                                         episode_id: episode.id }),
                 method: :delete,
                 remote: true do
         = mdi_tag("check-circle 24px")
 
-    span.yes(class=(episode.listened ? "hidden" : "") data-target="listen.yes")
+    span.yes(class=(episode.listened ? "hidden" : "") data-listen-target="yes")
       = link_to histories_path(history: { podcast_id: podcast.itunes_id,
                                           episode_id: episode.id,
                                           listened: true }),

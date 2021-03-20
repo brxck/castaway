@@ -1,14 +1,14 @@
 // Make player persistent across navigation
 .navbar.is-fixed-bottom.is-white.has-shadow#player(data-turbolinks-permanent)
-  audio(data-target="player.audio", src=last_audio_url)
+  audio(data-player-target="audio", src=last_audio_url)
 
   .level.is-mobile
     .level-left#mobile-player
-      a.level-item(data-target="player.artLink" href=last_episode_path)
-        img#playing-art(data-target="player.art" src=last_art_url)
+      a.level-item(data-player-target="artLink" href=last_episode_path)
+        img#playing-art(data-player-target="art" src=last_art_url)
         .art-placeholder
           = mdi_tag("headphones 36px")
-        .player-loading(data-target="player.loading")
+        .player-loading(data-player-target="loading")
           .button.is-link.is-loading.is-large.is-rounded
 
       .level-item#player-controls
@@ -19,7 +19,7 @@
               span = mdi_tag("rewind 24px")
           
           .control
-            button.button.is-large(data-target="player.toggle" data-action="player#togglePlay")
+            button.button.is-large(data-player-target="toggle" data-action="player#togglePlay")
               span.icon.is-medium.is-marginless#play-icon
                 = mdi_tag("play 36px")
               span.icon.is-medium.is-marginless.hidden#pause-icon
@@ -32,28 +32,28 @@
     .level-item.is-hidden-mobile
       #player-center.has-text-centered
         p.player-info.is-size-6
-          a(data-target="player.episode" href=last_episode_path)
+          a(data-player-target="episode" href=last_episode_path)
             | #{try_last("episode_title") || "Do you hear that?"}
 
         p.player-info
-          a(data-target="player.podcast" href=last_podcast_path)
+          a(data-player-target="podcast" href=last_podcast_path)
             | #{try_last("podcast_name") || "Me neither."}
 
         input.slider.is-fullwidth#scrub(type="range"
-              data-target="player.scrub"
+              data-player-target="scrub"
               data-action="click->player#setPosition"
               min="0"
               max="1"
               value="0"
               step="0.001")
 
-        p.player-time (data-target="player.time") 0:00 / 0:00
+        p.player-time (data-player-target="time") 0:00 / 0:00
 
     .level-right.is-hidden-touch
       .level-item
         .select.is-rounded.is-small
           select(type="text"
-                data-target="player.speed"
+                data-player-target="speed"
                 data-action="player#setSpeed")
             option(value="0.5") x0.5
             option(value="0.75") x0.75
@@ -65,7 +65,7 @@
         span.icon
           = mdi_tag("volume-high 24px")
         input.slider(type="range"
-              data-target="player.volume"
+              data-player-target="volume"
               data-action="player#setVolume"
               min="0"
               max="1"
