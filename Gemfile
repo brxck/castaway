@@ -1,27 +1,27 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "2.4.1"
+ruby "3.0.0"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails"
-gem "rails", "~> 5.2.0"
+gem 'rails', '~> 6.1', '>= 6.1.3'
 # Use postgresql as the database for Active Record
-gem "pg", ">= 0.18", "< 2.0"
+gem 'pg', '~> 1.2', '>= 1.2.3'
 # Use Puma as the app server
-gem "puma", "~> 3.11"
+gem 'puma', '~> 5.2', '>= 5.2.2'
 # Use SCSS for stylesheets
-gem "sass-rails", "~> 5.0"
+gem 'sass-rails', '~> 6.0'
 # Use Uglifier as compressor for JavaScript assets
-gem "uglifier", ">= 1.3.0"
+gem 'uglifier', '~> 4.2'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem "webpacker"
+gem 'webpacker', '~> 5.2', '>= 5.2.1'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem "mini_racer", platforms: :ruby
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem "turbolinks", "~> 5"
+gem 'turbolinks', '~> 5.2', '>= 5.2.1'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem "jbuilder", "~> 2.5"
+gem 'jbuilder', '~> 2.11', '>= 2.11.2'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 # Use ActiveModel has_secure_password
@@ -34,23 +34,23 @@ gem "jbuilder", "~> 2.5"
 # gem "capistrano-rails", group: :development
 
 # Authentication
-gem "devise", git: "https://github.com/plataformatec/devise.git", branch: "master"
+gem 'devise', '~> 4.7', '>= 4.7.3'
 # Make http requests
-gem "faraday"
+gem 'faraday', '~> 1.3'
 # Parse podcast feeds
-gem "feedjira"
-gem "feedjira-podcast"
+gem 'feedjira', '~> 2.1', '>= 2.1.4'
+gem 'feedjira-podcast', '~> 0.10.0'
 # CSS reset
-gem "normalize-rails"
+gem 'normalize-rails', '~> 8.0', '>= 8.0.1'
 # Exciting new pagination gem
-gem "pagy"
+gem 'pagy', '~> 4.1'
 # HTML templating
-gem "slim-rails"
+gem 'slim-rails', '~> 3.2'
 
-gem "material_design_icons"
+gem 'material_design_icons', '~> 2.5', '>= 2.5.94'
 
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", ">= 1.1.0", require: false
+gem 'bootsnap', '~> 1.7', '>= 1.7.2', require: false
 
 group :development, :test do
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
@@ -59,8 +59,8 @@ end
 
 group :development do
   # Access an interactive console on exception pages or by calling "console" anywhere in the code.
-  gem "web-console", ">= 3.3.0"
-  gem "listen", ">= 3.0.5", "< 3.2"
+  gem 'web-console', '~> 4.1'
+  gem 'listen', '~> 3.4', '>= 3.4.1'
   # Better irb
   gem "irbtools", require: "irbtools/binding"
   # Task automation

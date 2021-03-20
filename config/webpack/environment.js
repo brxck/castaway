@@ -1,6 +1,6 @@
-const { environment } = require("@rails/webpacker")
+const { environment } = require("@rails/webpacker");
+const pugConfig = require("./pug-loader");
 
-const pugConfig = require("./pug-loader")
-environment.config.merge(pugConfig)
+environment.config.merge(pugConfig);
 
-module.exports = environment
+module.exports = environment;

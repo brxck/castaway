@@ -2,14 +2,15 @@
   "name": "castaway",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "3.5",
+    "@rails/webpacker": "5.2.1",
     "bulma": "^0.7.1",
     "bulma-slider": "https://github.com/brxck/bulma-slider.git",
     "pug": "^2.0.3",
     "pug-loader": "^2.4.0",
-    "stimulus": "^1.0.1"
+    "stimulus": "^2.0.0"
   },
   "devDependencies": {
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "eslint": "^4.19.1",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.12.0",
@@ -19,6 +20,6 @@
     "eslint-plugin-standard": "^3.1.0",
     "prettier": "^1.13.0",
     "prettier-standard": "^8.0.1",
-    "webpack-dev-server": "2.11.2"
+    "webpack-dev-server": "^3.11.2"
   }
 }
