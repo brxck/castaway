@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.0.0"
+ruby "3.0.1"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails"
 gem 'rails', '~> 6.1', '>= 6.1.3'
@@ -47,7 +47,7 @@ gem 'pagy', '~> 4.1'
 # HTML templating
 gem 'slim-rails', '~> 3.2'
 
-gem 'material_design_icons', '~> 2.5', '>= 2.5.94'
+gem 'material_design_icons', :github => 'barrymieny/material_design_icons', tag: 'v2.5.94'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '~> 1.7', '>= 1.7.2', require: false
