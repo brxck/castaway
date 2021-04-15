@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CookiesControllerTest < ActionDispatch::IntegrationTest
+class LastPlayedControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

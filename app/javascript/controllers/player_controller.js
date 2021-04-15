@@ -163,7 +163,7 @@ export default class extends Controller {
       })
     }
 
-    this.post("/cookies", {
+    this.post("/plays", {
       cookie: {
         podcast_id: this.data.get("podcastId"),
         podcast_name: this.podcastTarget.textContent,

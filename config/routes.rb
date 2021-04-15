@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :subscriptions, only: %i[create destroy index]
   resources :histories, only: %i[create destroy update]
-  resources :cookies, only: %i[create destroy]
+  resources :last_played, only: %i[create destroy]
   resources :podcasts, only: %i[show]
   resources :categories, only: %i[index show]
 
