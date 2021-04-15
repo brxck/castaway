@@ -16,7 +16,7 @@ class SubscriptionsController < ApplicationController
     if @subscription.save
       render json: { status: 200 }
     else
-      render json: { status: 500 }
+      render json: { status: 400 }
     end
   end
 
@@ -27,7 +27,7 @@ class SubscriptionsController < ApplicationController
     if @subscription.destroy
       render json: { status: 200 }
     else
-      render json: { status: 500 }
+      render json: { status: 400 }
     end
   end
 

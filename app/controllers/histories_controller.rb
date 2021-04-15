@@ -8,7 +8,7 @@ class HistoriesController < ApplicationController
     if @history.save
       render json: { status: 200 }
     else
-      render json: { status: 500 }
+      render json: { status: 400 }
     end
   end
 
@@ -17,7 +17,7 @@ class HistoriesController < ApplicationController
                        time: params[:history][:time])
       render json: { status: 200 }
     else
-      render json: { status: 500 }
+      render json: { status: 400 }
     end
   end
 
@@ -25,7 +25,7 @@ class HistoriesController < ApplicationController
     if @history.destroy
       render json: { status: 200 }
     else
-      render json: { status: 500 }
+      render json: { status: 400 }
     end
   end
 

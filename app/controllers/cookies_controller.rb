@@ -12,7 +12,7 @@ class CookiesController < ApplicationController
 
     cookies[:last_played] = JSON.generate(cookie_values)
 
-    render json: { status: 200 }
+    render json: { status: 201 }
   end
 
   def destroy
