@@ -55,11 +55,3 @@ Prerequisite: set up [Postgres.](https://www.digitalocean.com/community/tutorial
     ```
     rails server
     ```
-
-To drop the production database and reseed:
-
-```
-heroku pg:reset DATABASE_URL
-heroku run rails db:migrate
-heroku run rails db:seed
-```
