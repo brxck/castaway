@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2018_08_12_210857) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "url", null: false
-    t.text "json", null: false
+    t.json "payload", null: false
     t.index ["url"], name: "index_api_responses_on_url"
   end
 

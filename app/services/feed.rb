@@ -18,7 +18,7 @@ class Feed
              episode.guid.guid
            end
 
-      OpenStruct.new(
+      {
         id: id,
         title: sanitize(episode.title),
         description: sanitize(episode.description),
@@ -26,7 +26,7 @@ class Feed
         date: episode.pub_date,
         time: 0, # Will be overwritten if history exists.
         audio: episode.enclosure.url.to_s
-      )
+      }
     end
   end
 

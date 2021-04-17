@@ -3,14 +3,14 @@
 - size
 
 a(data-action = "player#loadEpisode"
-  data-episode-id = episode.id
-  data-podcast-id = podcast.itunes_id
-  data-art = podcast.art600
-  data-audio = episode.audio
-  data-episode = episode.title
-  data-podcast = podcast.name
-  data-time = episode.time
-  data-date = episode.date.strftime("%b %-d, %Y")
+  data-episode-id = episode["id"]
+  data-podcast-id = podcast["itunes_id"]
+  data-art = podcast["art600"]
+  data-audio = episode["audio"]
+  data-episode = episode["title"]
+  data-podcast = podcast["name"]
+  data-time = episode["time"]
+  data-date = Date.parse(episode["date"]).strftime("%b %-d, %Y")
 ) 
   span = mdi_tag("play-circle-outline #{size}")
  

@@ -1,2 +1,2 @@
-module CookiesHelper
+module PlaysHelper
 end

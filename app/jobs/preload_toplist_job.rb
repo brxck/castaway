@@ -9,10 +9,7 @@ class PreloadToplistJob < ApplicationJob
 
     results.each do |result|
       podcast = Itunes.lookup(result["id"])
-
-      ApiResponse.cache(podcast.feed, -> { 1.day.ago }) do
-        Connect.get(podcast.feed).body
-      end
+      ApiResponse.cache(podcast.feed, -> { 1.day.ago })
     end
   end
 end
