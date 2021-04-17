@@ -7,7 +7,7 @@ class LastPlayedController < ApplicationController
       episode_id: params[:cookie][:episode_id],
       episode_title: params[:cookie][:episode_title],
       episode_url: params[:cookie][:episode_url],
-      time_played: params[:cookie][:time_played]
+      time_played: params[:cookie][:time_played],
     }
     cookies[:last_played] = JSON.generate(cookie_values)
     render json: { status: 201 }

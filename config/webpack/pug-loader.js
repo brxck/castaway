@@ -5,10 +5,10 @@ module.exports = {
         test: /\.pug$/,
         use: [
           {
-            loader: "pug-loader"
-          }
-        ]
-      }
-    ]
-  }
+            loader: "pug-loader",
+          },
+        ],
+      },
+    ],
+  },
 }

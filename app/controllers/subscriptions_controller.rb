@@ -1,13 +1,12 @@
 class SubscriptionsController < ApplicationController
-  
-
   before_action :authenticate_user!
 
   def index
     user_subscriptions = current_user.subscriptions
-    @subscriptions = user_subscriptions.map do |subscription|
-      Itunes.lookup(subscription.itunes_id)
-    end
+    @subscriptions =
+      user_subscriptions.map do |subscription|
+        Itunes.lookup(subscription.itunes_id)
+      end
   end
 
   def create
@@ -21,8 +20,11 @@ class SubscriptionsController < ApplicationController
   end
 
   def destroy
-    @subscription = current_user.subscriptions
-                                .where(itunes_id: params[:subscription][:itunes_id]).take
+    @subscription =
+      current_user
+        .subscriptions
+        .where(itunes_id: params[:subscription][:itunes_id])
+        .take
 
     if @subscription.destroy
       render json: { status: 200 }
@@ -32,8 +34,7 @@ class SubscriptionsController < ApplicationController
   end
 
   private
-
-  def subscription_params
-    params.require(:subscription).permit(:itunes_id, :name, :feed)
-  end
+    def subscription_params
+      params.require(:subscription).permit(:itunes_id, :name, :feed)
+    end
 end

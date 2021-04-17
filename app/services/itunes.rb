@@ -26,7 +26,12 @@ class Itunes
   def self.genre(genre_id, count = 50)
     # Undocumented search parameter genreId
     # https://stackoverflow.com/a/27883886/8660199
-    query = { term: "podcast", genreId: genre_id, limit: count, country: "US" }.to_query
+    query = {
+      term: "podcast",
+      genreId: genre_id,
+      limit: count,
+      country: "US",
+    }.to_query
     url = BASE_URL + "search?" + query
     ApiResponse.cache(url, -> { 1.day.ago }) do |res|
       results = JSON.parse(res.body)["results"]
@@ -35,8 +40,9 @@ class Itunes
   end
 
   # Returns top podcasts on iTunes
-  def self.toplist(count = 50)   
-    rss = "https://rss.itunes.apple.com/api/v1/us/podcasts/top-podcasts/all/#{count}/explicit.json"
+  def self.toplist(count = 50)
+    rss =
+      "https://rss.itunes.apple.com/api/v1/us/podcasts/top-podcasts/all/#{count}/explicit.json"
 
     ApiResponse.cache(rss, -> { 1.day.ago }) do |res|
       PreloadToplistJob.perform_later
@@ -47,7 +53,7 @@ class Itunes
           name: podcast["name"],
           author: podcast["artistName"],
           genre: podcast["genres"][0]["name"],
-          art600: podcast["artworkUrl100"] # Is actually 200x200px
+          art600: podcast["artworkUrl100"], # Is actually 200x200px
         }
       end
     end
@@ -64,7 +70,7 @@ class Itunes
       genres: podcast["genres"] - ["Podcasts"],
       feed: podcast["feedUrl"],
       art100: podcast["artworkUrl100"],
-      art600: podcast["artworkUrl600"]
+      art600: podcast["artworkUrl600"],
     }
   end
 end

@@ -1,13 +1,12 @@
 module LastPlayedHelper
-  
-  def last_podcast_path    
+  def last_podcast_path
     return "" unless @last_played
-    "/podcasts/#{@last_played['podcast_id']}"
+    "/podcasts/#{@last_played["podcast_id"]}"
   end
 
   def last_episode_path
     return "" unless @last_played
-    last_podcast_path + "?episode_id=#{@last_played['episode_id']}"    
+    last_podcast_path + "?episode_id=#{@last_played["episode_id"]}"
   end
 
   def try_last(key)

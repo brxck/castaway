@@ -8,21 +8,19 @@ class ApiResponse < ApplicationRecord
     if !record
       logger.debug "ApiResponse: Miss #{url}"
       response = Connect.get(url)
-      raise "Request failed" if !response.success? 
+      raise "Request failed" if !response.success?
       result = block_given? ? yield(response) : JSON.parse(response.body)
-      json = create(url: url, payload: result).payload
-
+      record.create(url: url, payload: result).payload
     elsif record.updated_at < cache_policy.call
       logger.debug "ApiResponse: Expired #{url}"
       response = Connect.get(url)
-      raise "Request failed" if !response.success? 
+      raise "Request failed" if !response.success?
       result = block_given? ? yield(response) : JSON.parse(response.body)
       record.update(payload: result, updated_at: Time.zone.now)
-      return record.payload
-
+      record.payload
     else
       logger.debug "ApiResponse: Found #{url}"
-      return record.payload
+      record.payload
     end
   end
 end

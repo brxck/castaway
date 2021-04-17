@@ -1,13 +1,12 @@
 # Example of initializer file
 # Customize only what you really need but notice that Pagy works also without any of the following lines.
 
-
 # Extras
 # See https://ddnexus.github.io/pagy/extras
 
 # Array: Paginate arrays efficiently avoiding expensive array-wrapping and without overriding
 # See https://ddnexus.github.io/pagy/extras/array
-require 'pagy/extras/array'
+require "pagy/extras/array"
 
 # Bootstrap: Nav helper and templates for Bootstrap pagination
 # See https://ddnexus.github.io/pagy/extras/bootstrap
@@ -15,7 +14,7 @@ require 'pagy/extras/array'
 
 # Bulma: Nav helper and templates for Bulma pagination
 # See https://ddnexus.github.io/pagy/extras/bulma
-require 'pagy/extras/bulma'
+require "pagy/extras/bulma"
 
 # Compact: An alternative UI that combines the pagination with the nav info in one compact element
 # See https://ddnexus.github.io/pagy/extras/compact
@@ -41,7 +40,6 @@ require 'pagy/extras/bulma'
 # See https://ddnexus.github.io/pagy/extras/responsive#breakpoints
 # Pagy::VARS[:breakpoints] = { 0 => [1,2,2,1], 350 => [2,3,3,2], 550 => [3,4,4,3] }    # example of width/size pairs
 
-
 # Pagy Variables
 # See https://ddnexus.github.io/pagy/api/pagy#variables
 # All the Pagy::VARS are set for all the Pagy instances but can be overridden
@@ -60,11 +58,9 @@ Pagy::VARS[:items] = 15 # default: 20
 # Pagy::VARS[:link_extra] = 'data-remote="true"'            # example
 # Pagy::VARS[:item_path]  = 'activerecord.models.product'   # example
 
-
 # Rails: extras assets path required by compact, items and responsive extras
 # See https://ddnexus.github.io/pagy/extras
 # Rails.application.config.assets.paths << Pagy.root.join('pagy', 'extras', 'javascripts')
-
 
 # I18n: faster internal pagy implementation (does not use the I18n gem)
 # Use only for single language apps that don't need dynamic translation between multiple languages

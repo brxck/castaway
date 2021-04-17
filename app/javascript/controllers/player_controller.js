@@ -12,7 +12,7 @@ export default class extends Controller {
     "episode",
     "podcast",
     "artLink",
-    "loading"
+    "loading",
   ]
 
   initialize() {
@@ -129,9 +129,7 @@ export default class extends Controller {
     this.episodeTarget.textContent = episode.episode
     this.podcastTarget.textContent = episode.podcast + " - " + episode.date
 
-    const episodeUrl = `/podcasts/${episode.podcastId}?episode_id=${
-      episode.episodeId
-    }`
+    const episodeUrl = `/podcasts/${episode.podcastId}?episode_id=${episode.episodeId}`
     this.artLinkTarget.href = episodeUrl
     this.episodeTarget.href = episodeUrl
     this.podcastTarget.href = `/podcasts/${episode.podcastId}`
@@ -158,8 +156,8 @@ export default class extends Controller {
           episode_id: this.data.get("episodeId"),
           podcast_id: this.data.get("podcastId"),
           listened: false,
-          time: this.audioTarget.currentTime
-        }
+          time: this.audioTarget.currentTime,
+        },
       })
     }
 
@@ -172,8 +170,8 @@ export default class extends Controller {
         episode_id: this.data.get("episodeId"),
         episode_url: this.audioTarget.src,
         time_played:
-          this.audioTarget.currentTime / this.audioTarget.seekable.end(0)
-      }
+          this.audioTarget.currentTime / this.audioTarget.seekable.end(0),
+      },
     })
   }
 
@@ -186,8 +184,8 @@ export default class extends Controller {
       history: {
         episode_id: this.data.get("episodeId"),
         podcast_id: this.data.get("podcastId"),
-        listened: true
-      }
+        listened: true,
+      },
     })
 
     this.field.getElementsByClassName("yes")[0].classList.toggle("hidden", true)
@@ -202,8 +200,8 @@ export default class extends Controller {
       body: JSON.stringify(params),
       headers: {
         "Content-Type": "application/json",
-        "X-CSRF-Token": token
-      }
+        "X-CSRF-Token": token,
+      },
     })
   }
 
@@ -217,7 +215,7 @@ export default class extends Controller {
       art: element.dataset.art,
       time: parseFloat(element.dataset.time),
       episodeId: element.dataset.episodeId,
-      podcastId: element.dataset.podcastId
+      podcastId: element.dataset.podcastId,
     }
   }
 

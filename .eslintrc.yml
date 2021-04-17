@@ -3,5 +3,4 @@ env:
   browser: true
 rules:
   quotes: ["error", "double"]
-plugins:
-  ["jest"]
+plugins: ["jest"]

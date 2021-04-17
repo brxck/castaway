@@ -9,7 +9,7 @@ export default class extends Controller {
       this.toggleListened.bind(this)
     )
 
-    this.element.addEventListener("ajax:failure", e =>
+    this.element.addEventListener("ajax:failure", (e) =>
       console.error("(un)subscribe failed", e)
     )
   }

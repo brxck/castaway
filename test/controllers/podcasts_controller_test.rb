@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class PodcastsControllerTest < ActionDispatch::IntegrationTest
   test "should get show" do
@@ -15,5 +15,4 @@ class PodcastsControllerTest < ActionDispatch::IntegrationTest
     get podcasts_subscribe_url
     assert_response :success
   end
-
 end

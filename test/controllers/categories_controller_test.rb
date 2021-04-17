@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class CategoriesControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
@@ -10,5 +10,4 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
     get categories_show_url
     assert_response :success
   end
-
 end

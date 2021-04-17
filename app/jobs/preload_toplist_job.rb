@@ -3,7 +3,8 @@ class PreloadToplistJob < ApplicationJob
 
   # Fetch top podcasts from iTunes and preload episodes.
   def perform
-    rss = "https://rss.itunes.apple.com/api/v1/us/podcasts/top-podcasts/all/50/explicit.json"
+    rss =
+      "https://rss.itunes.apple.com/api/v1/us/podcasts/top-podcasts/all/50/explicit.json"
     feed = Connect.get(rss).body
     results = JSON.parse(feed)["feed"]["results"]
 

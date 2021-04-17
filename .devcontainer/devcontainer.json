@@ -1,39 +1,35 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.166.1/containers/ruby-rails
 {
-	"name": "Castaway",
+  "name": "Castaway",
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
-	"workspaceFolder": "/workspace",
+  "workspaceFolder": "/workspace",
 
-	// Set *default* container specific settings.json values on container create.
-	"settings": { 
-		"terminal.integrated.shell.linux": "/bin/zsh",
-		"ruby.useBundler": true, //run non-lint commands with bundle exec
-		"ruby.useLanguageServer": true, // use the internal language server (see below)
-		"ruby.lint": {
-			"rubocop": {
-				"useBundler": true // enable rubocop via bundler
-			},
-		},
-		"ruby.format": "rubocop" // use rubocop for formatting
-	},
+  // Set *default* container specific settings.json values on container create.
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/zsh",
+    "ruby.useBundler": true, //run non-lint commands with bundle exec
+    "ruby.useLanguageServer": true, // use the internal language server (see below)
+    "ruby.format": "prettier"
+  },
 
-	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": [
-		"rebornix.Ruby",
-		"esbenp.prettier-vscode",
-		"dbaeumer.vscode-eslint",
-		"aaron-bond.better-comments",
-		"sianglim.slim"
-	],
-	
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [3000, 5432],
+  // Add the IDs of extensions you want installed when the container is created.
+  "extensions": [
+    "rebornix.Ruby",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "aaron-bond.better-comments",
+    "sianglim.slim",
+    "misogi.ruby-rubocop"
+  ],
 
-	// Use 'postCreateCommand' to run commands after the container is created.
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  "forwardPorts": [3000, 5432],
+
+  // Use 'postCreateCommand' to run commands after the container is created.
   "postCreateCommand": "bundle install && yarn install",
 
-	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-	"remoteUser": "vscode"
+  // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+  "remoteUser": "vscode"
 }
