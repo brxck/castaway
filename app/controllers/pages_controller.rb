@@ -3,7 +3,7 @@ class PagesController < ApplicationController
 
   def discover
     @toplist = Itunes.toplist(12)
-    @categories = Category.where(parent_id: nil)
+    @categories = Category.where(parent_id: nil).includes(:subcategories)
     @curated = CuratedPodcast.all_podcasts
 
     # Pick random category
@@ -12,7 +12,7 @@ class PagesController < ApplicationController
 
   def popular
     @toplist = Itunes.toplist(50)
-    @categories = Category.where(parent_id: nil)
+    @categories = Category.where(parent_id: nil).includes(:subcategories)
   end
 
   def search
