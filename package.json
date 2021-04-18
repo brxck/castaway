@@ -2,7 +2,7 @@
   "name": "castaway",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "5.2.1",
+    "@hotwired/turbo-rails": "^7.0.0-beta.5",
     "bulma": "^0.7.1",
     "bulma-slider": "https://github.com/brxck/bulma-slider.git",
     "pug": "^2.0.3",
@@ -19,7 +19,6 @@
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.1.0",
     "prettier": "^1.13.0",
-    "prettier-standard": "^8.0.1",
-    "webpack-dev-server": "^3.11.2"
+    "prettier-standard": "^8.0.1"
   }
 }

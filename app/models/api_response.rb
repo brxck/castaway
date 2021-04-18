@@ -10,7 +10,7 @@ class ApiResponse < ApplicationRecord
       response = Connect.get(url)
       raise "Request failed" if !response.success?
       result = block_given? ? yield(response) : JSON.parse(response.body)
-      record.create(url: url, payload: result).payload
+      create(url: url, payload: result).payload
     elsif record.updated_at < cache_policy.call
       logger.debug "ApiResponse: Expired #{url}"
       response = Connect.get(url)

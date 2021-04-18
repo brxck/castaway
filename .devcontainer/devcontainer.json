@@ -11,7 +11,9 @@
     "terminal.integrated.shell.linux": "/bin/zsh",
     "ruby.useBundler": true, //run non-lint commands with bundle exec
     "ruby.useLanguageServer": true, // use the internal language server (see below)
-    "ruby.format": "prettier"
+    "[ruby]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
   },
 
   // Add the IDs of extensions you want installed when the container is created.
