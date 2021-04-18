@@ -7,19 +7,17 @@ class Itunes
   def self.search(term)
     query = { term: term, media: "podcast", country: "US" }.to_query
     url = BASE_URL + "search?" + query
-    ApiResponse.cache(url, -> { 1.hour.ago }) do |res|
-      results = JSON.parse(res.body)["results"]
-      results.map { |item| process_podcast(item) }
-    end
+    response = Connect.get(url)
+    results = JSON.parse(response.body)["results"]
+    results.map { |item| process_podcast(item) }
   end
 
   # Returns podcast with id
   def self.lookup(id)
     url = BASE_URL + "lookup?id=#{id}"
-    ApiResponse.cache(url, -> { 1.hour.ago }) do |res|
-      result = JSON.parse(res.body)["results"][0]
-      process_podcast(result)
-    end
+    response = Connect.get(url)
+    result = JSON.parse(response.body)["results"][0]
+    process_podcast(result)
   end
 
   # Returns top podcasts in the genre with genre_id
@@ -33,10 +31,9 @@ class Itunes
       country: "US",
     }.to_query
     url = BASE_URL + "search?" + query
-    ApiResponse.cache(url, -> { 1.day.ago }) do |res|
-      results = JSON.parse(res.body)["results"]
-      results.map { |item| process_podcast(item) }
-    end
+    response = Connect.get(url)
+    results = JSON.parse(response.body)["results"]
+    results.map { |item| process_podcast(item) }
   end
 
   # Returns top podcasts on iTunes
@@ -44,18 +41,17 @@ class Itunes
     rss =
       "https://rss.itunes.apple.com/api/v1/us/podcasts/top-podcasts/all/#{count}/explicit.json"
 
-    ApiResponse.cache(rss, -> { 1.day.ago }) do |res|
-      PreloadToplistJob.perform_later
-      results = JSON.parse(res.body)["feed"]["results"]
-      results.map do |podcast|
-        {
-          itunes_id: podcast["id"],
-          name: podcast["name"],
-          author: podcast["artistName"],
-          genre: podcast["genres"][0]["name"],
-          art600: podcast["artworkUrl100"], # Is actually 200x200px
-        }
-      end
+    response = Connect.get(rss)
+    PreloadToplistJob.perform_later
+    results = JSON.parse(response.body)["feed"]["results"]
+    results.map do |podcast|
+      {
+        itunes_id: podcast["id"],
+        name: podcast["name"],
+        author: podcast["artistName"],
+        genre: podcast["genres"][0]["name"],
+        art600: podcast["artworkUrl100"], # Is actually 200x200px
+      }
     end
   end
 

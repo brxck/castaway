@@ -10,17 +10,17 @@
         button.delete.is-hidden-desktop.is-pulled-right(data-action="click->modal#close")
         .media.modal-media.is-block-mobile
           .media-left
-            img.image.media-art(src=podcast.art600)
+            img.image.media-art(src=podcast[:art600])
             br
             .has-text-centered
-              p = episode.date.strftime("%B %-d, %Y")
-              p = format_seconds(episode.duration)
+              p = episode[:date].strftime("%B %-d, %Y")
+              p = format_seconds(episode[:duration])
           
           .media-content
-            h2.title.is-size-4 = episode.title
+            h2.title.is-size-4 = episode[:title]
             h3.subtitle.is-size-6
-              a(href="/podcasts/#{podcast.itunes_id}") = podcast.name
-            p = episode.description
+              a(href="/podcasts/#{podcast[:itunes_id]}") = podcast[:name]
+            p = episode[:description]
   
           .media-right.is-hidden-mobile
             button.delete(data-action="click->modal#close")
@@ -29,6 +29,6 @@
         .card-footer-item
           == render "shared/episode_button", episode: episode, podcast: podcast, size: "24px"
         .card-footer-item 
-          a(href=episode.audio) = mdi_tag("download 24px")
+          a(href=episode[:audio]) = mdi_tag("download 24px")
         .card-footer-item
           == render "shared/listen_button", episode: episode, podcast: podcast

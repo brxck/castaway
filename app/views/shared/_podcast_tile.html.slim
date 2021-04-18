@@ -1,7 +1,7 @@
 - podcast
 
 .podcast
-  a(href=podcast_url(id: podcast["itunes_id"]))
-    img.image(src=podcast["art600"])
-    p: strong = podcast["name"]
-    p = podcast["author"]
+  a(href=podcast_url(id: podcast[:itunes_id]))
+    img.image(src=podcast[:art600])
+    p: strong = podcast[:name]
+    p = podcast[:author]

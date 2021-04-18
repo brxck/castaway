@@ -1,6 +1,6 @@
 class Episode < ApplicationRecord
   def self.from_feed(feed)
-    feed["episodes"].index_by { |episode| episode["id"] }
+    feed[:episodes].index_by { |episode| episode[:id] }
   end
 
   def self.with_histories(feed)

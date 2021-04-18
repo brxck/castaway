@@ -3,10 +3,8 @@ class PodcastsController < ApplicationController
 
   def show
     @podcast = Itunes.lookup(params[:id])
-    feed =
-      ApiResponse.cache(@podcast["feed"], -> { 15.minutes.ago }) do |res|
-        Feed.parse(res.body)
-      end
+    res = Connect.get(@podcast[:feed])
+    feed = Feed.parse(res.body)
 
     # Grab description from feed because it's not included in iTunes look up
     @podcast[:description] = feed[:description]

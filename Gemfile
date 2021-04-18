@@ -31,8 +31,6 @@ group :development do
   gem "listen", "~> 3.4", ">= 3.4.1"
   gem "web-console", "~> 4.1"
   gem "irbtools", require: "irbtools/binding"
-  gem "guard"
-  gem "guard-livereload"
   gem "prettier"
   gem "rubocop"
   gem "rubocop-performance"
@@ -43,9 +41,6 @@ group :development do
 end
 
 group :test do
-  gem "capybara", ">= 2.15", "< 4.0"
-  gem "selenium-webdriver"
-  gem "chromedriver-helper"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

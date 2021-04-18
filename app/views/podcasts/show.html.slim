@@ -1,16 +1,16 @@
-- title @podcast["name"]
+- title @podcast[:name]
 
 .container
   .media.is-block-mobile
     .media-left
-      img.image.media-art(src=@podcast["art600"])
+      img.image.media-art(src=@podcast[:art600])
     
     .media-content
-      h1.title = @podcast["name"]
-      h2.subtitle = @podcast["author"]
-      p = @podcast["description"]
+      h1.title = @podcast[:name]
+      h2.subtitle = @podcast[:author]
+      p = @podcast[:description]
       ul.tags
-        - @podcast["genres"].each do |genre|
+        - @podcast[:genres].each do |genre|
           li.tag = genre
     
     .media-right
@@ -18,7 +18,7 @@
         .field.is-grouped
           == render "shared/subscribe_button", subscribed: @subscribed, podcast: @podcast
           .control
-            button.button(href=@podcast["feed"])
+            button.button(href=@podcast[:feed])
               span.icon = mdi_tag("rss 24px")
 
 
@@ -40,9 +40,9 @@ table.table.is-hoverable
               span.listen_button
                 == render "shared/listen_button", episode: episode, podcast: @podcast
             .level-item
-              = link_to episode["title"], "?" + { episode_id: episode["id"] }.to_query
-      td.td.is-hidden-mobile = Date.parse(episode["date"]).strftime("%Y %b %-d")
-      td.td.is-hidden-mobile = format_seconds(episode["duration"])
+              = link_to episode[:title], "?" + { episode_id: episode[:id] }.to_query
+      td.td.is-hidden-mobile = episode[:date].strftime("%Y %b %-d")
+      td.td.is-hidden-mobile = format_seconds(episode[:duration])
       td.table-icon-container
         .table-icon
           == render "shared/episode_button", episode: episode, podcast: @podcast,

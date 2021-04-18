@@ -32,4 +32,4 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 
 RUN gem install solargraph
 
-RUN sudo chown -R ${USER_UID}:${USER_GID} "/home/vscode"
+RUN sudo chown -R vscode:vscode "/home/vscode"
