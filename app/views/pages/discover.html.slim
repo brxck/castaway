@@ -1,7 +1,7 @@
 - title "Discover"
 
 .columns.is-desktop
-  == render "shared/discover_menu"
+  == render partial: "shared/discover_menu", locals: { categories: categories }
 
   .column.is-four-fifths-desktop
     h1.title Discover
@@ -13,8 +13,7 @@
       .scroll-right(data-scroll-target="right" data-action="click->scroll#scrollRight")
         span.is-gray = mdi_tag("chevron-right 48px")
       .podcast-scroll(data-scroll-target="area" data-action="scroll->scroll#updateOverlays")
-        - @curated.each do |podcast|
-          == render "shared/podcast_tile", podcast: podcast
+        == render partial: "shared/podcast_tile", collection: curated, as: :podcast, cached: true
 
     h2.subtitle
       span Top Podcasts
@@ -27,12 +26,11 @@
       .scroll-right(data-scroll-target="right" data-action="click->scroll#scrollRight")
         span.is-gray = mdi_tag("chevron-right 48px")
       .podcast-scroll(data-scroll-target="area" data-action="scroll->scroll#updateOverlays")
-        - @toplist.each do |podcast|
-          == render "shared/podcast_tile", podcast: podcast
+        == render partial: "shared/podcast_tile", collection: toplist, as: :podcast, cached: true
 
     h2.subtitle
-      span Explore: #{@category.name}
-      a.is-size-6.more-link(href=category_path(id: @category.id))
+      span Explore: #{category.name}
+      a.is-size-6.more-link(href=category_path(id: category.id))
         | more
         = mdi_tag("chevron-right")
     .podcast-container(data-controller="scroll")
@@ -41,5 +39,4 @@
       .scroll-right(data-scroll-target="right" data-action="click->scroll#scrollRight")
         span.is-gray = mdi_tag("chevron-right 48px")
       .podcast-scroll(data-scroll-target="area" data-action="scroll->scroll#updateOverlays")
-        - @category.podcasts(8).each do |podcast|
-          == render "shared/podcast_tile", podcast: podcast
+        == render partial: "shared/podcast_tile", collection: category.podcasts(8), as: :podcast, cached: true

@@ -1,13 +1,12 @@
-- title "Search for \"#{@term}\""
+- title "Search for \"#{term}\""
 
 .container
-  h1.title Search for "#{@term}"
+  h1.title Search for "#{term}"
 
-  - if @results.any?
+  - if results.any?
     .podcast-grid
-      - @results.each do |podcast|
-        == render "shared/podcast_tile", podcast: podcast
+      == render partial: "shared/podcast_tile", collection: results, as: :podcast
   - else
-    p No results found. 
+    p No results found.
 
-  == pagy_bulma_nav(@pagy) if @pagy.pages > 1
+  == pagy_bulma_nav(pagy) if pagy.pages > 1

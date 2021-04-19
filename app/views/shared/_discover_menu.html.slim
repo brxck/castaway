@@ -24,4 +24,4 @@
             | Subscriptions
 
         p.menu-label Categories
-        == render "shared/categories_menu_items"
+        == render partial: "shared/category", collection: categories, cached: true

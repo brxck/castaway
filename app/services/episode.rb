@@ -1,4 +1,4 @@
-class Episode < ApplicationRecord
+class Episode
   def self.from_feed(feed)
     feed[:episodes].index_by { |episode| episode[:id] }
   end

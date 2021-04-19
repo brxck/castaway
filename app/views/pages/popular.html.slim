@@ -1,10 +1,9 @@
 - title "Popular"
 
 .columns
-  == render "shared/discover_menu"
+  == render partial: "shared/discover_menu", locals: { categories: categories }
 
   .column.is-one-half
     h1.title Popular
     .podcast-grid
-      - @toplist.each do |podcast|
-        == render "shared/podcast_tile", podcast: podcast
+      == render partial: "shared/podcast_tile", collection: toplist, as: :podcast

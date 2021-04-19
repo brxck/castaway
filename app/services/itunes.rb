@@ -42,7 +42,8 @@ class Itunes
       "https://rss.itunes.apple.com/api/v1/us/podcasts/top-podcasts/all/#{count}/explicit.json"
 
     response = Connect.get(rss)
-    PreloadToplistJob.perform_later
+
+    # PreloadToplistJob.perform_later
     results = JSON.parse(response.body)["feed"]["results"]
     results.map do |podcast|
       {

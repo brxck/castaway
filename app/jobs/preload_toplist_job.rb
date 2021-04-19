@@ -10,7 +10,7 @@ class PreloadToplistJob < ApplicationJob
 
     results.each do |result|
       podcast = Itunes.lookup(result["id"])
-      Connect.get(podcast.feed).body
+      Connect.get(podcast[:feed]).body
     end
   end
 end
