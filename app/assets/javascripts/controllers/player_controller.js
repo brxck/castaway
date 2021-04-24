@@ -1,19 +1,21 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [
-    "audio",
-    "toggle",
-    "scrub",
-    "volume",
-    "speed",
-    "time",
-    "art",
-    "episode",
-    "podcast",
-    "artLink",
-    "loading",
-  ]
+  static get targets() {
+    return [
+      "audio",
+      "toggle",
+      "scrub",
+      "volume",
+      "speed",
+      "time",
+      "art",
+      "episode",
+      "podcast",
+      "artLink",
+      "loading",
+    ]
+  }
 
   initialize() {
     this.audioListeners = []

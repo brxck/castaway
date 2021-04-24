@@ -20,7 +20,7 @@
             h2.title.is-size-4 = episode[:title]
             h3.subtitle.is-size-6
               a(href="/podcasts/#{podcast[:itunes_id]}") = podcast[:name]
-            p = episode[:description]
+            p(style="white-space: pre-wrap;") = episode[:description]
   
           .media-right.is-hidden-mobile
             button.delete(data-action="click->modal#close")

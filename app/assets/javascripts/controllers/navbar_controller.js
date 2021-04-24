@@ -1,7 +1,9 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["button", "menu"]
+  static get targets() {
+    return ["button", "menu"]
+  }
 
   toggleMenu() {
     this.buttonTarget.classList.toggle("is-active")

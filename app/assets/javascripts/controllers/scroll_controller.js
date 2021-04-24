@@ -1,7 +1,9 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["area", "left", "right"]
+  static get targets() {
+    return ["area", "left", "right"]
+  }
 
   connect() {
     this.updateOverlays()

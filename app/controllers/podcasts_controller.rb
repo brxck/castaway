@@ -5,7 +5,7 @@ class PodcastsController < ApplicationController
     podcast, feed =
       Rails
         .cache
-        .fetch("show-podcast-#{params[:id]}", expires_in: 24.hours) do
+        .fetch("show-podcast-#{params[:id]}") do
           podcast = Itunes.lookup(params[:id])
           feed = Connect.get(podcast[:feed])
           feed = Feed.parse(feed.body)
@@ -32,5 +32,21 @@ class PodcastsController < ApplicationController
              subscribed: subscribed,
              pagy: pagy,
            }
+  end
+
+  def new_episodes
+    _, old_feed = Rails.cache.read("show-podcast-#{params[:id]}")
+    _, feed =
+      Rails
+        .cache
+        .fetch("show-podcast-#{params[:id]}", { force: true }) do
+          podcast = Itunes.lookup(params[:id])
+          feed = Connect.get(podcast[:feed])
+          feed = Feed.parse(feed.body)
+          podcast[:description] = feed[:description]
+          [podcast, feed]
+        end
+    count = feed[:episodes].length - old_feed[:episodes].length
+    render status: :ok, json: { episodes: count }
   end
 end

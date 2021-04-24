@@ -1,7 +1,9 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["subscribe", "unsubscribe"]
+  static get targets() {
+    return ["subscribe", "unsubscribe"]
+  }
 
   initialize() {
     this.element.addEventListener(

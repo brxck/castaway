@@ -18,36 +18,39 @@
         .field.is-grouped
           == render "shared/subscribe_button", subscribed: subscribed, podcast: podcast
           .control
-            button.button(href=podcast[:feed])
+            a.button#refresh-episodes(href="#{podcast[:itunes_id]}", data-turbo-frame="episodes")
+              span.icon = mdi_tag("refresh 24px")
+          .control
+            a.button(href=podcast[:feed])
               span.icon = mdi_tag("rss 24px")
 
-table.table.is-hoverable
-  thead.is-hidden-mobile
-    th Episode Name
-    - if params[:order] == "up"
-      th: a(href="?order=down") Released ▲
-    - else
-      th: a(href="?order=up") Released ▼
-    th Duration
-    th
-  - episodes.each do |episode|
-    tr
-      td
-        .level.is-mobile.is-clipped
-          .level-right
-            .level-item.is-hidden-mobile
-              span.listen_button
-                == render "shared/listen_button", episode: episode, podcast: podcast
-            .level-item
-              = link_to episode[:title], "?" + { episode_id: episode[:id] }.to_query, data: { 'turbo-frame': 'modal' }
-      td.td.is-hidden-mobile = episode[:date].strftime("%Y %b %-d")
-      td.td.is-hidden-mobile = format_seconds(episode[:duration])
-      td.table-icon-container
-        .table-icon
-          == render "shared/episode_button", episode: episode, podcast: podcast,
-                    size: "36px"
-
-== pagy_bulma_nav(pagy) if pagy.pages > 1 if pagy.pages > 1
+  turbo-frame#episodes(data-controller="episodes", data-episodes-id-value=podcast[:itunes_id])
+    table.table.is-hoverable
+      thead.is-hidden-mobile
+        th Episode Name
+        - if params[:order] == "up"
+          th: a(href="?order=down") Released ▲
+        - else
+          th: a(href="?order=up") Released ▼
+        th Duration
+        th
+        - episodes.each do |episode|
+          tr
+            td
+              .level.is-mobile.is-clipped
+                .level-right
+                  .level-item.is-hidden-mobile
+                    span.listen_button
+                      == render "shared/listen_button", episode: episode, podcast: podcast
+                  .level-item
+                    = link_to episode[:title], "?" + { episode_id: episode[:id] }.to_query, data: { 'turbo-frame': 'modal' }
+            td.td.is-hidden-mobile = episode[:date].strftime("%Y %b %-d")
+            td.td.is-hidden-mobile = format_seconds(episode[:duration])
+            td.table-icon-container
+              .table-icon
+                == render "shared/episode_button", episode: episode, podcast: podcast,
+                          size: "36px"
+    == pagy_bulma_nav(pagy) if pagy.pages > 1 if pagy.pages > 1
 
 turbo-frame#modal
   - if modal_episode

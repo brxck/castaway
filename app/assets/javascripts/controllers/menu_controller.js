@@ -1,7 +1,9 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = []
+  static get targets() {
+    return []
+  }
 
   toggleSublist(e) {
     e.currentTarget.parentNode.parentNode

@@ -1,6 +1,10 @@
-extends: ["standard", "plugin:jest/recommended"]
+extends:
+  - "eslint:recommended"
+  - "prettier"
+  - "plugin:import/errors"
+  - "plugin:import/warnings"
 env:
   browser: true
-rules:
-  quotes: ["error", "double"]
-plugins: ["jest"]
+  es2020: true
+parserOptions:
+  sourceType: module
