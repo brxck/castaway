@@ -1,7 +1,7 @@
 - title "Discover"
 
 .columns.is-desktop
-  == render partial: "shared/discover_menu", locals: { categories: categories }
+  == render partial: "shared/menu", locals: { categories: categories }
 
   .column.is-four-fifths-desktop
     h1.title Discover
@@ -13,7 +13,7 @@
       .scroll-right(data-scroll-target="right" data-action="click->scroll#scrollRight")
         span.is-gray = mdi_tag("chevron-right 48px")
       .podcast-scroll(data-scroll-target="area" data-action="scroll->scroll#updateOverlays")
-        == render partial: "shared/podcast_tile", collection: curated, as: :podcast, cached: true
+        == render curated, cached: true
 
     h2.subtitle
       span Top Podcasts
@@ -26,7 +26,7 @@
       .scroll-right(data-scroll-target="right" data-action="click->scroll#scrollRight")
         span.is-gray = mdi_tag("chevron-right 48px")
       .podcast-scroll(data-scroll-target="area" data-action="scroll->scroll#updateOverlays")
-        == render partial: "shared/podcast_tile", collection: toplist, as: :podcast, cached: true
+        == render toplist, cached: true
 
     h2.subtitle
       span Explore: #{category.name}
@@ -39,4 +39,4 @@
       .scroll-right(data-scroll-target="right" data-action="click->scroll#scrollRight")
         span.is-gray = mdi_tag("chevron-right 48px")
       .podcast-scroll(data-scroll-target="area" data-action="scroll->scroll#updateOverlays")
-        == render partial: "shared/podcast_tile", collection: category.podcasts(8), as: :podcast, cached: true
+        == render category.podcasts(8), cached: true

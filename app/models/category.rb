@@ -5,4 +5,8 @@ class Category < ApplicationRecord
   def podcasts(count = 50)
     Itunes.genre(id, count)
   end
+
+  def to_partial_path
+    "categories/category"
+  end
 end

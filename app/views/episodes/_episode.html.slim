@@ -1,0 +1,22 @@
+- episode
+- podcast
+
+tr
+  td
+    .level.is-mobile.is-clipped
+      .level-right
+        .level-item.is-hidden-mobile
+          span.listen_button
+            == render "episodes/listen_button", episode: episode, podcast: podcast
+        .level-item
+          = link_to episode.title,
+                    "?" + { episode_id: episode.id }.to_query,
+                    data: { 'turbo-frame': 'modal' }
+                    
+  td.td.is-hidden-mobile = episode.date.strftime("%Y %b %-d")
+  td.td.is-hidden-mobile = format_seconds(episode.duration)
+  td.table-icon-container
+    .table-icon
+      == render "episodes/episode_button",
+                episode: episode, podcast: podcast,
+                size: "36px"

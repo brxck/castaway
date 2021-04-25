@@ -6,14 +6,14 @@
     div(data-controller="sub")
       div(class=(subscribed ? "" : "hidden") data-sub-target="unsubscribe")
         = link_to mdi_tag("minus 24px") + "Subscribed",
-                  subscription_path(subscription: { itunes_id: podcast.itunes_id }),
+                  subscription_path(subscription: { id: podcast.id }),
                   method: :delete,
                   remote: true,
                   class: "button is-info is-outlined"
 
       div(class=(subscribed ? "hidden" : "") data-sub-target="subscribe")
         = link_to mdi_tag("plus 24px") + "Subscribe",
-                  subscriptions_path(subscription: { itunes_id: podcast.itunes_id,
+                  subscriptions_path(subscription: { id: podcast.id,
                                                     name: podcast.name,
                                                     feed: podcast.feed }),
                   method: :post,

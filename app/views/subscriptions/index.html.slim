@@ -5,7 +5,6 @@
 
   - if @subscriptions.any?
     .podcast-grid
-      - @subscriptions.each do |podcast|
-        == render "shared/podcast_tile", podcast: podcast
+      == render @subscriptions
   - else
     p Subscribe to some podcasts and find them here.

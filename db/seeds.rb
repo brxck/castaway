@@ -2,7 +2,7 @@
 if Rails.env.development?
   user = User.create!(email: "test@example.com", password: "hunter2")
   user.subscriptions.create!(
-    itunes_id: 947_899_573, # rubocop:disable Style/NumericLiterals
+    id: 947_899_573, # rubocop:disable Style/NumericLiterals
     name: "The Adventure Zone",
     feed: "http://adventurezone.libsyn.com/rss",
   )
@@ -29,6 +29,3 @@ file = File.new(Rails.root.join("db", "curated.yml"))
 curated = YAML.safe_load(file)
 
 curated.each { |_, id| CuratedPodcast.create!(id: id) }
-
-# Preload top podcasts
-PreloadToplistJob.perform_later

@@ -9,7 +9,7 @@ class Itunes
     url = BASE_URL + "search?" + query
     response = Connect.get(url)
     results = JSON.parse(response.body)["results"]
-    results.map { |item| process_podcast(item) }
+    results.map { |item| Podcast.new(item) }
   end
 
   # Returns podcast with id
@@ -17,7 +17,7 @@ class Itunes
     url = BASE_URL + "lookup?id=#{id}"
     response = Connect.get(url)
     result = JSON.parse(response.body)["results"][0]
-    process_podcast(result)
+    Podcast.new(result)
   end
 
   # Returns top podcasts in the genre with genre_id
@@ -33,7 +33,7 @@ class Itunes
     url = BASE_URL + "search?" + query
     response = Connect.get(url)
     results = JSON.parse(response.body)["results"]
-    results.map { |item| process_podcast(item) }
+    results.map { |item| Podcast.new(item) }
   end
 
   # Returns top podcasts on iTunes
@@ -45,29 +45,6 @@ class Itunes
 
     # PreloadToplistJob.perform_later
     results = JSON.parse(response.body)["feed"]["results"]
-    results.map do |podcast|
-      {
-        itunes_id: podcast["id"],
-        name: podcast["name"],
-        author: podcast["artistName"],
-        genre: podcast["genres"][0]["name"],
-        art600: podcast["artworkUrl100"], # Is actually 200x200px
-      }
-    end
-  end
-
-  # Returns podcast object with properties accessible by dot notation
-  def self.process_podcast(podcast)
-    {
-      itunes_id: podcast["collectionId"],
-      name: podcast["collectionName"],
-      author: podcast["artistName"],
-      episode_count: podcast["trackCount"],
-      genre: podcast["primaryGenreName"],
-      genres: podcast["genres"] - ["Podcasts"],
-      feed: podcast["feedUrl"],
-      art100: podcast["artworkUrl100"],
-      art600: podcast["artworkUrl600"],
-    }
+    results.map { |item| Podcast.new(item) }
   end
 end

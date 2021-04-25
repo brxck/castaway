@@ -1,30 +1,30 @@
-- title podcast[:name]
+- title podcast.name
 
 .container
   .media.is-block-mobile
     .media-left
-      img.image.media-art(src=podcast[:art600])
+      img.image.media-art(src=podcast.art600)
     
     .media-content
-      h1.title = podcast[:name]
-      h2.subtitle = podcast[:author]
-      p = podcast[:description]
+      h1.title = podcast.name
+      h2.subtitle = podcast.author
+      p = podcast.description
       ul.tags
-        - podcast[:genres].each do |genre|
+        - podcast.genres.each do |genre|
           li.tag = genre
     
     .media-right
       .subscribe-container
         .field.is-grouped
-          == render "shared/subscribe_button", subscribed: subscribed, podcast: podcast
+          == render "podcasts/subscribe_button", subscribed: subscribed, podcast: podcast
           .control
-            a.button#refresh-episodes(href="#{podcast[:itunes_id]}", data-turbo-frame="episodes")
+            a.button#refresh-episodes(href="#{podcast.id}", data-turbo-frame="episodes")
               span.icon = mdi_tag("refresh 24px")
           .control
-            a.button(href=podcast[:feed])
+            a.button(href=podcast.feed)
               span.icon = mdi_tag("rss 24px")
 
-  turbo-frame#episodes(data-controller="episodes", data-episodes-id-value=podcast[:itunes_id])
+  turbo-frame#episodes(data-controller="episodes", data-episodes-id-value=podcast.id)
     table.table.is-hoverable
       thead.is-hidden-mobile
         th Episode Name
@@ -34,24 +34,9 @@
           th: a(href="?order=up") Released ▼
         th Duration
         th
-        - episodes.each do |episode|
-          tr
-            td
-              .level.is-mobile.is-clipped
-                .level-right
-                  .level-item.is-hidden-mobile
-                    span.listen_button
-                      == render "shared/listen_button", episode: episode, podcast: podcast
-                  .level-item
-                    = link_to episode[:title], "?" + { episode_id: episode[:id] }.to_query, data: { 'turbo-frame': 'modal' }
-            td.td.is-hidden-mobile = episode[:date].strftime("%Y %b %-d")
-            td.td.is-hidden-mobile = format_seconds(episode[:duration])
-            td.table-icon-container
-              .table-icon
-                == render "shared/episode_button", episode: episode, podcast: podcast,
-                          size: "36px"
+        == render partial: "episodes/episode", collection: episodes, locals: { podcast: podcast }
     == pagy_bulma_nav(pagy) if pagy.pages > 1 if pagy.pages > 1
 
 turbo-frame#modal
   - if modal_episode
-    == render partial: "shared/modal", locals: {episode: modal_episode, podcast: podcast}
+    == render partial: "podcasts/modal", locals: { episode: modal_episode, podcast: podcast }

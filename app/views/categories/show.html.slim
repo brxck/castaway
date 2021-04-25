@@ -1,10 +1,12 @@
-- title @category.name
+- active_category
+- categories
+
+- title active_category.name
 
 .columns
-  == render "shared/discover_menu"
+  == render "shared/menu", categories: categories, active_category: active_category
 
   .column.is-one-half
-    h1.title = @category.name
+    h1.title = active_category.name
     .podcast-grid
-      - @category.podcasts.each do |podcast|
-        == render "shared/podcast_tile", podcast: podcast
+      == render active_category.podcasts

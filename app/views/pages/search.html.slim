@@ -5,7 +5,7 @@
 
   - if results.any?
     .podcast-grid
-      == render partial: "shared/podcast_tile", collection: results, as: :podcast
+      == render results
   - else
     p No results found.
 
