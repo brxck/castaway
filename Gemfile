@@ -5,7 +5,7 @@ ruby "~> 3.0.1"
 
 gem "rails", "~> 6.1", ">= 6.1.3"
 gem "pg", "~> 1.2", ">= 1.2.3"
-gem "puma", "~> 5.2", ">= 5.2.2"
+gem "puma", "~> 5.5"
 gem "sass-rails", "~> 6.0"
 gem "uglifier", "~> 4.2"
 gem 'hotwire-rails', "~> 0.1.3"
